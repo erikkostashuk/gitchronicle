@@ -118,10 +118,44 @@ body {
   );
 }
 
-@keyframes gc-scene-in {
+/* ─── Wrapped cinematic motion ─── */
+
+@keyframes gc-scene-forward {
+  0% {
+    opacity: 0;
+    transform: translate3d(28px, 0, 0) scale(0.94);
+    filter: blur(8px);
+  }
+  55% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes gc-scene-back {
+  0% {
+    opacity: 0;
+    transform: translate3d(-28px, 0, 0) scale(0.94);
+    filter: blur(8px);
+  }
+  55% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes gc-stagger-up {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
@@ -129,12 +163,208 @@ body {
   }
 }
 
-.gc-scene-enter {
-  animation: gc-scene-in 0.35s ease-out both;
+@keyframes gc-hero-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gc-progress-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes gc-orb-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(12%, -8%, 0) scale(1.12);
+  }
+}
+
+@keyframes gc-orb-drift-2 {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-10%, 10%, 0) scale(0.92);
+  }
+}
+
+@keyframes gc-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes gc-bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes gc-hist-rise {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes gc-chip-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.gc-scene-forward {
+  animation: gc-scene-forward 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.gc-scene-back {
+  animation: gc-scene-back 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.gc-stagger > * {
+  opacity: 0;
+  animation: gc-stagger-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.gc-stagger > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.gc-stagger > *:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.gc-stagger > *:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.gc-stagger > *:nth-child(4) {
+  animation-delay: 0.28s;
+}
+.gc-stagger > *:nth-child(5) {
+  animation-delay: 0.36s;
+}
+.gc-stagger > *:nth-child(6) {
+  animation-delay: 0.44s;
+}
+.gc-stagger > *:nth-child(7) {
+  animation-delay: 0.52s;
+}
+.gc-stagger > *:nth-child(8) {
+  animation-delay: 0.58s;
+}
+.gc-stagger > *:nth-child(n + 9) {
+  animation-delay: 0.64s;
+}
+
+.gc-hero-pop {
+  animation: gc-hero-pop 0.75s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+  animation-delay: 0.18s;
+}
+
+.gc-progress-fill {
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: gc-progress-fill linear forwards;
+  animation-play-state: running;
+}
+
+.gc-progress-fill.is-paused {
+  animation-play-state: paused;
+}
+
+.gc-orb-a {
+  animation: gc-orb-drift 11s ease-in-out infinite;
+}
+
+.gc-orb-b {
+  animation: gc-orb-drift-2 14s ease-in-out infinite;
+}
+
+.gc-title-shine {
+  background: linear-gradient(
+    105deg,
+    #fff 0%,
+    #fff 38%,
+    color-mix(in oklab, var(--shine, #2dd4bf) 90%, #fff) 50%,
+    #fff 62%,
+    #fff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gc-shine 3.2s linear infinite;
+}
+
+.gc-bar-grow {
+  transform-origin: left center;
+  animation: gc-bar-grow 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.35s;
+}
+
+.gc-hist-rise {
+  transform-origin: bottom center;
+  animation: gc-hist-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.3s;
+}
+
+.gc-chip-in {
+  animation: gc-chip-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gc-scene-enter {
-    animation: none;
+  .gc-scene-forward,
+  .gc-scene-back,
+  .gc-stagger > *,
+  .gc-hero-pop,
+  .gc-progress-fill,
+  .gc-orb-a,
+  .gc-orb-b,
+  .gc-title-shine,
+  .gc-bar-grow,
+  .gc-hist-rise,
+  .gc-chip-in {
+    animation: none !important;
+  }
+  .gc-stagger > * {
+    opacity: 1;
+  }
+  .gc-progress-fill {
+    transform: scaleX(1);
+  }
+  .gc-title-shine {
+    color: inherit;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
   }
 }
