@@ -1,0 +1,279 @@
+import { eq } from "drizzle-orm";
+import fs from "node:fs/promises";
+import path from "node:path";
+import { runAnalysis } from "../analysis/run";
+import { getDb } from "../db/client";
+import { analyses, jobs, projects } from "../db/schema";
+import { getReposDir } from "../env";
+import { cloneGitHubRepo, removeRepoData } from "../git/clone";
+import { logger } from "../logger";
+import type { AnalysisResult } from "../types/analysis";
+import { randomId } from "../id";
+
+export async function processNextJob(): Promise<boolean> {
+  const db = getDb();
+  const pending = db
+    .select()
+    .from(jobs)
+    .where(eq(jobs.status, "pending"))
+    .limit(1)
+    .all();
+
+  const job = pending[0];
+  if (!job) return false;
+
+  const now = new Date().toISOString();
+  db.update(jobs)
+    .set({
+      status: "running",
+      startedAt: now,
+      updatedAt: now,
+      stage: "starting",
+      progress: 1,
+    })
+    .where(eq(jobs.id, job.id))
+    .run();
+
+  try {
+    await runJob(job.id);
+    return true;
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    logger.error("Job failed", { jobId: job.id, error: message });
+    db.update(jobs)
+      .set({
+        status: "failed",
+        errorMessage: message,
+        stage: "failed",
+        finishedAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      })
+      .where(eq(jobs.id, job.id))
+      .run();
+    db.update(projects)
+      .set({
+        status: "failed",
+        errorMessage: message,
+        updatedAt: new Date().toISOString(),
+      })
+      .where(eq(projects.id, job.projectId))
+      .run();
+    return true;
+  }
+}
+
+async function updateJob(
+  jobId: string,
+  progress: number,
+  stage: string
+) {
+  getDb()
+    .update(jobs)
+    .set({
+      progress,
+      stage,
+      updatedAt: new Date().toISOString(),
+    })
+    .where(eq(jobs.id, jobId))
+    .run();
+}
+
+async function runJob(jobId: string) {
+  const db = getDb();
+  const job = db.select().from(jobs).where(eq(jobs.id, jobId)).get();
+  if (!job) throw new Error("Job not found");
+
+  const project = db
+    .select()
+    .from(projects)
+    .where(eq(projects.id, job.projectId))
+    .get();
+  if (!project) throw new Error("Project not found");
+
+  let repoPath: string | null = project.localPath;
+  const payload = job.payloadJson
+    ? (JSON.parse(job.payloadJson) as { url?: string; localPath?: string })
+    : {};
+
+  if (job.type === "clone_and_analyze") {
+    const url = payload.url ?? project.sourceUrl;
+    if (!url) throw new Error("Missing GitHub URL");
+    db.update(projects)
+      .set({ status: "cloning", updatedAt: new Date().toISOString() })
+      .where(eq(projects.id, project.id))
+      .run();
+
+    const { repoPath: cloned, meta } = await cloneGitHubRepo(
+      url,
+      project.id,
+      (p, stage) => {
+        void updateJob(jobId, Math.min(50, Math.round(p * 0.5)), stage);
+      }
+    );
+    repoPath = cloned;
+    db.update(projects)
+      .set({
+        fullName: meta.fullName,
+        sourceUrl: meta.url,
+        name: meta.repo,
+        localPath: repoPath,
+        status: "analyzing",
+        updatedAt: new Date().toISOString(),
+      })
+      .where(eq(projects.id, project.id))
+      .run();
+  } else {
+    if (payload.localPath) repoPath = payload.localPath;
+    if (!repoPath) {
+      const fallback = path.join(getReposDir(), project.id);
+      try {
+        await fs.access(fallback);
+        repoPath = fallback;
+      } catch {
+        throw new Error("No local repository path available");
+      }
+    }
+    db.update(projects)
+      .set({ status: "analyzing", updatedAt: new Date().toISOString() })
+      .where(eq(projects.id, project.id))
+      .run();
+  }
+
+  if (!repoPath) throw new Error("Repository path missing");
+
+  const result = await runAnalysis({
+    repoPath,
+    name: project.name,
+    fullName: project.fullName ?? undefined,
+    url: project.sourceUrl ?? undefined,
+    onProgress: (p, stage) => {
+      const mapped = 50 + Math.round(p * 0.5);
+      void updateJob(jobId, mapped, stage);
+    },
+  });
+
+  await persistAnalysis(project.id, result);
+
+  db.update(projects)
+    .set({
+      status: "ready",
+      errorMessage: null,
+      description: result.overview.narrative.slice(0, 280),
+      updatedAt: new Date().toISOString(),
+    })
+    .where(eq(projects.id, project.id))
+    .run();
+
+  db.update(jobs)
+    .set({
+      status: "completed",
+      progress: 100,
+      stage: "complete",
+      finishedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    })
+    .where(eq(jobs.id, jobId))
+    .run();
+
+  logger.info("Job completed", { jobId, projectId: project.id });
+}
+
+export async function persistAnalysis(
+  projectId: string,
+  result: AnalysisResult
+) {
+  const db = getDb();
+  const summary = {
+    name: result.repository.name,
+    commitCount: result.overview.commitCount,
+    contributorCount: result.overview.contributorCount,
+    fileCount: result.overview.fileCount,
+    ageDays: result.overview.ageDays,
+    languages: result.languages.slice(0, 5),
+    narrative: result.overview.narrative,
+  };
+
+  // Replace prior analyses for project
+  db.delete(analyses).where(eq(analyses.projectId, projectId)).run();
+
+  db.insert(analyses)
+    .values({
+      id: randomId("an"),
+      projectId,
+      version: 1,
+      summaryJson: JSON.stringify(summary),
+      resultJson: JSON.stringify(result),
+      commitCount: result.overview.commitCount,
+      contributorCount: result.overview.contributorCount,
+      fileCount: result.overview.fileCount,
+    })
+    .run();
+}
+
+export async function processJobById(jobId: string): Promise<void> {
+  const db = getDb();
+  const job = db.select().from(jobs).where(eq(jobs.id, jobId)).get();
+  if (!job) throw new Error("Job not found");
+  if (job.status === "completed") return;
+
+  db.update(jobs)
+    .set({
+      status: "running",
+      startedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      progress: 1,
+      stage: "starting",
+    })
+    .where(eq(jobs.id, jobId))
+    .run();
+
+  try {
+    await runJob(jobId);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    db.update(jobs)
+      .set({
+        status: "failed",
+        errorMessage: message,
+        stage: "failed",
+        finishedAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      })
+      .where(eq(jobs.id, jobId))
+      .run();
+    db.update(projects)
+      .set({
+        status: "failed",
+        errorMessage: message,
+        updatedAt: new Date().toISOString(),
+      })
+      .where(eq(projects.id, job.projectId))
+      .run();
+    // Cleanup partial clone
+    try {
+      await removeRepoData(job.projectId);
+    } catch {
+      /* ignore */
+    }
+    throw err;
+  }
+}
+
+export async function workerLoop(intervalMs = 1500) {
+  logger.info("Worker started");
+  for (;;) {
+    try {
+      const worked = await processNextJob();
+      if (!worked) {
+        await sleep(intervalMs);
+      }
+    } catch (err) {
+      logger.error("Worker loop error", { error: String(err) });
+      await sleep(intervalMs);
+    }
+  }
+}
+
+function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
+}
