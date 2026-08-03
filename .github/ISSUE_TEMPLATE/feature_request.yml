@@ -1,0 +1,55 @@
+name: Feature request
+description: Suggest a metric, scene, or capability
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check the
+        [roadmap](https://github.com/erikkostashuk/gitchronicle#roadmap)
+        first — the idea may already be planned.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the user need, not the implementation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of change is this?
+      options:
+        - New Wrapped scene
+        - New metric or analysis
+        - New dashboard view or visualization
+        - Export format
+        - Deployment / operations
+        - Developer experience
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Constraints this respects
+      description: GitChronicle analyses Git history only, deterministically, with no external API calls.
+      options:
+        - label: This can be computed from Git history alone (no third-party API or AI service)
+        - label: This is deterministic — the same repository always produces the same result

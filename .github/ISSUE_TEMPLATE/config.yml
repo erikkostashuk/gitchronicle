@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/erikkostashuk/gitchronicle/security/advisories/new
+    about: Report privately via a GitHub security advisory — never in a public issue.
+  - name: Questions and ideas
+    url: https://github.com/erikkostashuk/gitchronicle/discussions
+    about: Ask a question or float an idea before opening an issue.
+  - name: Live demo
+    url: https://gitchronicle.up.railway.app
+    about: Try the hosted instance before filing a setup bug.

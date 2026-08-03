@@ -1,0 +1,80 @@
+name: Bug report
+description: Something in GitChronicle behaves incorrectly
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please **do not include secrets, tokens, or private repository contents** —
+        for security vulnerabilities follow
+        [SECURITY.md](https://github.com/erikkostashuk/gitchronicle/blob/main/SECURITY.md)
+        instead of opening a public issue.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. pnpm seed
+        2. Open /repo/acme-toolkit/wrapped
+        3. …
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Wrapped player / scenes
+        - Dashboard (overview, hotspots, people, evolution, graphs, releases)
+        - Repository import / analysis
+        - Exports (PNG / Markdown)
+        - Setup, migrations, or seeding
+        - Deployment (Docker / Railway)
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: how-run
+    attributes:
+      label: How are you running it?
+      options:
+        - Local dev (pnpm dev)
+        - Local production (pnpm build && pnpm start)
+        - Docker / docker compose
+        - Railway or another container host
+        - The hosted demo
+    validations:
+      required: true
+
+  - type: input
+    id: repo-source
+    attributes:
+      label: Repository analysed
+      description: Public URL, or "bundled demo", or an approximate size (commits / contributors) for a private repo.
+      placeholder: bundled demo
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Output of `node -v`, `pnpm -v`, `git --version`, plus your OS.
+      render: shell
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Server output or browser console. Redact anything sensitive.
+      render: shell
