@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -15,21 +15,6 @@ import type { WrappedScene, WrappedStory } from "@/lib/wrapped";
 import { ShareCardDownloader } from "./share-card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-function usePrefersReducedMotion(): boolean {
-  return useSyncExternalStore(
-    (onStoreChange) => {
-      if (typeof window === "undefined") return () => {};
-      const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-      mq.addEventListener("change", onStoreChange);
-      return () => mq.removeEventListener("change", onStoreChange);
-    },
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-    () => false
-  );
-}
 
 const PALETTES: Record<
   WrappedScene["palette"],
@@ -87,9 +72,22 @@ export function WrappedPlayer({
   const scenes = story.scenes;
   const [index, setIndex] = useState(0);
   const [fullscreen, setFullscreen] = useState(true);
-  const reduceMotion = usePrefersReducedMotion();
+  // Prefer CSS media query for reduced motion (no store hydration edge cases)
+  const [reduceMotion, setReduceMotion] = useState(false);
   const scene = scenes[index];
   const touchX = useRef(0);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // Subscribe first; initial match applied asynchronously to avoid sync setState-in-effect lint
+    const apply = () => setReduceMotion(mq.matches);
+    const id = requestAnimationFrame(apply);
+    mq.addEventListener("change", apply);
+    return () => {
+      cancelAnimationFrame(id);
+      mq.removeEventListener("change", apply);
+    };
+  }, []);
 
   const next = useCallback(() => {
     setIndex((i) => Math.min(scenes.length - 1, i + 1));
@@ -97,30 +95,41 @@ export function WrappedPlayer({
   const prev = useCallback(() => {
     setIndex((i) => Math.max(0, i - 1));
   }, []);
+  const goTo = useCallback(
+    (i: number) => {
+      setIndex(Math.max(0, Math.min(scenes.length - 1, i)));
+    },
+    [scenes.length]
+  );
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
         e.preventDefault();
         next();
-      }
-      if (e.key === "ArrowLeft" || e.key === "PageUp") {
+      } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
         e.preventDefault();
         prev();
-      }
-      if (e.key === "Home") {
+      } else if (e.key === "Home") {
         e.preventDefault();
-        setIndex(0);
-      }
-      if (e.key === "End") {
+        goTo(0);
+      } else if (e.key === "End") {
         e.preventDefault();
-        setIndex(scenes.length - 1);
+        goTo(scenes.length - 1);
+      } else if (e.key === "Escape" && fullscreen) {
+        setFullscreen(false);
       }
-      if (e.key === "Escape" && fullscreen) setFullscreen(false);
     }
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [next, prev, fullscreen, scenes.length]);
+    const w = window as Window & {
+      __gcWrapped?: { next: () => void; prev: () => void; goTo: (i: number) => void };
+    };
+    w.__gcWrapped = { next, prev, goTo };
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      delete w.__gcWrapped;
+    };
+  }, [next, prev, goTo, fullscreen, scenes.length]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchX.current = e.changedTouches[0]?.clientX ?? 0;
@@ -145,70 +154,89 @@ export function WrappedPlayer({
   return (
     <div
       className={cn(
-        "relative flex flex-col overflow-hidden text-white",
+        "relative flex h-full min-h-0 flex-col overflow-hidden text-white",
         fullscreen
           ? "fixed inset-0 z-50"
-          : "min-h-[70vh] rounded-2xl border border-border"
+          : "min-h-[70vh] max-h-[90vh] rounded-2xl border border-border"
       )}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       role="region"
       aria-roledescription="carousel"
       aria-label="GitChronicle Wrapped story"
+      data-testid="wrapped-player"
+      tabIndex={0}
     >
-      {/* Background */}
+      {/* Background — must not intercept clicks/keys */}
       <div
+        aria-hidden
         className={cn(
-          "absolute inset-0 bg-gradient-to-br",
+          "pointer-events-none absolute inset-0 bg-gradient-to-br",
           pal.bg,
           !reduceMotion && "transition-colors duration-500"
         )}
       />
       <div
+        aria-hidden
         className={cn(
           "pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full blur-3xl",
           pal.glow
         )}
       />
       <div
+        aria-hidden
         className={cn(
           "pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full blur-3xl",
           pal.glow
         )}
       />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]"
+      />
 
-      {/* Progress */}
-      <div className="relative z-10 flex gap-1 px-3 pt-3 sm:px-6 sm:pt-4">
+      {/* Progress — fixed chrome; larger hit targets for touch/click */}
+      <div
+        className="relative z-10 flex shrink-0 gap-0.5 px-3 pt-2 sm:gap-1 sm:px-6 sm:pt-3"
+        data-testid="wrapped-progress"
+        role="tablist"
+        aria-label="Wrapped scenes"
+      >
         {scenes.map((s, i) => (
           <button
             key={s.id}
             type="button"
+            role="tab"
             aria-label={`Scene ${i + 1}: ${s.title}`}
             aria-current={i === index ? "true" : undefined}
-            onClick={() => setIndex(i)}
-            className="h-1 flex-1 overflow-hidden rounded-full bg-white/15"
+            data-scene-index={i}
+            data-scene-type={s.type}
+            data-testid={`wrapped-scene-tab-${s.type}`}
+            onClick={() => goTo(i)}
+            className="relative z-20 flex h-6 flex-1 items-center py-2"
           >
-            <span
-              className={cn(
-                "block h-full rounded-full bg-white/90",
-                i < index && "w-full",
-                i === index && "w-full",
-                i > index && "w-0",
-                !reduceMotion && i === index && "transition-all duration-300"
-              )}
-              style={i === index ? { width: "100%" } : undefined}
-            />
+            <span className="block h-1.5 w-full overflow-hidden rounded-full bg-white/15">
+              <span
+                className={cn(
+                  "block h-full rounded-full bg-white/90",
+                  i < index && "w-full",
+                  i === index && "w-full",
+                  i > index && "w-0",
+                  !reduceMotion && i === index && "transition-all duration-300"
+                )}
+                style={i === index ? { width: "100%" } : undefined}
+              />
+            </span>
           </button>
         ))}
       </div>
 
-      {/* Header chrome */}
-      <div className="relative z-10 flex items-center justify-between gap-2 px-4 py-3 sm:px-6">
+      {/* Header chrome — fixed */}
+      <div className="relative z-10 flex shrink-0 items-center justify-between gap-2 px-4 py-3 sm:px-6">
         <div className="flex items-center gap-2 text-xs text-white/60">
           <Sparkles className="h-3.5 w-3.5 text-teal-300" />
           <span className="font-medium tracking-wide">WRAPPED</span>
-          <span className="tabular-nums">
+          <span className="tabular-nums" data-testid="wrapped-counter">
             {index + 1}/{scenes.length}
           </span>
         </div>
@@ -240,14 +268,19 @@ export function WrappedPlayer({
         </div>
       </div>
 
-      {/* Scene body */}
+      {/* Scene body — scrollable so closing CTAs/share cards are always reachable */}
       <div
         key={scene.id}
         className={cn(
-          "relative z-10 flex flex-1 flex-col justify-center px-5 py-6 sm:px-12 sm:py-10 md:px-20",
+          "relative z-10 min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-6 sm:px-12 sm:py-10 md:px-20",
+          isClosing || scene.list || scene.metrics
+            ? "flex flex-col justify-start"
+            : "flex flex-col justify-center",
           !reduceMotion && "gc-scene-enter"
         )}
         aria-live="polite"
+        data-testid="wrapped-scene-body"
+        data-scene-type={scene.type}
       >
         {scene.kicker && (
           <p
@@ -381,11 +414,14 @@ export function WrappedPlayer({
         )}
 
         {isClosing && (
-          <div className="mt-10 max-w-2xl space-y-6">
+          <div
+            className="mt-10 max-w-2xl space-y-6 pb-4"
+            data-testid="wrapped-closing"
+          >
             <ShareCardDownloader cards={story.shareCards} />
             <div className="flex flex-wrap gap-2">
               <Button asChild className="bg-teal-400 text-teal-950 hover:bg-teal-300">
-                <Link href={`/repo/${slug}`}>
+                <Link href={`/repo/${slug}`} data-testid="cta-analytics">
                   <LayoutDashboard className="h-4 w-4" />
                   Open analytics
                 </Link>
@@ -395,7 +431,10 @@ export function WrappedPlayer({
                 variant="outline"
                 className="border-white/20 bg-transparent text-white hover:bg-white/10"
               >
-                <a href={`/api/repos/${slug}/export?type=report`}>
+                <a
+                  href={`/api/repos/${slug}/export?type=report`}
+                  data-testid="cta-report"
+                >
                   <Download className="h-4 w-4" />
                   Markdown report
                 </a>
@@ -405,7 +444,9 @@ export function WrappedPlayer({
                 variant="outline"
                 className="border-white/20 bg-transparent text-white hover:bg-white/10"
               >
-                <Link href="/">Analyze another</Link>
+                <Link href="/" data-testid="cta-another">
+                  Analyze another
+                </Link>
               </Button>
             </div>
           </div>
@@ -414,30 +455,33 @@ export function WrappedPlayer({
         <p className="sr-only">{scene.a11y}</p>
       </div>
 
-      {/* Footer nav */}
-      <div className="relative z-10 flex items-center justify-between gap-3 border-t border-white/10 bg-black/20 px-4 py-3 backdrop-blur-md sm:px-6">
-        <Button
-          variant="ghost"
-          className="text-white hover:bg-white/10"
+      {/* Footer nav — fixed chrome; native buttons for reliable event binding */}
+      <div className="relative z-20 flex shrink-0 items-center justify-between gap-3 border-t border-white/10 bg-black/30 px-4 py-3 backdrop-blur-md sm:px-6">
+        <button
+          type="button"
+          className="inline-flex h-9 items-center gap-2 rounded-md px-3 text-sm text-white hover:bg-white/10 disabled:opacity-40"
           onClick={prev}
           disabled={index === 0}
           aria-label="Previous scene"
+          data-testid="wrapped-prev"
         >
           <ChevronLeft className="h-4 w-4" />
           <span className="hidden sm:inline">Back</span>
-        </Button>
+        </button>
         <div className="text-center text-[11px] text-white/45">
           ← → keys · swipe · {Math.round(progress)}%
         </div>
-        <Button
-          className="bg-white/90 text-slate-900 hover:bg-white"
+        <button
+          type="button"
+          className="inline-flex h-9 items-center gap-2 rounded-md bg-white/90 px-4 text-sm font-medium text-slate-900 hover:bg-white disabled:opacity-40"
           onClick={next}
           disabled={index >= scenes.length - 1}
           aria-label="Next scene"
+          data-testid="wrapped-next"
         >
           <span className="hidden sm:inline">Next</span>
           <ChevronRight className="h-4 w-4" />
-        </Button>
+        </button>
       </div>
     </div>
   );

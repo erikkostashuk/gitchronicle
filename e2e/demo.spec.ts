@@ -6,8 +6,13 @@ const shots =
   process.env.PLAYWRIGHT_SHOTS_DIR ||
   path.join(process.cwd(), "test-results", "shots");
 
+const exportDir =
+  process.env.PLAYWRIGHT_EXPORT_DIR ||
+  path.join(process.cwd(), "test-results", "exports");
+
 test.beforeAll(() => {
   fs.mkdirSync(shots, { recursive: true });
+  fs.mkdirSync(exportDir, { recursive: true });
 });
 
 test("landing page loads", async ({ page }) => {
@@ -24,11 +29,11 @@ test("landing page loads", async ({ page }) => {
 test("demo opens Wrapped with analysis-backed scenes", async ({ page }) => {
   await page.goto("/demo");
   await page.waitForURL(/\/repo\/acme-toolkit\/wrapped/);
+  const player = page.getByTestId("wrapped-player");
+  await expect(player).toBeVisible();
   await expect(page.getByText(/WRAPPED/i).first()).toBeVisible();
   await expect(page.getByText(/acme-toolkit/i).first()).toBeVisible();
-  // progress indicator like 1/N
-  await expect(page.getByText(/\d+\/\d+/).first()).toBeVisible();
-  // scene content from real analysis (opening title is repo name)
+  await expect(page.getByTestId("wrapped-counter")).toHaveText(/^1\//);
   await expect(
     page.getByRole("heading", { name: /acme-toolkit/i }).first()
   ).toBeVisible();
@@ -37,18 +42,73 @@ test("demo opens Wrapped with analysis-backed scenes", async ({ page }) => {
     fullPage: true,
   });
 
-  // advance with keyboard
-  const before = await page.getByText(/\d+\/\d+/).first().textContent();
+  // Focus player so window keyboard handlers receive keys
+  await player.focus();
   await page.keyboard.press("ArrowRight");
-  await page.waitForTimeout(200);
-  const after = await page.getByText(/\d+\/\d+/).first().textContent();
-  expect(before || after).toMatch(/\d+\/\d+/);
-  if (before && after && before !== after) {
-    expect(after).not.toBe(before);
-  }
-  await page.getByRole("button", { name: "Next scene" }).click();
+  await expect(page.getByTestId("wrapped-counter")).toHaveText(/^2\//, {
+    timeout: 5000,
+  });
+
+  // Next button advances further
+  await page.getByTestId("wrapped-next").click();
+  await expect(page.getByTestId("wrapped-counter")).toHaveText(/^3\//);
   await page.screenshot({
     path: path.join(shots, `wrapped-next-${test.info().project.name}.png`),
+  });
+});
+
+test("closing scene is scrollable with share cards and CTAs", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/repo/acme-toolkit/wrapped");
+  await expect(page.getByTestId("wrapped-player")).toBeVisible();
+
+  // Jump to closing via dedicated tab test id
+  await page.getByTestId("wrapped-scene-tab-closing").click();
+  await expect(page.getByTestId("wrapped-scene-body")).toHaveAttribute(
+    "data-scene-type",
+    "closing",
+    { timeout: 5000 }
+  );
+  await expect(page.getByTestId("wrapped-closing")).toBeVisible();
+  await expect(page.getByTestId("wrapped-counter")).toHaveText(/\/\d+$/);
+
+  const scrollMeta = await page
+    .getByTestId("wrapped-scene-body")
+    .evaluate((el) => ({
+      scrollHeight: el.scrollHeight,
+      clientHeight: el.clientHeight,
+      overflowY: getComputedStyle(el).overflowY,
+    }));
+  expect(["auto", "scroll", "overlay"]).toContain(scrollMeta.overflowY);
+  if (scrollMeta.scrollHeight > scrollMeta.clientHeight + 4) {
+    await page.getByTestId("wrapped-scene-body").evaluate((el) => {
+      el.scrollTop = el.scrollHeight;
+    });
+  }
+
+  await expect(page.getByTestId("cta-analytics")).toBeVisible();
+  await expect(page.getByTestId("cta-report")).toBeVisible();
+  await expect(page.getByTestId("cta-another")).toBeVisible();
+
+  // Share PNG download
+  const downloadPromise = page.waitForEvent("download", { timeout: 20_000 });
+  await page.getByTestId("share-download-recap-landscape").scrollIntoViewIfNeeded();
+  await page.getByTestId("share-download-recap-landscape").click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(/\.png$/i);
+  const outPath = path.join(
+    exportDir,
+    `recap-landscape-${test.info().project.name}.png`
+  );
+  await download.saveAs(outPath);
+  const buf = fs.readFileSync(outPath);
+  expect(buf.subarray(0, 4)).toEqual(Buffer.from([0x89, 0x50, 0x4e, 0x47]));
+  expect(buf.length).toBeGreaterThan(5_000);
+
+  await page.screenshot({
+    path: path.join(shots, `wrapped-closing-${test.info().project.name}.png`),
   });
 });
 

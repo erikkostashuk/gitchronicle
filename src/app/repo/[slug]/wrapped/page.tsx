@@ -1,11 +1,15 @@
 import { notFound } from "next/navigation";
 import { EmptyState } from "@/components/dashboard/empty-state";
-import { WrappedPlayer } from "@/components/wrapped/wrapped-player";
+import { WrappedEntry } from "@/components/wrapped/wrapped-entry";
 import { getLatestAnalysis, getProjectBySlug } from "@/lib/projects";
 import { buildWrappedStory } from "@/lib/wrapped";
 
 export const dynamic = "force-dynamic";
 
+/**
+ * Full-screen Wrapped experience — outside the dashboard (app) layout
+ * so chrome/sidebar cannot intercept pointer events or constrain height.
+ */
 export default async function WrappedPage({
   params,
 }: {
@@ -17,21 +21,23 @@ export default async function WrappedPage({
   const analysis = getLatestAnalysis(project.id);
   if (!analysis) {
     return (
-      <EmptyState
-        title="Analysis not ready"
-        description="Wrapped needs a completed analysis before the story can play."
-        actionHref="/"
-        actionLabel="Back home"
-      />
+      <div className="min-h-screen p-6">
+        <EmptyState
+          title="Analysis not ready"
+          description="Wrapped needs a completed analysis before the story can play."
+          actionHref="/"
+          actionLabel="Back home"
+        />
+      </div>
     );
   }
 
   const story = buildWrappedStory(analysis.result);
+  const storyJson = JSON.stringify(story);
 
-  // Full-bleed player: hide default dashboard chrome spacing by using a portal-like full layout
   return (
-    <div className="-mx-4 -my-6 sm:-mx-6 md:fixed md:inset-0 md:z-40 md:m-0">
-      <WrappedPlayer story={story} slug={slug} />
+    <div className="fixed inset-0 z-50 h-dvh w-screen overflow-hidden bg-black">
+      <WrappedEntry storyJson={storyJson} slug={slug} />
     </div>
   );
 }

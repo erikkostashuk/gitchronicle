@@ -29,9 +29,15 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] Downloadable PNG share cards (1200×630 + 1080×1080)
 - [x] Closing CTAs → analytics / report / another repo
 - [x] Landing rebranded for Wrapped
-- [x] e2e for Wrapped nav + exports (12/12)
+- [x] e2e for Wrapped nav + exports (**14/14**, hard keyboard + closing + PNG)
 - [x] FINAL_AUDIT.md
 - [x] lint / typecheck / test / build green
+
+## Skeptic repairs
+- [x] Closing scene scrollable (overflow-y-auto on scene body)
+- [x] Wrapped outside dashboard layout (route group `(app)`)
+- [x] e2e production server for reliable client hydration
+- [x] PNG export evidence (export-cards.log / test-results/exports)
 
 ## Notes
 - Classic Story deck kept as secondary chronological slides

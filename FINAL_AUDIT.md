@@ -26,11 +26,19 @@ pnpm dev
 | `pnpm typecheck` | pass |
 | `pnpm test` | 31 pass (parse + metrics + wrapped scene engine) |
 | `pnpm build` | pass |
-| `pnpm test:e2e` | 12 pass (desktop + mobile) |
+| `pnpm test:e2e` | **14 pass** (desktop + mobile), including hard keyboard advance + closing scroll + PNG magic |
 | Demo Wrapped | 21 adaptive scenes, analysis-backed |
 | Local CLI analyze | ready project + Wrapped 200 |
 | Markdown export | non-empty report with Overview |
+| PNG share cards | recap landscape ~900KB+, PNG signature verified |
 | Invalid GitHub URL | 400 |
+
+### Skeptic fixes (2026-08-03)
+
+- Scene body is `flex-1 min-h-0 overflow-y-auto` so closing CTAs/share cards scroll on 390×844
+- Wrapped route sits **outside** dashboard `(app)` layout (no chrome intercepting pointers)
+- Playwright webServer uses **production** `pnpm build && pnpm start` (Turbopack dev HMR can leave Client Components inert)
+- e2e hard-asserts keyboard `1/→2/`, closing tab, scroll `overflow-y`, PNG download
 
 ## Architecture
 

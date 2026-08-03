@@ -171,6 +171,7 @@ export function ShareCardDownloader({
                 disabled={busy !== null}
                 onClick={() => download(card, "landscape")}
                 aria-label={`Download ${card.kind} landscape card`}
+                data-testid={`share-download-${card.kind}-landscape`}
               >
                 <Download className="h-3.5 w-3.5" />
                 1200×630
@@ -182,6 +183,7 @@ export function ShareCardDownloader({
                 disabled={busy !== null}
                 onClick={() => download(card, "square")}
                 aria-label={`Download ${card.kind} square card`}
+                data-testid={`share-download-${card.kind}-square`}
               >
                 1080
               </Button>
