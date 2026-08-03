@@ -142,6 +142,12 @@ primitives (`gc-display`, `gc-numeral`, `gc-eyebrow`) and the motion system
 `src/app/globals.css`; `src/lib/theme/design-system.test.ts` guards contrast,
 hue separation, palette balance and reduced-motion coverage.
 
+**Icons** — `src/app/icon.svg` is the single source of truth: the brand mark
+(ink top half, coral bottom half) on a warm-paper tile, which keeps the ink
+readable against dark browser chrome. `pnpm icons` rasterises it into
+`favicon.ico` (16/32/48) and `apple-icon.png` (180×180); Next.js wires all three
+up automatically via its file conventions.
+
 ## Personality (deterministic)
 
 See `src/lib/wrapped/personality.ts` and [FINAL_AUDIT.md](./FINAL_AUDIT.md). Examples: The Night Owl, The Weekend Builder, The Phoenix, The Feature Factory. **No AI API.**
@@ -195,6 +201,7 @@ platform-level WAF.
 | `pnpm analyze -- <path>` | Local analyze |
 | `pnpm worker` / `cleanup` | Jobs + cleanup |
 | `pnpm screenshots` | Refresh `docs/screenshots/` (server on :3000) |
+| `pnpm icons` | Rebuild `favicon.ico` + `apple-icon.png` from `src/app/icon.svg` |
 
 ## Contributing
 
