@@ -25,8 +25,9 @@ URL and watch a real repository get analysed.
 - **Releases** — tags + Markdown notes
 - **Exports** — PNG social cards + Markdown repository report
 
-Everything is computed from Git history alone, deterministically. **No AI API,
-no third-party service, no account.**
+Everything is computed from Git history alone, deterministically. **No external
+service, no account, no API keys** — the same repository always produces the
+same result.
 
 ## Limitations
 
@@ -266,7 +267,7 @@ Every repository gets a personality from its own history — The Night Owl, The
 Weekend Builder, The Phoenix, The Feature Factory and others. Rules live in
 `src/lib/wrapped/personality.ts` and are listed in
 [DECISIONS.md](./DECISIONS.md#repository-personality-deterministic-first-match-wins).
-First match wins, so the same repository always gets the same answer. **No AI API.**
+First match wins, so the same repository always gets the same answer.
 
 ## Security & running a public instance
 

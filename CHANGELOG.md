@@ -22,7 +22,8 @@ source public with the documentation, CI, and policies to match.
 - Cinematic Wrapped player with up to 16 adaptive full-screen scenes, each with
   its own composition rather than one template with swapped numbers
 - Deterministic repository personality (The Night Owl, The Weekend Builder,
-  The Phoenix, The Feature Factory, …) computed from Git history — no AI API
+  The Phoenix, The Feature Factory, …) computed from Git history — no external
+  service
 - Streak, rhythm, contributor-ensemble, language-field, plot-twist,
   rising-star, and share-card scenes
 - Autoplay with keyboard (`← →`, `Home`/`End`, `P`), tap-the-edges, and swipe

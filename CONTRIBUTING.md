@@ -217,8 +217,8 @@ test. It must be green before review.
 - Bound anything that scales with repository size, and make the bound an env var.
 - Keep user-facing errors free of server paths and dependency internals.
 - Cover parsing and metric changes with Vitest.
-- Everything must stay deterministic and offline — no AI APIs, no third-party
-  services at analysis time.
+- Everything must stay deterministic and offline — no third-party services or
+  network calls at analysis time.
 
 ### Marketing screenshots
 

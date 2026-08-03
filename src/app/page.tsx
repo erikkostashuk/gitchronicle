@@ -62,7 +62,7 @@ const FEATURES = [
   {
     icon: Sparkles,
     title: "Share cards",
-    body: "Download social PNGs for the recap, personality, streaks and more. No AI, no login.",
+    body: "Download social PNGs for the recap, personality, streaks and more. No login required.",
     tint: "var(--lime-deep)",
   },
 ];
@@ -304,8 +304,19 @@ export default function HomePage() {
 
       <footer className="border-t py-8">
         <div className="mx-auto flex max-w-[86rem] flex-wrap items-center justify-between gap-3 px-4 text-xs text-muted-foreground sm:px-8">
-          <p>GitChronicle Wrapped · deterministic Git analysis · MIT License</p>
-          <p>No credentials. No AI. Runs on your machine.</p>
+          <p>
+            Made with{" "}
+            <a
+              href="https://github.com/erikkostashuk/gitchronicle"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground underline-offset-4 hover:underline"
+            >
+              GitChronicle
+            </a>{" "}
+            · MIT License
+          </p>
+          <p>No credentials. Runs on your machine.</p>
         </div>
       </footer>
     </div>

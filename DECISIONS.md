@@ -41,7 +41,7 @@
 - Uses sampled snapshots (not full tree at every commit) for large repos.
 - Sample points chosen from commit density + release tags for narrative fidelity.
 
-## No AI / no auth / no paid services
+## No auth / no paid services
 - Deterministic keyword + conventional-commit categorization only.
 - Single-user self-host model; no multi-tenant auth.
 
@@ -56,7 +56,7 @@
 
 ## Wrapped product pivot
 - Primary UX is **GitChronicle Wrapped**: pure `buildWrappedStory(AnalysisResult)` → full-screen `WrappedPlayer`. Analysis engine and dashboard are preserved.
-- Personality and scene eligibility are pure deterministic functions (no AI). Rules live in `src/lib/wrapped/personality.ts`.
+- Personality and scene eligibility are pure deterministic functions. Rules live in `src/lib/wrapped/personality.ts`.
 - Share cards use browser canvas PNG export (no extra deps); closing scene hosts downloads.
 - Demo and import completion routes land on `/repo/<slug>/wrapped` first; analytics remain one click away.
 
@@ -115,7 +115,7 @@
 - Scene dwell is **4.3s** (`SCENE_MS` in `wrapped-player.tsx`); autoplay stops on the closing scene and switches itself off under `prefers-reduced-motion`. Scene copy is deterministic and playful; metrics stay analysis-backed.
 
 ## Repository personality (deterministic, first match wins)
-Rules live in `src/lib/wrapped/personality.ts`. No AI, no external call — the same repository always yields the same personality.
+Rules live in `src/lib/wrapped/personality.ts`. No external call — the same repository always yields the same personality.
 
 1. **The Phoenix** — a quiet stretch of ≥30 days, then activity resumes
 2. **The Night Owl** — peak commit hour between 22:00 and 05:00 UTC

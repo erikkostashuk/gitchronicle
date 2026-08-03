@@ -2,7 +2,7 @@
   "name": "gitchronicle",
   "version": "1.0.0",
   "private": true,
-  "description": "Turn any Git repository into a cinematic, shareable Wrapped story and an engineering-intelligence dashboard — deterministic, local-first, no AI APIs.",
+  "description": "Turn any Git repository into a cinematic, shareable Wrapped story and an engineering-intelligence dashboard — deterministic, local-first, no external services.",
   "license": "MIT",
   "author": "Erik Kostashuk",
   "homepage": "https://github.com/erikkostashuk/gitchronicle#readme",

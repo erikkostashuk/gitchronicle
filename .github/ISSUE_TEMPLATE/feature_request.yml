@@ -51,5 +51,5 @@ body:
       label: Constraints this respects
       description: GitChronicle analyses Git history only, deterministically, with no external API calls.
       options:
-        - label: This can be computed from Git history alone (no third-party API or AI service)
+        - label: This can be computed from Git history alone (no third-party service)
         - label: This is deterministic — the same repository always produces the same result

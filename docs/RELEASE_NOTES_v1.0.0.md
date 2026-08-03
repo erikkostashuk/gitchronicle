@@ -34,7 +34,7 @@ contributors, a proportional colour field for languages, a share-card wall to
 close. Scenes adapt to the repository: a solo project doesn't get a
 collaboration scene it can't fill.
 
-**Deterministic personality — no AI.** Every repository gets a personality
+**Deterministic personality.** Every repository gets a personality
 (The Night Owl, The Weekend Builder, The Phoenix, The Feature Factory, and
 others) computed from commit timing, cadence, and composition. The same
 repository always produces the same result, and nothing is sent to a
