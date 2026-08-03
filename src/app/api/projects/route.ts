@@ -43,24 +43,11 @@ const importSchema = z.object({
 });
 
 export async function POST(req: Request) {
-  // 1) Speed bump per client before any work happens
   const env = getEnv();
-  const limit = rateLimit(
-    `import:${clientKey(req)}`,
-    env.IMPORT_RATE_LIMIT,
-    env.IMPORT_RATE_WINDOW_MS
-  );
-  if (!limit.ok) {
-    return NextResponse.json(
-      {
-        error: `Too many imports. Try again in ${limit.retryAfter}s.`,
-      },
-      { status: 429, headers: rateLimitHeaders(limit) }
-    );
-  }
-
   try {
     const body = importSchema.parse(await req.json());
+    // Validate before metering: a rejected URL performs no clone and no
+    // analysis, so charging quota for it only ever locks out honest users.
     const meta = validateGitHubUrl(body.url);
     const db = getDb();
 
@@ -70,21 +57,31 @@ export async function POST(req: Request) {
       .where(eq(projects.fullName, meta.fullName))
       .get();
 
-    // Serving an already-analysed repo costs nothing — do it before capacity checks
+    // Serving an already-analysed repo costs nothing — no quota, no capacity check
     if (existing && existing.status === "ready") {
+      return NextResponse.json({
+        projectId: existing.id,
+        slug: existing.slug,
+        jobId: null,
+        status: existing.status,
+        reused: true,
+      });
+    }
+
+    // This request will clone and analyse, so now it costs quota
+    const limit = rateLimit(
+      `import:${clientKey(req)}`,
+      env.IMPORT_RATE_LIMIT,
+      env.IMPORT_RATE_WINDOW_MS
+    );
+    if (!limit.ok) {
       return NextResponse.json(
-        {
-          projectId: existing.id,
-          slug: existing.slug,
-          jobId: null,
-          status: existing.status,
-          reused: true,
-        },
-        { headers: rateLimitHeaders(limit) }
+        { error: `Too many imports. Try again in ${limit.retryAfter}s.` },
+        { status: 429, headers: rateLimitHeaders(limit) }
       );
     }
 
-    // 2) Refuse new work when the box or the volume is already saturated
+    // Refuse new work when the box or the volume is already saturated
     const capacity = analysisCapacity();
     if (capacity.active >= capacity.limit) {
       return NextResponse.json(

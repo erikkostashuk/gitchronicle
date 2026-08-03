@@ -62,14 +62,45 @@ describe("clientKey", () => {
     expect(clientKey(req)).toBe("203.0.113.7");
   });
 
-  it("falls back through real-ip then unknown", () => {
+  /**
+   * Regression: only checking x-forwarded-for meant every caller behind an edge
+   * that uses a different header collapsed into one "unknown" bucket, turning a
+   * per-client limit into a global lockout.
+   */
+  it.each([
+    ["x-envoy-external-address", "198.51.100.4"],
+    ["x-real-ip", "198.51.100.9"],
+    ["cf-connecting-ip", "198.51.100.10"],
+    ["true-client-ip", "198.51.100.11"],
+    ["fastly-client-ip", "198.51.100.12"],
+    ["x-client-ip", "198.51.100.13"],
+  ])("resolves identity from %s", (header, ip) => {
+    expect(
+      clientKey(new Request("https://example.com", { headers: { [header]: ip } }))
+    ).toBe(ip);
+  });
+
+  it("parses the RFC 7239 Forwarded header", () => {
     expect(
       clientKey(
         new Request("https://example.com", {
-          headers: { "x-real-ip": "198.51.100.9" },
+          headers: { forwarded: "for=192.0.2.60;proto=http;by=203.0.113.43" },
         })
       )
-    ).toBe("198.51.100.9");
+    ).toBe("192.0.2.60");
+  });
+
+  it("gives distinct keys to distinct clients", () => {
+    const a = clientKey(
+      new Request("https://e.com", { headers: { "x-forwarded-for": "1.1.1.1" } })
+    );
+    const b = clientKey(
+      new Request("https://e.com", { headers: { "x-forwarded-for": "2.2.2.2" } })
+    );
+    expect(a).not.toBe(b);
+  });
+
+  it("falls back to unknown only when nothing identifies the caller", () => {
     expect(clientKey(new Request("https://example.com"))).toBe("unknown");
   });
 });

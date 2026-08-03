@@ -19,7 +19,14 @@ export async function POST(
   req: Request,
   ctx: { params: Promise<{ slug: string }> }
 ) {
-  // Retry re-clones and re-analyses, so it carries the same cost as an import
+  const { slug } = await ctx.params;
+  const project = getProjectBySlug(slug);
+  if (!project) {
+    return NextResponse.json({ error: "Project not found" }, { status: 404 });
+  }
+
+  // Retry re-clones and re-analyses, so it costs the same as an import. Metered
+  // only once the request is known to be actionable — a 404 does no work.
   const env = getEnv();
   const limit = rateLimit(
     `retry:${clientKey(req)}`,
@@ -31,12 +38,6 @@ export async function POST(
       { error: `Too many retries. Try again in ${limit.retryAfter}s.` },
       { status: 429, headers: rateLimitHeaders(limit) }
     );
-  }
-
-  const { slug } = await ctx.params;
-  const project = getProjectBySlug(slug);
-  if (!project) {
-    return NextResponse.json({ error: "Project not found" }, { status: 404 });
   }
 
   const capacity = analysisCapacity();

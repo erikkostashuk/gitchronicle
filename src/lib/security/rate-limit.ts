@@ -62,23 +62,39 @@ export function rateLimit(
 }
 
 /**
- * Best-effort client identity. Behind Railway/Fly/Render the socket address is
- * the proxy, so prefer the forwarded chain's first entry.
+ * Best-effort client identity. Behind a platform proxy the socket address is
+ * the proxy itself, so the client has to come from a forwarded header — and
+ * different platforms use different ones. Checking a single header is how every
+ * caller ends up sharing one bucket, which turns a per-client limit into a
+ * global lockout.
  *
  * This is spoofable by design — it is an abuse speed bump, not authentication.
  * Never use it for an authorization decision.
  */
+const CLIENT_IP_HEADERS = [
+  "x-forwarded-for", // de-facto standard (Railway, Fly, Render, nginx)
+  "x-envoy-external-address", // Envoy-based edges
+  "x-real-ip", // nginx
+  "cf-connecting-ip", // Cloudflare
+  "true-client-ip", // Akamai / Cloudflare Enterprise
+  "fastly-client-ip",
+  "x-client-ip",
+] as const;
+
 export function clientKey(req: Request): string {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) {
-    const first = forwarded.split(",")[0]?.trim();
+  for (const header of CLIENT_IP_HEADERS) {
+    const value = req.headers.get(header);
+    // XFF is a comma-separated chain; the original client is first
+    const first = value?.split(",")[0]?.trim();
     if (first) return first;
   }
-  return (
-    req.headers.get("x-real-ip") ??
-    req.headers.get("cf-connecting-ip") ??
-    "unknown"
-  );
+
+  // RFC 7239: Forwarded: for=192.0.2.60;proto=http;by=203.0.113.43
+  const forwarded = req.headers.get("forwarded");
+  const match = forwarded?.match(/for=("?\[?)([^;,"\]]+)/i);
+  if (match?.[2]) return match[2];
+
+  return "unknown";
 }
 
 /** Standard headers so clients can back off politely. */
