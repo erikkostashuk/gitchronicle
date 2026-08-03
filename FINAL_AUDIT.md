@@ -1,8 +1,9 @@
 # FINAL_AUDIT — GitChronicle Wrapped
 
-**Date:** 2026-08-03  
+**Date:** 2026-08-03 (publication verification re-run)  
 **Product:** GitChronicle Wrapped — cinematic repository recap  
-**Tagline:** Your repository had a year. Let’s replay it.
+**Tagline:** Your repository had a year. Let’s replay it.  
+**Status:** **Publication-ready**
 
 ## Startup (local)
 
@@ -27,11 +28,12 @@ pnpm dev
 | `pnpm test` | 79 pass (parse + metrics + wrapped + jobs stale/orphan/retry + dedupe + theme) |
 | `pnpm build` | pass |
 | `pnpm test:e2e` | **16 pass** (desktop + mobile), including hard keyboard advance + closing scroll + PNG magic + retry API |
-| Demo Wrapped | 21 adaptive scenes, analysis-backed |
-| Local CLI analyze | ready project + Wrapped 200 |
-| Markdown export | non-empty report with Overview |
-| PNG share cards | recap landscape ~900KB+, PNG signature verified |
+| Demo Wrapped | **22** adaptive scenes (incl. rising star), analysis-backed |
+| Local CLI analyze | path reuse + Wrapped **200** |
+| Markdown export | non-empty report with Overview (~5KB+) |
+| PNG share cards | recap landscape PNG signature verified in e2e |
 | Invalid GitHub URL | 400 |
+| Marketing screenshots | regenerated with light theme + chart contrast |
 
 ### Skeptic fixes (2026-08-03)
 
@@ -71,7 +73,7 @@ No AI APIs.
 
 ### Scene selection
 
-`buildWrappedStory` emits only scenes with enough data (solo repos skip people/collaboration/releases; tiny repos still get opening → recap → closing). Demo Acme Toolkit yields **21** scenes.
+`buildWrappedStory` emits only scenes with enough data (solo repos skip people/collaboration/releases; tiny repos still get opening → recap → closing). Demo Acme Toolkit yields **22** scenes (includes rising star: Barbara Liskov).
 
 ## Screenshots
 
