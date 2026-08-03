@@ -61,7 +61,9 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 RUN mkdir -p /app/data/repos /app/data/tmp && chown -R nextjs:nodejs /app/data
 
-USER nextjs
+# Intentionally NOT `USER nextjs`: the entrypoint needs root to take ownership
+# of a freshly-mounted (root-owned) volume, and drops to nextjs via setpriv
+# before exec'ing the server. See scripts/docker-entrypoint.sh.
 EXPOSE 3000
 
 # PORT is injected by most container hosts (Railway, Fly, Render); honour it.
