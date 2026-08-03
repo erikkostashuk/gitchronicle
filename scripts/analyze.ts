@@ -105,7 +105,7 @@ async function main() {
       .where(eq(jobs.id, jobId))
       .run();
     console.log(
-      `Done. Open /repo/${slug} — commits=${result.overview.commitCount}`
+      `Done. Open /repo/${slug}/wrapped — commits=${result.overview.commitCount}`
     );
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);

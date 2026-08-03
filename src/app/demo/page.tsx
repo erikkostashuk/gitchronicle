@@ -55,5 +55,5 @@ export default async function DemoPage() {
     await persistAnalysis(demo.id, result);
   }
 
-  redirect("/repo/acme-toolkit");
+  redirect("/repo/acme-toolkit/wrapped");
 }

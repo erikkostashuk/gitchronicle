@@ -13,9 +13,11 @@ import {
   Tag,
   Users,
   BookOpen,
+  Sparkles,
 } from "lucide-react";
 
 const sections = [
+  { id: "wrapped", label: "Wrapped", icon: Sparkles },
   { id: "overview", label: "Overview", icon: Home },
   { id: "timemachine", label: "Time Machine", icon: Clock },
   { id: "hotspots", label: "Hotspots", icon: FileWarning },

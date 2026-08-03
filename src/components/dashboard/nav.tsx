@@ -9,12 +9,14 @@ import {
   GitBranch,
   Home,
   Network,
+  Sparkles,
   Tag,
   Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const items = [
+  { href: "wrapped", label: "Wrapped", icon: Sparkles },
   { href: "", label: "Overview", icon: Home },
   { href: "timemachine", label: "Time Machine", icon: Clock },
   { href: "hotspots", label: "Hotspots", icon: FileWarning },

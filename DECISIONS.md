@@ -53,3 +53,10 @@
 
 ## Deployment packaging
 - Prefer `pnpm start` (`next start`) over Next `output: "standalone"`. Docker already copies `node_modules` + `.next` and native `better-sqlite3` is simpler without the standalone file-trace subset. Standalone was removed after Next 16 warned that `next start` does not work with that mode.
+
+## Wrapped product pivot
+- Primary UX is **GitChronicle Wrapped**: pure `buildWrappedStory(AnalysisResult)` → full-screen `WrappedPlayer`. Analysis engine and dashboard are preserved.
+- Personality and scene eligibility are pure deterministic functions (no AI). Rules live in `src/lib/wrapped/personality.ts`.
+- Share cards use browser canvas PNG export (no extra deps); closing scene hosts downloads.
+- Demo and import completion routes land on `/repo/<slug>/wrapped` first; analytics remain one click away.
+

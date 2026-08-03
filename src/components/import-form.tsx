@@ -38,13 +38,13 @@ export function ImportForm({ compact = false }: { compact?: boolean }) {
         throw new Error(data.error || "Import failed");
       }
       if (data.reused && data.slug) {
-        router.push(`/repo/${data.slug}`);
+        router.push(`/repo/${data.slug}/wrapped`);
         return;
       }
       if (data.jobId && data.slug) {
         await pollJob(data.jobId, data.slug);
       } else if (data.slug) {
-        router.push(`/repo/${data.slug}`);
+        router.push(`/repo/${data.slug}/wrapped`);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Import failed");
@@ -66,7 +66,7 @@ export function ImportForm({ compact = false }: { compact?: boolean }) {
       setProgress(job.progress);
       setStage(job.stage);
       if (job.status === "completed") {
-        router.push(`/repo/${slug}`);
+        router.push(`/repo/${slug}/wrapped`);
         return;
       }
       if (job.status === "failed") {

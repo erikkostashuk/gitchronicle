@@ -13,7 +13,7 @@ test.beforeAll(() => {
 test("landing page loads", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "codebase"
+    /repository|replay/i
   );
   await page.screenshot({
     path: path.join(shots, `landing-${test.info().project.name}.png`),
@@ -21,17 +21,34 @@ test("landing page loads", async ({ page }) => {
   });
 });
 
-test("demo opens and overview shows real metrics", async ({ page }) => {
+test("demo opens Wrapped with analysis-backed scenes", async ({ page }) => {
   await page.goto("/demo");
-  await page.waitForURL(/\/repo\/acme-toolkit/);
-  await expect(page.getByRole("heading", { name: "Overview" })).toBeVisible();
-  await expect(page.getByText(/commits/i).first()).toBeVisible();
+  await page.waitForURL(/\/repo\/acme-toolkit\/wrapped/);
+  await expect(page.getByText(/WRAPPED/i).first()).toBeVisible();
   await expect(page.getByText(/acme-toolkit/i).first()).toBeVisible();
-  // narrative should mention real analysis fields
-  await expect(page.locator("main, body")).toContainText(/days old|commits/i);
+  // progress indicator like 1/N
+  await expect(page.getByText(/\d+\/\d+/).first()).toBeVisible();
+  // scene content from real analysis (opening title is repo name)
+  await expect(
+    page.getByRole("heading", { name: /acme-toolkit/i }).first()
+  ).toBeVisible();
   await page.screenshot({
-    path: path.join(shots, `overview-${test.info().project.name}.png`),
+    path: path.join(shots, `wrapped-open-${test.info().project.name}.png`),
     fullPage: true,
+  });
+
+  // advance with keyboard
+  const before = await page.getByText(/\d+\/\d+/).first().textContent();
+  await page.keyboard.press("ArrowRight");
+  await page.waitForTimeout(200);
+  const after = await page.getByText(/\d+\/\d+/).first().textContent();
+  expect(before || after).toMatch(/\d+\/\d+/);
+  if (before && after && before !== after) {
+    expect(after).not.toBe(before);
+  }
+  await page.getByRole("button", { name: "Next scene" }).click();
+  await page.screenshot({
+    path: path.join(shots, `wrapped-next-${test.info().project.name}.png`),
   });
 });
 
@@ -69,7 +86,6 @@ test("time machine controls advance timeline", async ({ page }) => {
   const before = await counter.textContent();
   await page.getByRole("button", { name: "Step forward" }).click();
   const after = await counter.textContent();
-  // either advanced or already at end with samples present
   expect(before || after).toMatch(/\d+\/\d+/);
   if (before && after && before !== after) {
     expect(after).not.toBe(before);
@@ -88,7 +104,9 @@ test("markdown export downloads report", async ({ page, request }) => {
   await expect(
     page.getByRole("heading", { name: "Story", exact: true })
   ).toBeVisible();
-  const downloadPromise = page.waitForEvent("download", { timeout: 15_000 }).catch(() => null);
+  const downloadPromise = page
+    .waitForEvent("download", { timeout: 15_000 })
+    .catch(() => null);
   await page.getByRole("link", { name: /Export Markdown report/i }).click();
   const download = await downloadPromise;
   if (download) {

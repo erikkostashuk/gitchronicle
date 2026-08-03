@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "GitChronicle",
+    default: "GitChronicle Wrapped",
     template: "%s · GitChronicle",
   },
   description:
-    "Watch a codebase become itself. Interactive visual documentary and engineering-intelligence dashboard for Git repositories.",
+    "Your repository had a year. Let’s replay it. Cinematic Git repository recap and engineering intelligence — no credentials required.",
   metadataBase: new URL("http://localhost:3000"),
 };
 

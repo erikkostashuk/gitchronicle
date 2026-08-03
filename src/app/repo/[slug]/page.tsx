@@ -1,9 +1,12 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Sparkles } from "lucide-react";
 import { ActivityChart } from "@/components/charts/activity-chart";
 import { CommitHeatmap } from "@/components/charts/heatmap";
 import { EmptyState } from "@/components/dashboard/empty-state";
 import { Stat } from "@/components/dashboard/stat";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -41,11 +44,19 @@ export default async function OverviewPage({
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-xl font-semibold tracking-tight">Overview</h2>
-        <p className="mt-1 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          {o.narrative}
-        </p>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h2 className="text-xl font-semibold tracking-tight">Overview</h2>
+          <p className="mt-1 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            {o.narrative}
+          </p>
+        </div>
+        <Button asChild>
+          <Link href={`/repo/${slug}/wrapped`}>
+            <Sparkles className="h-4 w-4" />
+            Play Wrapped
+          </Link>
+        </Button>
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">

@@ -1,29 +1,26 @@
-# GitChronicle
+# GitChronicle Wrapped
 
-**Watch a codebase become itself.**
+**Your repository had a year. Let’s replay it.**
 
-GitChronicle turns a Git repository into an interactive visual documentary and engineering-intelligence dashboard. Import a public GitHub URL, analyze a local repo, or open the bundled demo — then explore how the codebase evolved.
+GitChronicle turns a Git repository into a cinematic, shareable recap — then a deep engineering-intelligence dashboard. Import a public GitHub URL, analyze a local repo, or open the bundled demo.
 
 ![GitChronicle](https://img.shields.io/badge/stack-Next.js%20%7C%20SQLite%20%7C%20Vitest-0d9488) ![license](https://img.shields.io/badge/license-MIT-blue)
 
 ![Landing](./docs/screenshots/landing.png)
 
-![Overview](./docs/screenshots/overview.png)
-
 ## Features
 
-- **Overview** — age, commits, contributors, languages, heatmap, eras, milestones, narrative
-- **Time Machine** — play / pause / scrub / step through sampled history with a living tree
-- **Hotspots** — churn, ownership concentration, bus-factor, sortable/searchable risk tables
-- **People** — profiles, hours, paths, languages, collaboration
-- **Evolution** — growth curves, language mix, rewrites, bursts, and quiet periods
-- **Graphs** — co-change and collaboration (capped for large repos)
-- **Releases** — tags, categorized changes, downloadable Markdown notes
-- **Story** — presentation deck + exportable repository report
+- **Wrapped** — 15–25 adaptive full-screen scenes: personality, streaks, people, plot twists, share cards
+- **Overview** — age, commits, heatmap, eras, narrative
+- **Time Machine** — play / scrub sampled history
+- **Hotspots** — churn, ownership, bus-factor
+- **People** — profiles, hours, collaboration
+- **Evolution** — growth, bursts, quiet periods
+- **Graphs** — co-change & collaboration (capped)
+- **Releases** — tags + Markdown notes
+- **Exports** — PNG social cards + Markdown repository report
 
-| Time Machine | Hotspots | Story |
-| --- | --- | --- |
-| ![Time Machine](./docs/screenshots/time-machine.png) | ![Hotspots](./docs/screenshots/hotspots.png) | ![Story](./docs/screenshots/story.png) |
+![Wrapped](./docs/screenshots/overview.png)
 
 ## Sixty-second local setup
 
@@ -35,9 +32,9 @@ pnpm seed
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and click **Open bundled demo**.
+Open [http://localhost:3000](http://localhost:3000) → **Play bundled Wrapped**.
 
-No API keys or cloud accounts required.
+No API keys required.
 
 ## Docker
 
@@ -45,116 +42,58 @@ No API keys or cloud accounts required.
 docker compose up --build
 ```
 
-App: [http://localhost:3000](http://localhost:3000) · health: `/api/health`
-
 ## Ingestion
 
-### 1. Bundled demo
-
-Visit `/demo` or run `pnpm seed`. Uses a deterministic synthetic history so the UI works offline.
-
-### 2. Public GitHub HTTPS URL
-
-Paste `https://github.com/owner/repo` on the landing page. The server validates the host, clones with argument-array `git` (no shell interpolation), analyzes in a background job, and persists results to SQLite.
-
-### 3. Local repository (self-host)
-
-```bash
-pnpm analyze -- /absolute/path/to/repo
-```
-
-Then open the printed `/repo/<slug>` path.
+1. **Demo** — `/demo` or `pnpm seed` (offline Acme Toolkit history)
+2. **Local** — `pnpm analyze -- /absolute/path/to/repo` → open `/repo/<slug>/wrapped`
+3. **GitHub HTTPS** — paste `https://github.com/owner/repo` on the landing page
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  UI[Next.js UI] --> API[Route Handlers]
+  UI[Wrapped + Dashboard] --> API[Route Handlers]
   API --> DB[(SQLite)]
-  API --> Jobs[Job queue]
-  Worker[Worker process] --> Jobs
-  Worker --> Git[Git exec + parse]
-  Git --> Analyze[Pure analysis engine]
-  Analyze --> DB
-  UI --> DB
+  Worker[Worker] --> Git[Git exec]
+  Git --> Metrics[Pure metrics]
+  Metrics --> Story[buildWrappedStory]
+  Story --> DB
+  UI --> Story
 ```
 
 | Layer | Location |
 | --- | --- |
-| Git process execution | `src/lib/git/exec.ts`, `clone.ts` |
-| Parsing | `src/lib/git/parse.ts` |
+| Git parse | `src/lib/git/*` |
 | Metrics | `src/lib/analysis/*` |
-| Persistence | `src/lib/db/*` |
-| Jobs | `src/lib/jobs/worker.ts` |
-| UI | `src/app`, `src/components` |
+| Wrapped story | `src/lib/wrapped/*` |
+| Player + share cards | `src/components/wrapped/*` |
+| Persistence | `src/lib/db/*`, `src/lib/jobs/*` |
 
-## Analysis methodology
+## Personality (deterministic)
 
-Metrics are **deterministic** from Git history:
+See `src/lib/wrapped/personality.ts` and [FINAL_AUDIT.md](./FINAL_AUDIT.md). Examples: The Night Owl, The Weekend Builder, The Phoenix, The Feature Factory. **No AI API.**
 
-| Metric | Method |
-| --- | --- |
-| Activity | Commit timestamps → day/week/month/hour/weekday histograms |
-| Contributors | Author email identity; names collected as aliases |
-| Churn | Sum of additions + deletions per path (`git log --numstat`) |
-| Ownership / bus factor | Share of commits per path; people needed for ≥50% coverage |
-| Co-change | Files appearing together in the same commit (capped) |
-| Collaboration | Contributors sharing file ownership |
-| Categories | Conventional Commits + keyword heuristics |
-| Eras | Boundaries from version tags and activity structure |
-| Timeline | Sampled snapshots for Time Machine playback |
+## Security
 
-## Security limitations
-
-- Only **public HTTPS GitHub** URLs are accepted for remote clone
-- No shell interpolation of user input
-- Clones confined to `DATA_DIR/repos/<id>`
-- Timeouts, size, commit, and graph caps apply
-- Single-user self-host model — no auth multi-tenancy
-- Do not expose an open import endpoint on the public internet without additional controls
-
-## Scaling considerations
-
-- Designed for single-instance self-hosting with SQLite
-- Graph nodes/edges and timeline samples are capped
-- Very large monorepos may hit `MAX_COMMITS` / size limits
-- For multi-user SaaS you would need auth, queue isolation, and object storage — out of scope
+- Public HTTPS GitHub only for remote clone
+- Argument-array `git` spawn (no shell interpolation)
+- Clones under `DATA_DIR/repos/<id>`
+- Timeouts and size / commit / graph caps
 
 ## Commands
 
 | Command | Purpose |
 | --- | --- |
-| `pnpm dev` | Development server |
-| `pnpm build` / `pnpm start` | Production build / serve |
-| `pnpm lint` | ESLint |
-| `pnpm typecheck` | TypeScript |
-| `pnpm test` | Vitest unit tests |
-| `pnpm test:e2e` | Playwright |
-| `pnpm db:migrate` | Apply SQLite schema |
-| `pnpm seed` | Load bundled demo |
-| `pnpm analyze -- <path>` | Analyze local repo |
-| `pnpm worker` | Process background jobs |
-| `pnpm cleanup` | Remove tmp / failed clones |
-
-## Environment
-
-See [`.env.example`](./.env.example). Important variables:
-
-- `DATA_DIR` — SQLite, clones, caches
-- `MAX_COMMITS`, `MAX_CLONE_SIZE_MB`, clone/analyze timeouts
-- `MAX_GRAPH_NODES`, `MAX_GRAPH_EDGES`, `MAX_TIMELINE_SAMPLES`
+| `pnpm dev` | Dev server |
+| `pnpm build` / `pnpm start` | Production |
+| `pnpm lint` / `typecheck` / `test` / `test:e2e` | Quality |
+| `pnpm db:migrate` / `seed` | DB + demo |
+| `pnpm analyze -- <path>` | Local analyze |
+| `pnpm worker` / `cleanup` | Jobs + cleanup |
 
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-## Roadmap
-
-- [ ] Blame-aware ownership (optional, slower)
-- [ ] Compare two analyses side-by-side
-- [ ] Streaming progress via SSE
-- [ ] Additional Git forges (with strict URL allowlists)
-- [ ] Optional read-only GitHub App for private repos
+See [CONTRIBUTING.md](./CONTRIBUTING.md). Audit notes: [FINAL_AUDIT.md](./FINAL_AUDIT.md).
 
 ## License
 
