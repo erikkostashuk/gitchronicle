@@ -4,8 +4,12 @@ import path from "node:path";
 import { runAnalysis } from "../analysis/run";
 import { getDb } from "../db/client";
 import { analyses, jobs, projects } from "../db/schema";
-import { getReposDir } from "../env";
+import { getEnv, getReposDir } from "../env";
 import { cloneGitHubRepo, removeRepoData } from "../git/clone";
+import {
+  releaseAnalysisSlot,
+  tryAcquireAnalysisSlot,
+} from "../security/capacity";
 import { logger } from "../logger";
 import type { AnalysisResult } from "../types/analysis";
 import { randomId } from "../id";
@@ -83,6 +87,22 @@ async function updateJob(
 }
 
 async function runJob(jobId: string) {
+  // Admission control lives here rather than only at the HTTP route so every
+  // entry point (inline route, worker loop, retry, CLI) shares one ceiling.
+  const slot = tryAcquireAnalysisSlot();
+  if (!slot.ok) {
+    throw new Error(
+      `Analysis capacity reached (${slot.active}/${slot.limit} running). Try again shortly.`
+    );
+  }
+  try {
+    await runJobInner(jobId);
+  } finally {
+    releaseAnalysisSlot();
+  }
+}
+
+async function runJobInner(jobId: string) {
   const db = getDb();
   const job = db.select().from(jobs).where(eq(jobs.id, jobId)).get();
   if (!job) throw new Error("Job not found");
@@ -158,10 +178,30 @@ async function runJob(jobId: string) {
 
   await persistAnalysis(project.id, result);
 
+  // The analysis result is self-contained, so a cloned repo is dead weight once
+  // it is persisted. Retaining every clone is the only unbounded growth on the
+  // volume — and a full volume takes SQLite (and every stored analysis) with it.
+  const clonedFromGitHub = job.type === "clone_and_analyze";
+  const dropClone = clonedFromGitHub && !getEnv().KEEP_CLONES;
+  if (dropClone) {
+    try {
+      await removeRepoData(project.id);
+      logger.info("Removed clone after analysis", { projectId: project.id });
+    } catch (err) {
+      logger.warn("Could not remove clone", {
+        projectId: project.id,
+        error: String(err),
+      });
+    }
+  }
+
   db.update(projects)
     .set({
       status: "ready",
       errorMessage: null,
+      // Clearing localPath keeps retry honest: it must re-clone, not read a
+      // directory that is no longer there.
+      localPath: dropClone ? null : project.localPath,
       description: result.overview.narrative.slice(0, 280),
       updatedAt: new Date().toISOString(),
     })

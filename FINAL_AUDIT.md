@@ -175,6 +175,66 @@ against a running server.
 capture leaves Chromium's compositor mid-resize and offsets screenshots of
 fixed-position overlays — the DOM is correct, the PNG is not.
 
+## Deployment
+
+Requires a container host with a persistent volume and the `git` binary —
+**not** a serverless platform. Vercel cannot run this app as written: the
+filesystem is read-only outside `/tmp` (SQLite writes fail), `git` is absent
+from the function runtime, and analysis exceeds the 300s function ceiling.
+
+Verified locally by building the image and running it against a genuinely empty
+bind mount (which, unlike a Docker named volume, does not pre-copy image
+contents — matching how Railway/Fly mount volumes):
+
+| Check | Result |
+| --- | --- |
+| Image build | pass |
+| Empty volume → migrate + seed on boot | 1 project (`acme-toolkit`), no dev data |
+| `git --version` in runtime image | 2.47.3 |
+| Live clone of a public repo via `POST /api/projects` | `ready` in <5s, Wrapped 200 |
+| Restart with volume attached | both projects persisted |
+
+### Docker defects found and fixed
+
+| Defect | Fix |
+| --- | --- |
+| **Image did not build at all** — `better-sqlite3`'s prebuilt binding needs `GLIBC_2.38`; `node:22-bookworm-slim` ships 2.36 | base image moved to `node:22-trixie-slim` (glibc 2.41) |
+| **No `.dockerignore`** — `COPY . .` baked the local dev SQLite database and `.env` into the build context, so a fresh deploy showed the developer's own projects | added `.dockerignore` excluding `data`, `.env*`, `node_modules`, `.next`, test output |
+| Volume mounted at `DATA_DIR` shadows the image-baked database, leaving a deploy with no schema and no demo | `scripts/docker-entrypoint.sh` migrates + seeds at boot (both idempotent) |
+| Runtime user's home is `/nonexistent`, so corepack tried to re-download pnpm and crashed on start | `COREPACK_HOME=/opt/corepack` staged world-readable at build; user given a real home |
+| `HEALTHCHECK` hardcoded port 3000, failing on hosts that inject `PORT` | healthcheck reads `process.env.PORT` |
+| `metadataBase` pinned to `http://localhost:3000` | derived from `APP_URL` / `RAILWAY_PUBLIC_DOMAIN` / `RENDER_EXTERNAL_HOSTNAME` |
+
+## Public-instance hardening
+
+Threat model: the app stores only analysis of public repositories, so the risk is
+**abuse and resource exhaustion**, not data disclosure.
+
+Input validation was already sound and is now regression-tested
+(`src/lib/security/security.test.ts`): the clone URL is rebuilt from a
+charset-restricted owner/repo, so query strings, credentials, fragments,
+alternate transports (`ext::`, `file://`, `ssh://`) and look-alike hosts cannot
+reach `git`, which is spawned with an argument array and no shell.
+
+| Risk | Control |
+| --- | --- |
+| Import flood | Fixed-window per-IP rate limit on `POST /api/projects` and `…/retry` (5 / 10 min), counted *before* validation so probing also costs quota |
+| Parallel clone storms | `MAX_CONCURRENT_ANALYSES` (default 1), enforced inside `runJob` so the HTTP route, worker loop, retry and CLI share one ceiling |
+| **Disk exhaustion — clones were never deleted** | Clones are removed after successful analysis (`KEEP_CLONES=false`) and `localPath` is cleared so retry re-clones honestly; `MAX_TOTAL_CLONE_MB` refuses imports before the volume fills |
+| Internal detail leakage | Non-validation errors log server-side and return a generic message |
+| Clickjacking / injection / sniffing | CSP (`default-src 'self'`), `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, HSTS in production, `X-Powered-By` removed |
+
+Verified live: security headers present on `/`; the 6th import from one IP
+returns 429; and in-container, importing `octocat/Hello-World` leaves
+`/app/data/repos` at **0 bytes** while `/repo/hello-world/wrapped` still returns
+200 — confirming the analysis result is self-contained.
+
+**Residual risk (accepted):** the import endpoint is unauthenticated by design.
+`X-Forwarded-For` is spoofable and a distributed caller can still queue work, so
+rate limiting is a speed bump rather than a wall. All analysed repositories are
+visible to every visitor. Both are acceptable for a public showcase; an instance
+needing more requires auth or a platform WAF.
+
 ## Limitations
 
 - Ownership is commit-share approximate, not blame-accurate

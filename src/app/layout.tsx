@@ -15,6 +15,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+/**
+ * Public origin for canonical / OG URLs. Set APP_URL when deploying; Railway,
+ * Render and Fly all expose their assigned domain, so fall back to those before
+ * assuming local dev.
+ */
+function publicOrigin(): string {
+  const explicit = process.env.APP_URL;
+  if (explicit) return explicit.startsWith("http") ? explicit : `https://${explicit}`;
+  const host = process.env.RAILWAY_PUBLIC_DOMAIN ?? process.env.RENDER_EXTERNAL_HOSTNAME;
+  if (host) return `https://${host}`;
+  return `http://localhost:${process.env.PORT ?? 3000}`;
+}
+
 export const metadata: Metadata = {
   title: {
     default: "GitChronicle Wrapped",
@@ -22,7 +35,7 @@ export const metadata: Metadata = {
   },
   description:
     "Your repository had a year. Let’s replay it. Cinematic Git repository recap and engineering intelligence — no credentials required.",
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL(publicOrigin()),
 };
 
 export default function RootLayout({

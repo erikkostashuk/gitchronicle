@@ -12,7 +12,7 @@ Verified end-to-end:
 
 | Check | Result |
 | --- | --- |
-| `pnpm lint` / `typecheck` / `test` / `build` | pass (85 unit tests) |
+| `pnpm lint` / `typecheck` / `test` / `build` | pass (99 unit tests) |
 | `pnpm test:e2e` | **16/16** pass (desktop + mobile, production server) |
 | Demo Wrapped | **16** adaptive scenes, one composition each, analysis-backed |
 | Console errors | none across 10 routes in light **and** dark |
@@ -50,9 +50,18 @@ No high-priority unfinished product work remains. Remaining ideas are optional s
 - Light-first redesign; fixed dark-theme hydration mismatch, heatmap ramp,
   amber chart contrast, dial label clipping, closing-CTA fold, mobile ambient blur
 
+## Deploy + public hardening (complete)
+- [x] Railway/Fly/Render path documented; `railway.json`, boot-time migrate+seed entrypoint
+- [x] Fixed a Dockerfile that did not build (glibc), a missing `.dockerignore` (dev DB + `.env` leaked into the image), corepack crash as non-root, port-blind healthcheck
+- [x] Per-IP rate limits, global analysis concurrency cap, total clone-disk budget
+- [x] Clones deleted after analysis — previously unbounded volume growth
+- [x] CSP + security headers; generic error responses on public endpoints
+
 ## Optional later (not blocking)
 1. Admin cleanup of superseded duplicate project rows
 2. Stream/parse git log for multi‑GB histories
 3. Per-commit author histograms for richer rising-star curves
 4. Multi-forge imports beyond public HTTPS GitHub
 5. Force-directed layout for the co-change graph
+6. Redis-backed rate limits (only needed if the app ever runs >1 replica)
+7. Scheduled `pnpm cleanup --purge-failed` to prune failed imports

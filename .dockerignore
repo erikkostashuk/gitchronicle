@@ -1,0 +1,34 @@
+# Keep the build context to source + config. Without this, `COPY . .` drags in
+# the local SQLite database, cloned repos and .env — the dev database then ships
+# inside the image and appears as "existing projects" on a fresh deploy.
+
+.git
+.github
+node_modules
+.next
+out
+build
+
+# Local runtime state — the entrypoint migrates and seeds a fresh DATA_DIR
+data
+
+# Secrets and local env (.env.example is kept: the runner stage copies it)
+.env
+.env.*
+!.env.example
+
+# Test + tooling output
+test-results
+playwright-report
+blob-report
+playwright/.cache
+coverage
+*.tsbuildinfo
+e2e
+docs
+
+# Editor / OS
+.DS_Store
+*.log
+.vscode
+.idea

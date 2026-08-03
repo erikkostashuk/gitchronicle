@@ -9,6 +9,13 @@ import { processJobById } from "@/lib/jobs/worker";
 import { listProjects } from "@/lib/projects";
 import { slugify } from "@/lib/utils";
 import { logger } from "@/lib/logger";
+import { getEnv } from "@/lib/env";
+import {
+  clientKey,
+  rateLimit,
+  rateLimitHeaders,
+} from "@/lib/security/rate-limit";
+import { analysisCapacity, hasDiskHeadroom } from "@/lib/security/capacity";
 
 export const dynamic = "force-dynamic";
 
@@ -32,10 +39,26 @@ export async function GET() {
 }
 
 const importSchema = z.object({
-  url: z.string().min(1),
+  url: z.string().min(1).max(300),
 });
 
 export async function POST(req: Request) {
+  // 1) Speed bump per client before any work happens
+  const env = getEnv();
+  const limit = rateLimit(
+    `import:${clientKey(req)}`,
+    env.IMPORT_RATE_LIMIT,
+    env.IMPORT_RATE_WINDOW_MS
+  );
+  if (!limit.ok) {
+    return NextResponse.json(
+      {
+        error: `Too many imports. Try again in ${limit.retryAfter}s.`,
+      },
+      { status: 429, headers: rateLimitHeaders(limit) }
+    );
+  }
+
   try {
     const body = importSchema.parse(await req.json());
     const meta = validateGitHubUrl(body.url);
@@ -47,14 +70,39 @@ export async function POST(req: Request) {
       .where(eq(projects.fullName, meta.fullName))
       .get();
 
+    // Serving an already-analysed repo costs nothing — do it before capacity checks
     if (existing && existing.status === "ready") {
-      return NextResponse.json({
-        projectId: existing.id,
-        slug: existing.slug,
-        jobId: null,
-        status: existing.status,
-        reused: true,
-      });
+      return NextResponse.json(
+        {
+          projectId: existing.id,
+          slug: existing.slug,
+          jobId: null,
+          status: existing.status,
+          reused: true,
+        },
+        { headers: rateLimitHeaders(limit) }
+      );
+    }
+
+    // 2) Refuse new work when the box or the volume is already saturated
+    const capacity = analysisCapacity();
+    if (capacity.active >= capacity.limit) {
+      return NextResponse.json(
+        {
+          error:
+            "Another repository is being analyzed right now. Try again shortly.",
+        },
+        { status: 503, headers: { "Retry-After": "60" } }
+      );
+    }
+    if (!(await hasDiskHeadroom())) {
+      return NextResponse.json(
+        {
+          error:
+            "This instance is at its storage limit and cannot take new repositories right now.",
+        },
+        { status: 503, headers: { "Retry-After": "3600" } }
+      );
     }
 
     let projectId = existing?.id;
@@ -112,19 +160,29 @@ export async function POST(req: Request) {
       });
     });
 
-    return NextResponse.json({
-      projectId,
-      slug,
-      jobId,
-      status: "pending",
-      reused: false,
-    });
+    return NextResponse.json(
+      {
+        projectId,
+        slug,
+        jobId,
+        status: "pending",
+        reused: false,
+      },
+      { headers: rateLimitHeaders(limit) }
+    );
   } catch (err) {
     const message = err instanceof Error ? err.message : "Import failed";
-    const status =
-      message.includes("Only public HTTPS") || message.includes("Invalid")
-        ? 400
-        : 500;
-    return NextResponse.json({ error: message }, { status });
+    const isValidation =
+      message.includes("Only public HTTPS") || message.includes("Invalid");
+    if (isValidation) {
+      return NextResponse.json({ error: message }, { status: 400 });
+    }
+    // Never echo internal errors to a public client — they leak paths and
+    // dependency internals. Log the detail, return a generic message.
+    logger.error("Import failed", { error: message });
+    return NextResponse.json(
+      { error: "Import failed. Please try again." },
+      { status: 500 }
+    );
   }
 }

@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
 import { enqueueRetry } from "@/lib/jobs/retry";
 import { getProjectBySlug } from "@/lib/projects";
+import { getEnv } from "@/lib/env";
+import {
+  clientKey,
+  rateLimit,
+  rateLimitHeaders,
+} from "@/lib/security/rate-limit";
+import { analysisCapacity } from "@/lib/security/capacity";
 
 export const dynamic = "force-dynamic";
 
@@ -9,13 +16,35 @@ export const dynamic = "force-dynamic";
  * Re-queue analysis for a failed (or ready) non-demo project.
  */
 export async function POST(
-  _req: Request,
+  req: Request,
   ctx: { params: Promise<{ slug: string }> }
 ) {
+  // Retry re-clones and re-analyses, so it carries the same cost as an import
+  const env = getEnv();
+  const limit = rateLimit(
+    `retry:${clientKey(req)}`,
+    env.IMPORT_RATE_LIMIT,
+    env.IMPORT_RATE_WINDOW_MS
+  );
+  if (!limit.ok) {
+    return NextResponse.json(
+      { error: `Too many retries. Try again in ${limit.retryAfter}s.` },
+      { status: 429, headers: rateLimitHeaders(limit) }
+    );
+  }
+
   const { slug } = await ctx.params;
   const project = getProjectBySlug(slug);
   if (!project) {
     return NextResponse.json({ error: "Project not found" }, { status: 404 });
+  }
+
+  const capacity = analysisCapacity();
+  if (capacity.active >= capacity.limit) {
+    return NextResponse.json(
+      { error: "Another repository is being analyzed right now." },
+      { status: 503, headers: { "Retry-After": "60" } }
+    );
   }
 
   const result = enqueueRetry(project);

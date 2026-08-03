@@ -19,6 +19,25 @@ const envSchema = z.object({
   MAX_COCHANGE_PAIRS: z.coerce.number().default(40_000),
   /** Max files considered per commit when building co-change pairs */
   MAX_COCHANGE_FILES_PER_COMMIT: z.coerce.number().default(24),
+
+  /* ── Public-instance abuse controls ── */
+  /** Simultaneous clone+analyse jobs. Each costs minutes of CPU and 100s of MB. */
+  MAX_CONCURRENT_ANALYSES: z.coerce.number().default(1),
+  /** Imports allowed per client per window */
+  IMPORT_RATE_LIMIT: z.coerce.number().default(5),
+  IMPORT_RATE_WINDOW_MS: z.coerce.number().default(10 * 60_000),
+  /** Ceiling on total retained clone bytes; 0 disables the check */
+  MAX_TOTAL_CLONE_MB: z.coerce.number().default(2_000),
+  /**
+   * Keep clones after a successful analysis. Off by default: analysis output is
+   * fully self-contained, so retaining clones only buys faster re-analysis at
+   * the cost of unbounded disk growth.
+   */
+  KEEP_CLONES: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((v) => v === "true"),
+
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
 });
 
