@@ -77,6 +77,28 @@ export default function HomePage() {
       <SiteHeader />
 
       <main className="flex-1">
+        {/* ── Scene ticker ─────────────────────────────────────── */}
+        <div
+          className="gc-marquee relative overflow-hidden border-b bg-muted/40 py-2.5"
+          aria-hidden
+        >
+          <div className="gc-marquee-track">
+            {[0, 1].map((dup) => (
+              <ul key={dup} className="flex shrink-0 items-center">
+                {TICKER.map((t) => (
+                  <li
+                    key={`${dup}-${t}`}
+                    className="flex items-center gap-5 whitespace-nowrap px-5 text-[clamp(0.8rem,1.1vw,1rem)] font-extrabold uppercase tracking-tight"
+                  >
+                    {t}
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--coral)]" />
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+
         {/* ── Hero ─────────────────────────────────────────────── */}
         <section className="gc-grain relative overflow-hidden">
           <div
@@ -161,27 +183,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Scene ticker */}
-          <div
-            className="gc-marquee relative overflow-hidden border-y py-3"
-            aria-hidden
-          >
-            <div className="gc-marquee-track">
-              {[0, 1].map((dup) => (
-                <ul key={dup} className="flex shrink-0 items-center">
-                  {TICKER.map((t) => (
-                    <li
-                      key={`${dup}-${t}`}
-                      className="flex items-center gap-6 whitespace-nowrap px-6 text-[clamp(0.95rem,1.5vw,1.35rem)] font-extrabold uppercase tracking-tight"
-                    >
-                      {t}
-                      <span className="h-2 w-2 shrink-0 rounded-full bg-[var(--coral)]" />
-                    </li>
-                  ))}
-                </ul>
-              ))}
-            </div>
-          </div>
         </section>
 
         {/* ── Recent repositories ─────────────────────────────── */}

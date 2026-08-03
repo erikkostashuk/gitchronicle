@@ -113,12 +113,6 @@ export function ImportForm({ compact = false }: { compact?: boolean }) {
           {error}
         </p>
       )}
-      {!compact && (
-        <p className="text-xs text-muted-foreground">
-          Public HTTPS GitHub URLs only. Clones run server-side with strict
-          validation and size limits.
-        </p>
-      )}
     </form>
   );
 }
