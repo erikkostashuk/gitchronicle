@@ -50,7 +50,9 @@ test("dashboard navigation across sections", async ({ page }) => {
   for (const [label, re] of sections) {
     await page.getByRole("link", { name: label }).first().click();
     await expect(page).toHaveURL(re);
-    await expect(page.getByRole("heading", { name: label })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: label, exact: true })
+    ).toBeVisible();
     await page.screenshot({
       path: path.join(
         shots,
@@ -83,7 +85,9 @@ test("markdown export downloads report", async ({ page, request }) => {
   expect(body.length).toBeGreaterThan(100);
 
   await page.goto("/repo/acme-toolkit/story");
-  await expect(page.getByRole("heading", { name: "Story" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Story", exact: true })
+  ).toBeVisible();
   const downloadPromise = page.waitForEvent("download", { timeout: 15_000 }).catch(() => null);
   await page.getByRole("link", { name: /Export Markdown report/i }).click();
   const download = await downloadPromise;

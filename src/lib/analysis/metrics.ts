@@ -891,6 +891,10 @@ export function buildMilestones(
   );
 }
 
+function plural(n: number, singular: string, pluralForm?: string): string {
+  return n === 1 ? singular : (pluralForm ?? `${singular}s`);
+}
+
 export function buildNarrative(
   overview: {
     name: string;
@@ -909,10 +913,16 @@ export function buildNarrative(
     eras.length > 1
       ? `History spans ${eras.length} development eras, from “${eras[0]!.name}” to “${eras[eras.length - 1]!.name}”.`
       : `Development has been relatively continuous.`;
+  const age =
+    overview.ageDays === 1
+      ? "1 day old"
+      : `approximately ${overview.ageDays} days old`;
   return (
-    `${overview.name} is approximately ${overview.ageDays} days old with ` +
-    `${overview.commitCount} commits from ${overview.contributorCount} contributors ` +
-    `across roughly ${overview.fileCount} files. Primary language signal: ${lang}. ` +
+    `${overview.name} is ${age} with ` +
+    `${overview.commitCount} ${plural(overview.commitCount, "commit")} from ` +
+    `${overview.contributorCount} ${plural(overview.contributorCount, "contributor")} ` +
+    `across roughly ${overview.fileCount} ${plural(overview.fileCount, "file")}. ` +
+    `Primary language signal: ${lang}. ` +
     `Most active contributor: ${lead}. ${eraNote}`
   );
 }
@@ -951,24 +961,28 @@ export function buildTimeline(
     contributors.add(contributorId(c.authorName, c.authorEmail));
 
     if (i % step === 0 || i === ordered.length - 1) {
-      // simplified tree: top-level dirs + sample files
+      // simplified tree: top-level dirs + sample files (no duplicate dir/file labels)
       const dirs = new Set<string>();
       const fileSample: string[] = [];
       for (const p of alive) {
-        const top = p.split("/")[0] ?? p;
-        dirs.add(top);
+        const slash = p.indexOf("/");
+        if (slash > 0) dirs.add(p.slice(0, slash));
         if (fileSample.length < 12) fileSample.push(p);
       }
+      const dirEntries = [...dirs].slice(0, 16).map((path) => ({
+        path,
+        kind: "dir" as const,
+      }));
+      const fileEntries = fileSample.map((path) => ({
+        path,
+        kind: "file" as const,
+        status: "present" as const,
+      }));
+      // Prefer unique paths; if a path is both a top-level name and a file, keep the file
+      const seen = new Set(fileEntries.map((f) => f.path));
       const tree: TimelineSample["tree"] = [
-        ...[...dirs].slice(0, 16).map((path) => ({
-          path,
-          kind: "dir" as const,
-        })),
-        ...fileSample.map((path) => ({
-          path,
-          kind: "file" as const,
-          status: "present",
-        })),
+        ...dirEntries.filter((d) => !seen.has(d.path)),
+        ...fileEntries,
       ];
 
       samples.push({

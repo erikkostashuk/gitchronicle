@@ -209,6 +209,59 @@ describe("analyzeRepository + demo", () => {
     expect(a.overview.commitCount).toBe(b.overview.commitCount);
     expect(a.contributors.length).toBe(b.contributors.length);
   });
+
+  it("pluralizes narrative for single-commit repositories", () => {
+    const result = analyzeRepository({
+      commits: [
+        commit({
+          hash: "a".repeat(40),
+          subject: "initial",
+          authorDate: "2024-01-01T12:00:00.000Z",
+          authorName: "Solo",
+          authorEmail: "solo@example.com",
+          files: [
+            { path: "README.md", status: "added", additions: 5, deletions: 0 },
+          ],
+          additions: 5,
+          deletions: 0,
+        }),
+      ],
+      tags: [],
+      repository: { name: "tiny-repo" },
+    });
+    expect(result.overview.commitCount).toBe(1);
+    expect(result.overview.contributorCount).toBe(1);
+    expect(result.overview.narrative).toMatch(/1 commit from 1 contributor/);
+    expect(result.overview.narrative).not.toMatch(/1 commits/);
+    expect(result.overview.narrative).not.toMatch(/1 contributors/);
+  });
+
+  it("deduplicates timeline tree dir/file labels", () => {
+    const result = analyzeRepository({
+      commits: [
+        commit({
+          hash: "b".repeat(40),
+          subject: "scaffold",
+          authorDate: "2024-02-01T12:00:00.000Z",
+          files: [
+            { path: "README.md", status: "added", additions: 3, deletions: 0 },
+            { path: "src/index.ts", status: "added", additions: 10, deletions: 0 },
+          ],
+          additions: 13,
+          deletions: 0,
+        }),
+      ],
+      tags: [],
+      repository: { name: "tree-repo" },
+    });
+    const sample = result.timeline[result.timeline.length - 1]!;
+    const paths = sample.tree.map((t) => t.path);
+    expect(new Set(paths).size).toBe(paths.length);
+    expect(sample.tree.filter((t) => t.path === "README.md").length).toBe(1);
+    expect(sample.tree.some((t) => t.path === "src" && t.kind === "dir")).toBe(
+      true
+    );
+  });
 });
 
 describe("markdown exports", () => {

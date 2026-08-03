@@ -6,16 +6,24 @@ GitChronicle turns a Git repository into an interactive visual documentary and e
 
 ![GitChronicle](https://img.shields.io/badge/stack-Next.js%20%7C%20SQLite%20%7C%20Vitest-0d9488) ![license](https://img.shields.io/badge/license-MIT-blue)
 
+![Landing](./docs/screenshots/landing.png)
+
+![Overview](./docs/screenshots/overview.png)
+
 ## Features
 
 - **Overview** — age, commits, contributors, languages, heatmap, eras, milestones, narrative
 - **Time Machine** — play / pause / scrub / step through sampled history with a living tree
-- **Hotspots** — churn, ownership concentration, bus-factor, sortable risk tables
+- **Hotspots** — churn, ownership concentration, bus-factor, sortable/searchable risk tables
 - **People** — profiles, hours, paths, languages, collaboration
-- **Evolution** — growth, language mix, bursts, quiet periods, large commits
+- **Evolution** — growth curves, language mix, rewrites, bursts, and quiet periods
 - **Graphs** — co-change and collaboration (capped for large repos)
 - **Releases** — tags, categorized changes, downloadable Markdown notes
 - **Story** — presentation deck + exportable repository report
+
+| Time Machine | Hotspots | Story |
+| --- | --- | --- |
+| ![Time Machine](./docs/screenshots/time-machine.png) | ![Hotspots](./docs/screenshots/hotspots.png) | ![Story](./docs/screenshots/story.png) |
 
 ## Sixty-second local setup
 

@@ -50,3 +50,6 @@
 - Ownership is approximate (lines/commits by path), not blame-accurate.
 - Bus-factor is a simple ownership-concentration heuristic.
 - Remote GitHub clone may be blocked in sandboxed CI; demo + local analyze are the reliable paths.
+
+## Deployment packaging
+- Prefer `pnpm start` (`next start`) over Next `output: "standalone"`. Docker already copies `node_modules` + `.next` and native `better-sqlite3` is simpler without the standalone file-trace subset. Standalone was removed after Next 16 warned that `next start` does not work with that mode.

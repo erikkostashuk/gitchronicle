@@ -15,12 +15,12 @@ Prioritized checklist for the overnight autonomous build.
 - [x] Git process execution (argument-array spawn, timeouts)
 - [x] Raw Git parsing (log, numstat, renames, tags)
 - [x] Metric calculations (activity, churn, ownership, co-change, eras, categories)
-- [x] Vitest coverage for parse + metrics
+- [x] Vitest coverage for parse + metrics (25 tests)
 - [x] Bundled demo dataset + `pnpm seed`
 
 ## Phase 3 — Persistence & jobs
 - [x] DB schema for projects, analyses, jobs
-- [x] Background worker + job status polling/SSE
+- [x] Background worker + job status polling
 - [x] CLI `pnpm analyze` and `pnpm cleanup`
 - [x] Demo loads from DB without credentials
 
@@ -29,7 +29,7 @@ Prioritized checklist for the overnight autonomous build.
 - [x] Dashboard shell (themes, nav, repo switcher, command palette)
 - [x] Overview section
 - [x] Time Machine section
-- [x] Hotspots section
+- [x] Hotspots section (sort + path search)
 - [x] People section
 - [x] Evolution section
 - [x] Graphs section
@@ -50,8 +50,10 @@ Prioritized checklist for the overnight autonomous build.
 - [x] `pnpm lint`, `typecheck`, `test`, `build` pass
 
 ## Phase 7 — Polish & verify
-- [ ] Run Playwright e2e against live server
-- [ ] Analyze real local repository via CLI
-- [ ] Optional public GitHub import smoke test
-- [ ] Final verification captures under scratch
-- [ ] All acceptance criteria satisfied
+- [x] Run Playwright e2e against live server (12/12 pass)
+- [x] Analyze real local repository via CLI (`gitchronicle-1`, truthful metrics)
+- [x] Optional public GitHub import smoke test (hello-world ready)
+- [x] Final verification captures under scratch
+- [x] Screenshots in `docs/screenshots/` wired into README
+- [x] Narrative pluralization + timeline tree dedupe + hotspot search
+- [x] All acceptance criteria satisfied

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-03T00:19:29.138Z",
+  "generatedAt": "2026-08-03T00:28:10.062Z",
   "repository": {
     "name": "acme-toolkit",
     "fullName": "acme/acme-toolkit",
@@ -9203,14 +9203,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "src/index.ts",
           "kind": "file",
           "status": "present"
@@ -9250,14 +9242,6 @@
       "tree": [
         {
           "path": "src",
-          "kind": "dir"
-        },
-        {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
           "kind": "dir"
         },
         {
@@ -9320,14 +9304,6 @@
       "tree": [
         {
           "path": "src",
-          "kind": "dir"
-        },
-        {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
           "kind": "dir"
         },
         {
@@ -9406,14 +9382,6 @@
       "tree": [
         {
           "path": "src",
-          "kind": "dir"
-        },
-        {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
           "kind": "dir"
         },
         {
@@ -9503,14 +9471,6 @@
       "tree": [
         {
           "path": "src",
-          "kind": "dir"
-        },
-        {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
           "kind": "dir"
         },
         {
@@ -9605,14 +9565,6 @@
       "tree": [
         {
           "path": "src",
-          "kind": "dir"
-        },
-        {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
           "kind": "dir"
         },
         {
@@ -9711,14 +9663,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -9814,14 +9758,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -9830,15 +9766,7 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
-          "kind": "dir"
-        },
-        {
-          "path": "docker-compose.yml",
           "kind": "dir"
         },
         {
@@ -9929,14 +9857,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -9945,23 +9865,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -10052,14 +9960,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -10068,23 +9968,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -10175,14 +10063,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -10191,23 +10071,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -10298,14 +10166,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -10314,23 +10174,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -10421,14 +10269,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -10437,23 +10277,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -10544,14 +10372,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -10560,23 +10380,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -10667,14 +10475,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -10683,23 +10483,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -10790,14 +10578,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -10806,23 +10586,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -10913,14 +10681,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -10929,23 +10689,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -11036,14 +10784,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -11052,23 +10792,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -11159,14 +10887,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -11175,23 +10895,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -11282,14 +10990,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -11298,23 +10998,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -11405,14 +11093,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -11421,23 +11101,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -11528,14 +11196,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -11544,23 +11204,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -11651,14 +11299,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -11667,23 +11307,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -11774,14 +11402,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -11790,23 +11410,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -11897,14 +11505,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -11913,23 +11513,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -12020,14 +11608,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -12036,23 +11616,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -12143,14 +11711,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -12159,23 +11719,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -12266,14 +11814,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -12282,23 +11822,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -12389,14 +11917,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -12405,23 +11925,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -12512,14 +12020,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -12528,23 +12028,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -12635,14 +12123,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -12651,23 +12131,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -12758,14 +12226,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -12774,23 +12234,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -12881,14 +12329,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -12897,23 +12337,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -13004,14 +12432,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -13020,23 +12440,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -13127,14 +12535,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -13143,23 +12543,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -13250,14 +12638,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -13266,23 +12646,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -13373,14 +12741,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -13389,23 +12749,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -13496,14 +12844,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -13512,23 +12852,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -13619,14 +12947,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -13635,23 +12955,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -13742,14 +13050,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -13758,23 +13058,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -13865,14 +13153,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -13881,23 +13161,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -13988,14 +13256,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -14004,23 +13264,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -14111,14 +13359,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -14127,23 +13367,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -14234,14 +13462,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -14250,23 +13470,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -14357,14 +13565,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -14373,23 +13573,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -14480,14 +13668,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -14496,23 +13676,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -14603,14 +13771,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -14619,23 +13779,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -14726,14 +13874,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -14742,23 +13882,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -14849,14 +13977,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -14865,23 +13985,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -14972,14 +14080,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -14988,23 +14088,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -15095,14 +14183,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -15111,23 +14191,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -15218,14 +14286,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -15234,23 +14294,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -15341,14 +14389,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -15357,23 +14397,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -15464,14 +14492,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -15480,23 +14500,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -15587,14 +14595,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -15603,23 +14603,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -15710,14 +14698,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -15726,23 +14706,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -15833,14 +14801,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -15849,23 +14809,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -15956,14 +14904,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -15972,23 +14912,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -16079,14 +15007,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -16095,23 +15015,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -16202,14 +15110,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -16218,23 +15118,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -16325,14 +15213,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -16341,23 +15221,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -16452,14 +15320,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -16468,23 +15328,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -16579,14 +15427,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -16595,23 +15435,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -16706,14 +15534,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -16722,23 +15542,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -16833,14 +15641,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -16849,23 +15649,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -16960,14 +15748,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -16976,23 +15756,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -17087,14 +15855,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -17103,23 +15863,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -17214,14 +15962,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -17230,23 +15970,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -17341,14 +16069,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -17357,23 +16077,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -17468,14 +16176,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -17484,23 +16184,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -17595,14 +16283,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -17611,23 +16291,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -17722,14 +16390,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -17738,23 +16398,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -17849,14 +16497,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -17865,23 +16505,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -17976,14 +16604,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -17992,23 +16612,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -18103,14 +16711,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -18119,23 +16719,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -18230,14 +16818,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -18246,23 +16826,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -18357,14 +16925,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -18373,23 +16933,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -18484,14 +17032,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -18500,23 +17040,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -18611,14 +17139,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -18627,23 +17147,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -18738,14 +17246,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -18754,23 +17254,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -18865,14 +17353,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -18881,23 +17361,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -18992,14 +17460,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -19008,23 +17468,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -19119,14 +17567,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -19135,23 +17575,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -19246,14 +17674,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -19262,23 +17682,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -19373,14 +17781,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -19389,23 +17789,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -19500,14 +17888,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -19516,23 +17896,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -19627,14 +17995,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -19643,23 +18003,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -19754,14 +18102,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -19770,23 +18110,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -19881,14 +18209,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -19897,23 +18217,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -20008,14 +18316,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -20024,23 +18324,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -20135,14 +18423,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -20151,23 +18431,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -20262,14 +18530,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -20278,23 +18538,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -20389,14 +18637,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -20405,23 +18645,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -20516,14 +18744,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -20532,23 +18752,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -20643,14 +18851,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -20659,23 +18859,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -20770,14 +18958,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -20786,23 +18966,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -20897,14 +19065,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -20913,23 +19073,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -21024,14 +19172,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -21040,23 +19180,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -21151,14 +19279,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -21167,23 +19287,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -21278,14 +19386,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -21294,23 +19394,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -21405,14 +19493,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -21421,23 +19501,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -21532,14 +19600,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -21548,23 +19608,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -21659,14 +19707,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -21675,23 +19715,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -21786,14 +19814,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -21802,23 +19822,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -21913,14 +19921,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -21929,23 +19929,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -22040,14 +20028,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -22056,23 +20036,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -22167,14 +20135,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -22183,23 +20143,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -22294,14 +20242,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -22310,23 +20250,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -22421,14 +20349,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -22437,23 +20357,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -22548,14 +20456,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -22564,23 +20464,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -22675,14 +20563,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -22691,23 +20571,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -22802,14 +20670,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -22818,23 +20678,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -22929,14 +20777,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -22945,23 +20785,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -23056,14 +20884,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -23072,23 +20892,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -23183,14 +20991,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -23199,23 +20999,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -23310,14 +21098,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -23326,23 +21106,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -23437,14 +21205,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -23453,23 +21213,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -23564,14 +21312,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -23580,23 +21320,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -23691,14 +21419,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -23707,23 +21427,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -23818,14 +21526,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -23834,23 +21534,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -23945,14 +21633,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -23961,23 +21641,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -24072,14 +21740,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -24088,23 +21748,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -24199,14 +21847,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -24215,23 +21855,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -24326,14 +21954,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -24342,23 +21962,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -24453,14 +22061,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -24469,23 +22069,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -24580,14 +22168,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -24596,23 +22176,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -24707,14 +22275,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -24723,23 +22283,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -24834,14 +22382,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -24850,23 +22390,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -24961,14 +22489,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -24977,23 +22497,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -25088,14 +22596,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -25104,23 +22604,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -25215,14 +22703,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -25231,23 +22711,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -25342,14 +22810,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -25358,23 +22818,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -25469,14 +22917,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -25485,23 +22925,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -25596,14 +23024,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -25612,23 +23032,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -25723,14 +23131,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -25739,23 +23139,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -25850,14 +23238,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -25866,23 +23246,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -25977,14 +23345,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -25993,23 +23353,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -26104,14 +23452,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -26120,23 +23460,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -26231,14 +23559,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -26247,23 +23567,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -26358,14 +23666,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -26374,23 +23674,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -26485,14 +23773,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -26501,23 +23781,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -26612,14 +23880,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -26628,23 +23888,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -26739,14 +23987,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -26755,23 +23995,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -26866,14 +24094,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -26882,23 +24102,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -26993,14 +24201,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -27009,23 +24209,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -27120,14 +24308,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -27136,23 +24316,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -27247,14 +24415,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -27263,23 +24423,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -27374,14 +24522,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -27390,23 +24530,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -27501,14 +24629,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -27517,23 +24637,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -27628,14 +24736,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -27644,23 +24744,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -27755,14 +24843,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -27771,23 +24851,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -27882,14 +24950,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -27898,23 +24958,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -28009,14 +25057,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -28025,23 +25065,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -28136,14 +25164,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -28152,23 +25172,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -28263,14 +25271,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -28279,23 +25279,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -28390,14 +25378,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -28406,23 +25386,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -28517,14 +25485,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -28533,23 +25493,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -28644,14 +25592,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -28660,23 +25600,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -28771,14 +25699,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -28787,23 +25707,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -28898,14 +25806,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -28914,23 +25814,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -29025,14 +25913,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -29041,23 +25921,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -29152,14 +26020,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -29168,23 +26028,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -29279,14 +26127,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -29295,23 +26135,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -29406,14 +26234,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -29422,23 +26242,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -29533,14 +26341,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -29549,23 +26349,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -29660,14 +26448,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -29676,23 +26456,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -29787,14 +26555,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -29803,23 +26563,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -29914,14 +26662,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -29930,23 +26670,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -30041,14 +26769,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -30057,23 +26777,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -30168,14 +26876,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -30184,23 +26884,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -30295,14 +26983,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -30311,23 +26991,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -30422,14 +27090,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -30438,23 +27098,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -30549,14 +27197,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -30565,23 +27205,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -30676,14 +27304,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -30692,23 +27312,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -30803,14 +27411,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -30819,23 +27419,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -30930,14 +27518,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -30946,23 +27526,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -31057,14 +27625,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -31073,23 +27633,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -31184,14 +27732,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -31200,23 +27740,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -31311,14 +27839,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -31327,23 +27847,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {
@@ -31438,14 +27946,6 @@
           "kind": "dir"
         },
         {
-          "path": "package.json",
-          "kind": "dir"
-        },
-        {
-          "path": "README.md",
-          "kind": "dir"
-        },
-        {
           "path": "tests",
           "kind": "dir"
         },
@@ -31454,23 +27954,11 @@
           "kind": "dir"
         },
         {
-          "path": "Dockerfile",
-          "kind": "dir"
-        },
-        {
           "path": ".github",
           "kind": "dir"
         },
         {
-          "path": "docker-compose.yml",
-          "kind": "dir"
-        },
-        {
           "path": "docs",
-          "kind": "dir"
-        },
-        {
-          "path": "CONTRIBUTING.md",
           "kind": "dir"
         },
         {

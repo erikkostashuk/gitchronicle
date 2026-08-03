@@ -37,7 +37,9 @@ export function getEnv(): Env {
 
 export function getDataDir(): string {
   const dir = getEnv().DATA_DIR;
-  return path.isAbsolute(dir) ? dir : path.resolve(process.cwd(), dir);
+  if (path.isAbsolute(dir)) return dir;
+  // Scope to project-local data so bundlers do not NFT-trace the whole cwd tree
+  return path.join(/*turbopackIgnore: true*/ process.cwd(), dir);
 }
 
 export function getDatabasePath(): string {
@@ -45,7 +47,7 @@ export function getDatabasePath(): string {
   if (env.DATABASE_URL) {
     return path.isAbsolute(env.DATABASE_URL)
       ? env.DATABASE_URL
-      : path.resolve(process.cwd(), env.DATABASE_URL);
+      : path.join(/*turbopackIgnore: true*/ process.cwd(), env.DATABASE_URL);
   }
   return path.join(getDataDir(), "gitchronicle.db");
 }

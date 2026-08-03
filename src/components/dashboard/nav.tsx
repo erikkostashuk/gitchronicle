@@ -39,7 +39,7 @@ export function DashboardNav({ slug }: { slug: string }) {
         const active =
           item.href === ""
             ? pathname === base || pathname === `${base}/`
-            : pathname?.startsWith(href);
+            : pathname === href || pathname === `${href}/`;
         const Icon = item.icon;
         return (
           <Link

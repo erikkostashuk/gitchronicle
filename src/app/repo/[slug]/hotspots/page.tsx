@@ -18,10 +18,10 @@ export default async function HotspotsPage({
   searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ sort?: string }>;
+  searchParams: Promise<{ sort?: string; q?: string }>;
 }) {
   const { slug } = await params;
-  const { sort = "risk" } = await searchParams;
+  const { sort = "risk", q = "" } = await searchParams;
   const project = getProjectBySlug(slug);
   if (!project) notFound();
   const analysis = getLatestAnalysis(project.id);
@@ -29,16 +29,28 @@ export default async function HotspotsPage({
     return <EmptyState title="Analysis not ready" description="Hotspots need completed analysis." />;
   }
 
-  const rows = [...analysis.result.hotspots].sort((a, b) => {
-    if (sort === "churn") return b.churn - a.churn;
-    if (sort === "commits") return b.commits - a.commits;
-    if (sort === "contributors") return b.contributors - a.contributors;
-    if (sort === "recency")
-      return new Date(b.lastSeen).getTime() - new Date(a.lastSeen).getTime();
-    return b.riskScore - a.riskScore;
-  });
+  const query = q.trim().toLowerCase();
+  const rows = [...analysis.result.hotspots]
+    .filter((f) => (query ? f.path.toLowerCase().includes(query) : true))
+    .sort((a, b) => {
+      if (sort === "churn") return b.churn - a.churn;
+      if (sort === "commits") return b.commits - a.commits;
+      if (sort === "contributors") return b.contributors - a.contributors;
+      if (sort === "recency")
+        return new Date(b.lastSeen).getTime() - new Date(a.lastSeen).getTime();
+      return b.riskScore - a.riskScore;
+    });
 
-  const dirs = analysis.result.directories.slice(0, 15);
+  const dirs = analysis.result.directories
+    .filter((d) => (query ? d.path.toLowerCase().includes(query) : true))
+    .slice(0, 15);
+
+  const sortHref = (key: string) => {
+    const params = new URLSearchParams();
+    params.set("sort", key);
+    if (query) params.set("q", q.trim());
+    return `?${params.toString()}`;
+  };
 
   return (
     <div className="space-y-6">
@@ -50,6 +62,31 @@ export default async function HotspotsPage({
         </p>
       </div>
 
+      <form className="flex flex-wrap items-center gap-2" method="get">
+        <input type="hidden" name="sort" value={sort} />
+        <input
+          name="q"
+          defaultValue={q}
+          placeholder="Filter paths…"
+          aria-label="Filter hotspot paths"
+          className="h-9 w-full max-w-xs rounded-md border border-input bg-background px-3 text-sm font-mono sm:w-64"
+        />
+        <button
+          type="submit"
+          className="h-9 rounded-md border border-border px-3 text-sm hover:bg-accent"
+        >
+          Search
+        </button>
+        {query && (
+          <a
+            href={`?sort=${sort}`}
+            className="text-sm text-muted-foreground hover:text-foreground"
+          >
+            Clear
+          </a>
+        )}
+      </form>
+
       <div className="flex flex-wrap gap-2 text-sm">
         {[
           ["risk", "Risk"],
@@ -60,7 +97,7 @@ export default async function HotspotsPage({
         ].map(([key, label]) => (
           <a
             key={key}
-            href={`?sort=${key}`}
+            href={sortHref(key)}
             className={
               sort === key
                 ? "rounded-md bg-primary px-3 py-1.5 text-primary-foreground"
