@@ -14,8 +14,8 @@ import { cn } from "@/lib/utils";
 import { sceneTheme, sceneTransition } from "./scene-theme";
 import { SceneStage } from "./scene-stage";
 
-/** Film pacing — ~5.8s per scene (readable without feeling stalled) */
-const SCENE_MS = 5800;
+/** Film pacing — ~4.3s per scene (readable without feeling stalled) */
+const SCENE_MS = 4300;
 
 export function WrappedPlayer({
   story,
