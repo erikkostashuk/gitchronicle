@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-03T02:47:22.153Z",
+  "generatedAt": "2026-08-03T02:58:37.978Z",
   "repository": {
     "name": "acme-toolkit",
     "fullName": "acme/acme-toolkit",
@@ -13,13 +13,13 @@
     "lastCommit": "2021-11-28T19:53:00.000Z",
     "ageDays": 255,
     "commitCount": 180,
-    "contributorCount": 7,
+    "contributorCount": 8,
     "fileCount": 76,
     "activeDays": 166,
     "tagCount": 5,
     "totalAdditions": 25304,
     "totalDeletions": 6846,
-    "narrative": "acme-toolkit is approximately 255 days old with 180 commits from 7 contributors across roughly 76 files. Primary language signal: TypeScript. Most active contributor: Ada Lovelace. History spans 6 development eras, from “Founding era” to “Era of v2.0.0”."
+    "narrative": "acme-toolkit is approximately 255 days old with 180 commits from 8 contributors across roughly 76 files. Primary language signal: TypeScript. Most active contributor: Ada Lovelace. History spans 6 development eras, from “Founding era” to “Era of v2.0.0”."
   },
   "activity": {
     "byDay": [
@@ -2245,12 +2245,12 @@
       "aliases": [
         "Ada Lovelace"
       ],
-      "commits": 26,
-      "additions": 3363,
-      "deletions": 753,
+      "commits": 23,
+      "additions": 3060,
+      "deletions": 683,
       "firstCommit": "2021-03-18T08:00:00.000Z",
       "lastCommit": "2021-11-24T15:25:00.000Z",
-      "activeDays": 25,
+      "activeDays": 22,
       "hourHistogram": [
         0,
         0,
@@ -2260,13 +2260,13 @@
         0,
         0,
         0,
-        3,
         2,
         2,
         2,
+        1,
         2,
         2,
-        2,
+        1,
         3,
         2,
         2,
@@ -2282,9 +2282,9 @@
         4,
         0,
         3,
-        5,
-        3,
-        5
+        4,
+        2,
+        4
       ],
       "primaryPaths": [
         {
@@ -2293,14 +2293,10 @@
         },
         {
           "path": "/",
-          "commits": 15
+          "commits": 12
         },
         {
           "path": "web",
-          "commits": 6
-        },
-        {
-          "path": "docs",
           "commits": 6
         },
         {
@@ -2308,7 +2304,7 @@
           "commits": 5
         },
         {
-          "path": "src/analysis",
+          "path": "docs",
           "commits": 4
         },
         {
@@ -2316,41 +2312,41 @@
           "commits": 4
         },
         {
-          "path": ".github/workflows",
+          "path": "web/charts",
+          "commits": 3
+        },
+        {
+          "path": "web/people",
           "commits": 3
         }
       ],
       "languages": [
         {
           "language": "TypeScript",
-          "commits": 51
+          "commits": 48
         },
         {
           "language": "Markdown",
-          "commits": 12
+          "commits": 9
         },
         {
           "language": "YAML",
-          "commits": 6
+          "commits": 4
         },
         {
           "language": "JSON",
           "commits": 3
         },
         {
-          "language": "Docker",
+          "language": "CSS",
           "commits": 3
         },
         {
-          "language": "CSS",
-          "commits": 3
+          "language": "Docker",
+          "commits": 2
         }
       ],
       "collaborators": [
-        {
-          "id": "grace@acme.dev",
-          "sharedCommits": 31
-        },
         {
           "id": "linus@acme.dev",
           "sharedCommits": 31
@@ -2370,9 +2366,17 @@
         {
           "id": "margaret@acme.dev",
           "sharedCommits": 31
+        },
+        {
+          "id": "grace@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "barbara@acme.dev",
+          "sharedCommits": 30
         }
       ],
-      "ownershipShare": 0.14444444444444443
+      "ownershipShare": 0.12777777777777777
     },
     {
       "id": "grace@acme.dev",
@@ -2381,12 +2385,12 @@
       "aliases": [
         "Grace Hopper"
       ],
-      "commits": 26,
-      "additions": 3525,
-      "deletions": 744,
+      "commits": 23,
+      "additions": 3036,
+      "deletions": 673,
       "firstCommit": "2021-03-19T09:07:00.000Z",
       "lastCommit": "2021-11-25T16:32:00.000Z",
-      "activeDays": 25,
+      "activeDays": 22,
       "hourHistogram": [
         0,
         0,
@@ -2396,16 +2400,16 @@
         0,
         0,
         0,
-        2,
+        1,
         3,
         2,
         2,
         2,
         2,
-        2,
+        1,
         2,
         3,
-        2,
+        1,
         2,
         2,
         0,
@@ -2417,19 +2421,19 @@
         7,
         2,
         1,
-        2,
-        6,
+        1,
         5,
+        4,
         3
       ],
       "primaryPaths": [
         {
           "path": "src",
-          "commits": 16
+          "commits": 10
         },
         {
           "path": "/",
-          "commits": 11
+          "commits": 9
         },
         {
           "path": "docs",
@@ -2441,7 +2445,7 @@
         },
         {
           "path": "tests",
-          "commits": 5
+          "commits": 4
         },
         {
           "path": "src/jobs",
@@ -2459,19 +2463,15 @@
       "languages": [
         {
           "language": "TypeScript",
-          "commits": 56
+          "commits": 48
         },
         {
           "language": "Markdown",
-          "commits": 11
+          "commits": 10
         },
         {
           "language": "YAML",
           "commits": 4
-        },
-        {
-          "language": "JSON",
-          "commits": 2
         },
         {
           "language": "Docker",
@@ -2480,35 +2480,43 @@
         {
           "language": "CSS",
           "commits": 2
+        },
+        {
+          "language": "JSON",
+          "commits": 1
         }
       ],
       "collaborators": [
         {
           "id": "linus@acme.dev",
-          "sharedCommits": 31
-        },
-        {
-          "id": "ada@acme.dev",
-          "sharedCommits": 31
+          "sharedCommits": 30
         },
         {
           "id": "kj@acme.dev",
-          "sharedCommits": 31
+          "sharedCommits": 30
+        },
+        {
+          "id": "ada@acme.dev",
+          "sharedCommits": 30
         },
         {
           "id": "ada@users.noreply.github.com",
-          "sharedCommits": 31
+          "sharedCommits": 30
         },
         {
           "id": "alan@acme.dev",
-          "sharedCommits": 31
+          "sharedCommits": 30
         },
         {
           "id": "margaret@acme.dev",
-          "sharedCommits": 31
+          "sharedCommits": 30
+        },
+        {
+          "id": "barbara@acme.dev",
+          "sharedCommits": 29
         }
       ],
-      "ownershipShare": 0.14444444444444443
+      "ownershipShare": 0.12777777777777777
     },
     {
       "id": "alan@acme.dev",
@@ -2517,12 +2525,12 @@
       "aliases": [
         "Alan Turing"
       ],
-      "commits": 26,
-      "additions": 3521,
-      "deletions": 854,
+      "commits": 23,
+      "additions": 2987,
+      "deletions": 782,
       "firstCommit": "2021-03-20T10:14:00.000Z",
-      "lastCommit": "2021-11-26T17:39:00.000Z",
-      "activeDays": 24,
+      "lastCommit": "2021-11-17T10:50:00.000Z",
+      "activeDays": 21,
       "hourHistogram": [
         0,
         0,
@@ -2532,16 +2540,16 @@
         0,
         0,
         0,
-        2,
-        2,
-        3,
-        2,
-        2,
-        2,
-        2,
-        2,
+        1,
         2,
         3,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
         2,
         2,
         0,
@@ -2553,9 +2561,9 @@
         6,
         3,
         0,
+        2,
         3,
         4,
-        5,
         5
       ],
       "primaryPaths": [
@@ -2565,11 +2573,7 @@
         },
         {
           "path": "/",
-          "commits": 14
-        },
-        {
-          "path": "src/analysis",
-          "commits": 6
+          "commits": 12
         },
         {
           "path": "src/jobs",
@@ -2578,6 +2582,10 @@
         {
           "path": "tests",
           "commits": 5
+        },
+        {
+          "path": "src/analysis",
+          "commits": 4
         },
         {
           "path": "web",
@@ -2595,7 +2603,7 @@
       "languages": [
         {
           "language": "TypeScript",
-          "commits": 56
+          "commits": 51
         },
         {
           "language": "Markdown",
@@ -2603,7 +2611,7 @@
         },
         {
           "language": "YAML",
-          "commits": 6
+          "commits": 4
         },
         {
           "language": "JSON",
@@ -2611,7 +2619,7 @@
         },
         {
           "language": "Docker",
-          "commits": 3
+          "commits": 2
         },
         {
           "language": "CSS",
@@ -2620,19 +2628,15 @@
       ],
       "collaborators": [
         {
-          "id": "grace@acme.dev",
-          "sharedCommits": 31
-        },
-        {
           "id": "linus@acme.dev",
           "sharedCommits": 31
         },
         {
-          "id": "ada@acme.dev",
+          "id": "kj@acme.dev",
           "sharedCommits": 31
         },
         {
-          "id": "kj@acme.dev",
+          "id": "ada@acme.dev",
           "sharedCommits": 31
         },
         {
@@ -2642,9 +2646,17 @@
         {
           "id": "margaret@acme.dev",
           "sharedCommits": 31
+        },
+        {
+          "id": "grace@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "barbara@acme.dev",
+          "sharedCommits": 30
         }
       ],
-      "ownershipShare": 0.14444444444444443
+      "ownershipShare": 0.12777777777777777
     },
     {
       "id": "kj@acme.dev",
@@ -2653,12 +2665,12 @@
       "aliases": [
         "Katherine Johnson"
       ],
-      "commits": 26,
-      "additions": 3447,
-      "deletions": 830,
+      "commits": 23,
+      "additions": 3061,
+      "deletions": 702,
       "firstCommit": "2021-03-21T11:21:00.000Z",
       "lastCommit": "2021-11-27T18:46:00.000Z",
-      "activeDays": 25,
+      "activeDays": 22,
       "hourHistogram": [
         0,
         0,
@@ -2671,13 +2683,13 @@
         2,
         2,
         2,
-        3,
         2,
         2,
         2,
+        1,
         2,
         2,
-        2,
+        1,
         3,
         2,
         0,
@@ -2686,158 +2698,26 @@
         0
       ],
       "weekdayHistogram": [
-        7,
+        6,
         2,
         0,
-        2,
-        6,
+        1,
+        5,
         4,
         5
       ],
       "primaryPaths": [
         {
-          "path": "src",
-          "commits": 16
+          "path": "/",
+          "commits": 13
         },
         {
-          "path": "/",
-          "commits": 15
+          "path": "src",
+          "commits": 12
         },
         {
           "path": "src/jobs",
           "commits": 6
-        },
-        {
-          "path": "tests",
-          "commits": 6
-        },
-        {
-          "path": "web",
-          "commits": 6
-        },
-        {
-          "path": "docs",
-          "commits": 6
-        },
-        {
-          "path": "src/analysis",
-          "commits": 4
-        },
-        {
-          "path": ".github/workflows",
-          "commits": 3
-        }
-      ],
-      "languages": [
-        {
-          "language": "TypeScript",
-          "commits": 52
-        },
-        {
-          "language": "Markdown",
-          "commits": 12
-        },
-        {
-          "language": "YAML",
-          "commits": 6
-        },
-        {
-          "language": "JSON",
-          "commits": 3
-        },
-        {
-          "language": "Docker",
-          "commits": 3
-        },
-        {
-          "language": "CSS",
-          "commits": 3
-        }
-      ],
-      "collaborators": [
-        {
-          "id": "grace@acme.dev",
-          "sharedCommits": 31
-        },
-        {
-          "id": "linus@acme.dev",
-          "sharedCommits": 31
-        },
-        {
-          "id": "ada@acme.dev",
-          "sharedCommits": 31
-        },
-        {
-          "id": "ada@users.noreply.github.com",
-          "sharedCommits": 31
-        },
-        {
-          "id": "alan@acme.dev",
-          "sharedCommits": 31
-        },
-        {
-          "id": "margaret@acme.dev",
-          "sharedCommits": 31
-        }
-      ],
-      "ownershipShare": 0.14444444444444443
-    },
-    {
-      "id": "linus@acme.dev",
-      "name": "Linus Torvalds",
-      "email": "linus@acme.dev",
-      "aliases": [
-        "Linus Torvalds"
-      ],
-      "commits": 26,
-      "additions": 3573,
-      "deletions": 808,
-      "firstCommit": "2021-03-22T12:28:00.000Z",
-      "lastCommit": "2021-11-28T19:53:00.000Z",
-      "activeDays": 25,
-      "hourHistogram": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        2,
-        2,
-        2,
-        2,
-        3,
-        2,
-        2,
-        2,
-        2,
-        2,
-        2,
-        3,
-        0,
-        0,
-        0,
-        0
-      ],
-      "weekdayHistogram": [
-        8,
-        3,
-        0,
-        2,
-        4,
-        5,
-        4
-      ],
-      "primaryPaths": [
-        {
-          "path": "src",
-          "commits": 15
-        },
-        {
-          "path": "/",
-          "commits": 11
         },
         {
           "path": "web",
@@ -2856,18 +2736,14 @@
           "commits": 4
         },
         {
-          "path": "src/jobs",
-          "commits": 4
-        },
-        {
-          "path": "web/charts",
+          "path": ".github/workflows",
           "commits": 3
         }
       ],
       "languages": [
         {
           "language": "TypeScript",
-          "commits": 55
+          "commits": 44
         },
         {
           "language": "Markdown",
@@ -2875,7 +2751,11 @@
         },
         {
           "language": "YAML",
-          "commits": 4
+          "commits": 6
+        },
+        {
+          "language": "Docker",
+          "commits": 3
         },
         {
           "language": "CSS",
@@ -2884,23 +2764,15 @@
         {
           "language": "JSON",
           "commits": 2
-        },
-        {
-          "language": "Docker",
-          "commits": 2
         }
       ],
       "collaborators": [
         {
-          "id": "grace@acme.dev",
+          "id": "linus@acme.dev",
           "sharedCommits": 31
         },
         {
           "id": "ada@acme.dev",
-          "sharedCommits": 31
-        },
-        {
-          "id": "kj@acme.dev",
           "sharedCommits": 31
         },
         {
@@ -2914,9 +2786,157 @@
         {
           "id": "margaret@acme.dev",
           "sharedCommits": 31
+        },
+        {
+          "id": "grace@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "barbara@acme.dev",
+          "sharedCommits": 30
         }
       ],
-      "ownershipShare": 0.14444444444444443
+      "ownershipShare": 0.12777777777777777
+    },
+    {
+      "id": "linus@acme.dev",
+      "name": "Linus Torvalds",
+      "email": "linus@acme.dev",
+      "aliases": [
+        "Linus Torvalds"
+      ],
+      "commits": 23,
+      "additions": 3125,
+      "deletions": 730,
+      "firstCommit": "2021-03-22T12:28:00.000Z",
+      "lastCommit": "2021-11-28T19:53:00.000Z",
+      "activeDays": 22,
+      "hourHistogram": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        2,
+        1,
+        3,
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weekdayHistogram": [
+        7,
+        3,
+        0,
+        1,
+        4,
+        5,
+        3
+      ],
+      "primaryPaths": [
+        {
+          "path": "src",
+          "commits": 15
+        },
+        {
+          "path": "/",
+          "commits": 11
+        },
+        {
+          "path": "docs",
+          "commits": 6
+        },
+        {
+          "path": "web",
+          "commits": 4
+        },
+        {
+          "path": "tests",
+          "commits": 4
+        },
+        {
+          "path": "src/analysis",
+          "commits": 4
+        },
+        {
+          "path": "src/routes",
+          "commits": 3
+        },
+        {
+          "path": "web/timemachine",
+          "commits": 3
+        }
+      ],
+      "languages": [
+        {
+          "language": "TypeScript",
+          "commits": 48
+        },
+        {
+          "language": "Markdown",
+          "commits": 11
+        },
+        {
+          "language": "YAML",
+          "commits": 4
+        },
+        {
+          "language": "CSS",
+          "commits": 2
+        },
+        {
+          "language": "JSON",
+          "commits": 2
+        },
+        {
+          "language": "Docker",
+          "commits": 2
+        }
+      ],
+      "collaborators": [
+        {
+          "id": "kj@acme.dev",
+          "sharedCommits": 31
+        },
+        {
+          "id": "ada@acme.dev",
+          "sharedCommits": 31
+        },
+        {
+          "id": "ada@users.noreply.github.com",
+          "sharedCommits": 31
+        },
+        {
+          "id": "alan@acme.dev",
+          "sharedCommits": 31
+        },
+        {
+          "id": "margaret@acme.dev",
+          "sharedCommits": 31
+        },
+        {
+          "id": "grace@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "barbara@acme.dev",
+          "sharedCommits": 30
+        }
+      ],
+      "ownershipShare": 0.12777777777777777
     },
     {
       "id": "margaret@acme.dev",
@@ -2925,12 +2945,12 @@
       "aliases": [
         "Margaret Hamilton"
       ],
-      "commits": 25,
-      "additions": 4415,
-      "deletions": 2063,
+      "commits": 23,
+      "additions": 4230,
+      "deletions": 1988,
       "firstCommit": "2021-03-25T13:35:00.000Z",
       "lastCommit": "2021-11-20T13:11:00.000Z",
-      "activeDays": 24,
+      "activeDays": 22,
       "hourHistogram": [
         0,
         0,
@@ -2943,10 +2963,10 @@
         2,
         2,
         2,
-        2,
+        1,
         2,
         3,
-        2,
+        1,
         2,
         2,
         2,
@@ -2958,13 +2978,13 @@
         0
       ],
       "weekdayHistogram": [
-        6,
+        5,
         4,
         0,
         1,
         5,
         4,
-        5
+        4
       ],
       "primaryPaths": [
         {
@@ -2981,7 +3001,7 @@
         },
         {
           "path": "/",
-          "commits": 10
+          "commits": 9
         },
         {
           "path": "src/analysis",
@@ -3003,7 +3023,7 @@
       "languages": [
         {
           "language": "TypeScript",
-          "commits": 76
+          "commits": 73
         },
         {
           "language": "JavaScript",
@@ -3011,7 +3031,7 @@
         },
         {
           "language": "Markdown",
-          "commits": 8
+          "commits": 5
         },
         {
           "language": "YAML",
@@ -3032,19 +3052,15 @@
       ],
       "collaborators": [
         {
-          "id": "grace@acme.dev",
-          "sharedCommits": 31
-        },
-        {
           "id": "linus@acme.dev",
           "sharedCommits": 31
         },
         {
-          "id": "ada@acme.dev",
+          "id": "kj@acme.dev",
           "sharedCommits": 31
         },
         {
-          "id": "kj@acme.dev",
+          "id": "ada@acme.dev",
           "sharedCommits": 31
         },
         {
@@ -3054,9 +3070,17 @@
         {
           "id": "alan@acme.dev",
           "sharedCommits": 31
+        },
+        {
+          "id": "grace@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "barbara@acme.dev",
+          "sharedCommits": 30
         }
       ],
-      "ownershipShare": 0.1388888888888889
+      "ownershipShare": 0.12777777777777777
     },
     {
       "id": "ada@users.noreply.github.com",
@@ -3065,12 +3089,12 @@
       "aliases": [
         "Ada Lovelace"
       ],
-      "commits": 25,
-      "additions": 3460,
-      "deletions": 794,
+      "commits": 22,
+      "additions": 3019,
+      "deletions": 698,
       "firstCommit": "2021-03-26T14:42:00.000Z",
-      "lastCommit": "2021-11-21T14:18:00.000Z",
-      "activeDays": 24,
+      "lastCommit": "2021-11-12T19:29:00.000Z",
+      "activeDays": 21,
       "hourHistogram": [
         0,
         0,
@@ -3080,16 +3104,16 @@
         0,
         0,
         0,
+        1,
         2,
         2,
         2,
         2,
         2,
         2,
-        3,
         2,
         2,
-        2,
+        1,
         2,
         2,
         0,
@@ -3098,22 +3122,22 @@
         0
       ],
       "weekdayHistogram": [
-        8,
+        7,
         2,
         1,
         2,
         3,
-        5,
-        4
+        4,
+        3
       ],
       "primaryPaths": [
         {
-          "path": "src",
+          "path": "/",
           "commits": 14
         },
         {
-          "path": "/",
-          "commits": 14
+          "path": "src",
+          "commits": 12
         },
         {
           "path": "src/analysis",
@@ -3121,15 +3145,15 @@
         },
         {
           "path": "src/jobs",
-          "commits": 6
-        },
-        {
-          "path": "web",
-          "commits": 6
+          "commits": 4
         },
         {
           "path": "tests",
-          "commits": 5
+          "commits": 4
+        },
+        {
+          "path": "web",
+          "commits": 4
         },
         {
           "path": "docs",
@@ -3143,7 +3167,7 @@
       "languages": [
         {
           "language": "TypeScript",
-          "commits": 52
+          "commits": 44
         },
         {
           "language": "Markdown",
@@ -3163,24 +3187,20 @@
         },
         {
           "language": "CSS",
-          "commits": 3
+          "commits": 2
         }
       ],
       "collaborators": [
-        {
-          "id": "grace@acme.dev",
-          "sharedCommits": 31
-        },
         {
           "id": "linus@acme.dev",
           "sharedCommits": 31
         },
         {
-          "id": "ada@acme.dev",
+          "id": "kj@acme.dev",
           "sharedCommits": 31
         },
         {
-          "id": "kj@acme.dev",
+          "id": "ada@acme.dev",
           "sharedCommits": 31
         },
         {
@@ -3190,9 +3210,157 @@
         {
           "id": "margaret@acme.dev",
           "sharedCommits": 31
+        },
+        {
+          "id": "grace@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "barbara@acme.dev",
+          "sharedCommits": 30
         }
       ],
-      "ownershipShare": 0.1388888888888889
+      "ownershipShare": 0.12222222222222222
+    },
+    {
+      "id": "barbara@acme.dev",
+      "name": "Barbara Liskov",
+      "email": "barbara@acme.dev",
+      "aliases": [
+        "Barbara Liskov"
+      ],
+      "commits": 20,
+      "additions": 2786,
+      "deletions": 590,
+      "firstCommit": "2021-09-08T08:00:00.000Z",
+      "lastCommit": "2021-11-26T17:39:00.000Z",
+      "activeDays": 20,
+      "hourHistogram": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        5,
+        0,
+        0,
+        5,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weekdayHistogram": [
+        4,
+        0,
+        0,
+        4,
+        4,
+        4,
+        4
+      ],
+      "primaryPaths": [
+        {
+          "path": "src",
+          "commits": 12
+        },
+        {
+          "path": "/",
+          "commits": 10
+        },
+        {
+          "path": "src/jobs",
+          "commits": 4
+        },
+        {
+          "path": "tests",
+          "commits": 4
+        },
+        {
+          "path": "src/analysis",
+          "commits": 4
+        },
+        {
+          "path": "docs",
+          "commits": 4
+        },
+        {
+          "path": "web",
+          "commits": 4
+        },
+        {
+          "path": "src/git",
+          "commits": 2
+        }
+      ],
+      "languages": [
+        {
+          "language": "TypeScript",
+          "commits": 42
+        },
+        {
+          "language": "Markdown",
+          "commits": 8
+        },
+        {
+          "language": "YAML",
+          "commits": 4
+        },
+        {
+          "language": "JSON",
+          "commits": 2
+        },
+        {
+          "language": "CSS",
+          "commits": 2
+        },
+        {
+          "language": "Docker",
+          "commits": 2
+        }
+      ],
+      "collaborators": [
+        {
+          "id": "linus@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "kj@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "ada@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "ada@users.noreply.github.com",
+          "sharedCommits": 30
+        },
+        {
+          "id": "alan@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "margaret@acme.dev",
+          "sharedCommits": 30
+        },
+        {
+          "id": "grace@acme.dev",
+          "sharedCommits": 29
+        }
+      ],
+      "ownershipShare": 0.1111111111111111
     }
   ],
   "files": [
@@ -3200,7 +3368,7 @@
       "path": "docs/security.md",
       "language": "Markdown",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 922,
       "deletions": 212,
       "churn": 1134,
@@ -3218,14 +3386,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -3238,9 +3406,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "margaret@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -3256,7 +3429,7 @@
       "path": "web/hotspots/Table.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 882,
       "deletions": 216,
       "churn": 1098,
@@ -3265,11 +3438,6 @@
       "ownership": [
         {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "margaret@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -3284,12 +3452,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "kj@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -3297,6 +3465,16 @@
           "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "kj@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -3312,7 +3490,7 @@
       "path": "web/story/Deck.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 888,
       "deletions": 190,
       "churn": 1078,
@@ -3321,11 +3499,6 @@
       "ownership": [
         {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "margaret@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -3340,12 +3513,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "kj@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -3353,6 +3526,16 @@
           "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "kj@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -3368,18 +3551,13 @@
       "path": "docker-compose.yml",
       "language": "YAML",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 870,
       "deletions": 200,
       "churn": 1070,
       "firstSeen": "2021-03-27T15:49:00.000Z",
       "lastSeen": "2021-11-26T17:39:00.000Z",
       "ownership": [
-        {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "kj@acme.dev",
           "commits": 3,
@@ -3391,9 +3569,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "margaret@acme.dev",
@@ -3409,9 +3592,14 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -3424,7 +3612,7 @@
       "path": "src/git/parse.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 904,
       "deletions": 162,
       "churn": 1066,
@@ -3433,11 +3621,6 @@
       "ownership": [
         {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "alan@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -3452,12 +3635,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "alan@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -3465,6 +3648,16 @@
           "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -3480,7 +3673,7 @@
       "path": "web/graphs/CoChange.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 864,
       "deletions": 198,
       "churn": 1062,
@@ -3498,14 +3691,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "kj@acme.dev",
@@ -3518,9 +3711,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "alan@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "alan@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -3536,18 +3734,13 @@
       "path": "src/config.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 846,
       "deletions": 200,
       "churn": 1046,
       "firstSeen": "2021-03-19T09:07:00.000Z",
       "lastSeen": "2021-11-18T11:57:00.000Z",
       "ownership": [
-        {
-          "contributorId": "grace@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "linus@acme.dev",
           "commits": 3,
@@ -3559,9 +3752,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -3577,9 +3775,14 @@
           "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -3592,7 +3795,7 @@
       "path": "src/analysis/eras.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 830,
       "deletions": 216,
       "churn": 1046,
@@ -3601,11 +3804,6 @@
       "ownership": [
         {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "alan@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -3620,12 +3818,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "alan@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -3633,6 +3831,16 @@
           "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -3648,7 +3856,7 @@
       "path": "web/timemachine/Player.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 814,
       "deletions": 224,
       "churn": 1038,
@@ -3657,11 +3865,6 @@
       "ownership": [
         {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "margaret@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -3676,12 +3879,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "kj@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -3689,6 +3892,16 @@
           "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "kj@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -3704,7 +3917,7 @@
       "path": "docs/architecture.md",
       "language": "Markdown",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 848,
       "deletions": 186,
       "churn": 1034,
@@ -3722,14 +3935,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -3742,9 +3955,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "margaret@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -3760,18 +3978,13 @@
       "path": "Dockerfile",
       "language": "Docker",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 882,
       "deletions": 148,
       "churn": 1030,
       "firstSeen": "2021-03-27T15:49:00.000Z",
       "lastSeen": "2021-11-26T17:39:00.000Z",
       "ownership": [
-        {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "kj@acme.dev",
           "commits": 3,
@@ -3783,9 +3996,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "margaret@acme.dev",
@@ -3801,9 +4019,14 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -3816,7 +4039,7 @@
       "path": "README.md",
       "language": "Markdown",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 862,
       "deletions": 160,
       "churn": 1022,
@@ -3825,11 +4048,6 @@
       "ownership": [
         {
           "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -3844,12 +4062,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -3857,6 +4075,16 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "grace@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -3872,18 +4100,13 @@
       "path": "web/App.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 824,
       "deletions": 174,
       "churn": 998,
       "firstSeen": "2021-03-22T12:28:00.000Z",
       "lastSeen": "2021-11-21T14:18:00.000Z",
       "ownership": [
-        {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "ada@acme.dev",
           "commits": 3,
@@ -3895,9 +4118,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "alan@acme.dev",
@@ -3913,9 +4141,14 @@
           "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -3928,18 +4161,13 @@
       "path": "web/styles.css",
       "language": "CSS",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 812,
       "deletions": 186,
       "churn": 998,
       "firstSeen": "2021-03-22T12:28:00.000Z",
       "lastSeen": "2021-11-21T14:18:00.000Z",
       "ownership": [
-        {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "ada@acme.dev",
           "commits": 3,
@@ -3951,9 +4179,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "alan@acme.dev",
@@ -3969,9 +4202,14 @@
           "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -3984,7 +4222,7 @@
       "path": "tests/jobs.test.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 846,
       "deletions": 148,
       "churn": 994,
@@ -3993,11 +4231,6 @@
       "ownership": [
         {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "ada@users.noreply.github.com",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -4012,12 +4245,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -4025,6 +4258,16 @@
           "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "linus@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4040,7 +4283,7 @@
       "path": "src/routes/projects.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 806,
       "deletions": 184,
       "churn": 990,
@@ -4058,14 +4301,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@acme.dev",
@@ -4078,9 +4321,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@users.noreply.github.com",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@users.noreply.github.com",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4096,18 +4344,13 @@
       "path": ".github/workflows/ci.yml",
       "language": "YAML",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 796,
       "deletions": 174,
       "churn": 970,
       "firstSeen": "2021-03-27T15:49:00.000Z",
       "lastSeen": "2021-11-26T17:39:00.000Z",
       "ownership": [
-        {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "kj@acme.dev",
           "commits": 3,
@@ -4119,9 +4362,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "margaret@acme.dev",
@@ -4137,9 +4385,14 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -4152,7 +4405,7 @@
       "path": "src/analysis/metrics.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 756,
       "deletions": 210,
       "churn": 966,
@@ -4161,11 +4414,6 @@
       "ownership": [
         {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "alan@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -4180,12 +4428,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "alan@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -4193,6 +4441,16 @@
           "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4208,7 +4466,7 @@
       "path": "package.json",
       "language": "JSON",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 788,
       "deletions": 174,
       "churn": 962,
@@ -4217,11 +4475,6 @@
       "ownership": [
         {
           "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -4236,12 +4489,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -4249,6 +4502,16 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "grace@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4264,7 +4527,7 @@
       "path": "web/people/Profile.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 790,
       "deletions": 172,
       "churn": 962,
@@ -4282,14 +4545,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "kj@acme.dev",
@@ -4302,9 +4565,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "alan@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "alan@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4320,7 +4588,7 @@
       "path": "src/db.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 720,
       "deletions": 230,
       "churn": 950,
@@ -4338,14 +4606,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@acme.dev",
@@ -4358,9 +4626,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@users.noreply.github.com",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@users.noreply.github.com",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4376,7 +4649,7 @@
       "path": "src/jobs/queue.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 772,
       "deletions": 162,
       "churn": 934,
@@ -4385,11 +4658,6 @@
       "ownership": [
         {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "ada@users.noreply.github.com",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -4404,12 +4672,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -4417,6 +4685,16 @@
           "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "linus@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4432,7 +4710,7 @@
       "path": "CONTRIBUTING.md",
       "language": "Markdown",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 756,
       "deletions": 178,
       "churn": 934,
@@ -4450,14 +4728,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -4470,9 +4748,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "margaret@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4488,7 +4771,7 @@
       "path": "src/server.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 732,
       "deletions": 198,
       "churn": 930,
@@ -4506,14 +4789,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@acme.dev",
@@ -4526,9 +4809,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@users.noreply.github.com",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@users.noreply.github.com",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4544,18 +4832,13 @@
       "path": "tests/config.test.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 754,
       "deletions": 172,
       "churn": 926,
       "firstSeen": "2021-03-19T09:07:00.000Z",
       "lastSeen": "2021-11-18T11:57:00.000Z",
       "ownership": [
-        {
-          "contributorId": "grace@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "linus@acme.dev",
           "commits": 3,
@@ -4567,9 +4850,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -4585,9 +4873,14 @@
           "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -4600,7 +4893,7 @@
       "path": "src/cli.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 714,
       "deletions": 188,
       "churn": 902,
@@ -4609,11 +4902,6 @@
       "ownership": [
         {
           "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -4628,12 +4916,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -4641,6 +4929,16 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "grace@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4656,18 +4954,13 @@
       "path": "web/charts/Activity.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 738,
       "deletions": 160,
       "churn": 898,
       "firstSeen": "2021-03-22T12:28:00.000Z",
       "lastSeen": "2021-11-21T14:18:00.000Z",
       "ownership": [
-        {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "ada@acme.dev",
           "commits": 3,
@@ -4679,9 +4972,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "alan@acme.dev",
@@ -4697,9 +4995,14 @@
           "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -4712,7 +5015,7 @@
       "path": "src/jobs/worker.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 698,
       "deletions": 196,
       "churn": 894,
@@ -4721,11 +5024,6 @@
       "ownership": [
         {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "ada@users.noreply.github.com",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -4740,12 +5038,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -4753,6 +5051,16 @@
           "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "linus@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -4768,18 +5076,13 @@
       "path": "src/logger.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 680,
       "deletions": 186,
       "churn": 866,
       "firstSeen": "2021-03-19T09:07:00.000Z",
       "lastSeen": "2021-11-18T11:57:00.000Z",
       "ownership": [
-        {
-          "contributorId": "grace@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "linus@acme.dev",
           "commits": 3,
@@ -4791,9 +5094,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -4809,9 +5117,14 @@
           "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -4837,11 +5150,6 @@
           "share": 0.18181818181818182
         },
         {
-          "contributorId": "kj@acme.dev",
-          "commits": 2,
-          "share": 0.18181818181818182
-        },
-        {
           "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.18181818181818182
@@ -4852,12 +5160,17 @@
           "share": 0.18181818181818182
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.18181818181818182
+        },
+        {
+          "contributorId": "kj@acme.dev",
           "commits": 1,
           "share": 0.09090909090909091
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 1,
           "share": 0.09090909090909091
         },
@@ -5970,7 +6283,7 @@
       "path": "src",
       "commits": 254,
       "files": 57,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 13583,
       "additions": 10063,
       "deletions": 3520
@@ -5979,7 +6292,7 @@
       "path": "web",
       "commits": 144,
       "files": 8,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 8132,
       "additions": 6612,
       "deletions": 1520
@@ -5988,7 +6301,7 @@
       "path": "/",
       "commits": 90,
       "files": 5,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 5018,
       "additions": 4158,
       "deletions": 860
@@ -5997,7 +6310,7 @@
       "path": "docs",
       "commits": 36,
       "files": 2,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 2168,
       "additions": 1770,
       "deletions": 398
@@ -6006,7 +6319,7 @@
       "path": "src/analysis",
       "commits": 36,
       "files": 2,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 2012,
       "additions": 1586,
       "deletions": 426
@@ -6015,7 +6328,7 @@
       "path": "tests",
       "commits": 36,
       "files": 2,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 1920,
       "additions": 1600,
       "deletions": 320
@@ -6024,7 +6337,7 @@
       "path": "src/jobs",
       "commits": 36,
       "files": 2,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 1828,
       "additions": 1470,
       "deletions": 358
@@ -6051,7 +6364,7 @@
       "path": "web/hotspots",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 1098,
       "additions": 882,
       "deletions": 216
@@ -6060,7 +6373,7 @@
       "path": "web/story",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 1078,
       "additions": 888,
       "deletions": 190
@@ -6069,7 +6382,7 @@
       "path": "src/git",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 1066,
       "additions": 904,
       "deletions": 162
@@ -6078,7 +6391,7 @@
       "path": "web/graphs",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 1062,
       "additions": 864,
       "deletions": 198
@@ -6087,7 +6400,7 @@
       "path": "web/timemachine",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 1038,
       "additions": 814,
       "deletions": 224
@@ -6096,7 +6409,7 @@
       "path": "src/routes",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 990,
       "additions": 806,
       "deletions": 184
@@ -6105,7 +6418,7 @@
       "path": ".github",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 970,
       "additions": 796,
       "deletions": 174
@@ -6114,7 +6427,7 @@
       "path": ".github/workflows",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 970,
       "additions": 796,
       "deletions": 174
@@ -6123,7 +6436,7 @@
       "path": "web/people",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 962,
       "additions": 790,
       "deletions": 172
@@ -6132,7 +6445,7 @@
       "path": "web/charts",
       "commits": 18,
       "files": 1,
-      "contributors": 7,
+      "contributors": 8,
       "churn": 898,
       "additions": 738,
       "deletions": 160
@@ -6161,7 +6474,7 @@
       "path": "docs/security.md",
       "language": "Markdown",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 922,
       "deletions": 212,
       "churn": 1134,
@@ -6179,14 +6492,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -6199,9 +6512,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "margaret@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -6217,7 +6535,7 @@
       "path": "web/hotspots/Table.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 882,
       "deletions": 216,
       "churn": 1098,
@@ -6226,11 +6544,6 @@
       "ownership": [
         {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "margaret@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -6245,12 +6558,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "kj@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -6258,6 +6571,16 @@
           "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "kj@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -6273,7 +6596,7 @@
       "path": "web/story/Deck.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 888,
       "deletions": 190,
       "churn": 1078,
@@ -6282,11 +6605,6 @@
       "ownership": [
         {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "margaret@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -6301,12 +6619,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "kj@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -6314,6 +6632,16 @@
           "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "kj@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -6329,18 +6657,13 @@
       "path": "docker-compose.yml",
       "language": "YAML",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 870,
       "deletions": 200,
       "churn": 1070,
       "firstSeen": "2021-03-27T15:49:00.000Z",
       "lastSeen": "2021-11-26T17:39:00.000Z",
       "ownership": [
-        {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "kj@acme.dev",
           "commits": 3,
@@ -6352,9 +6675,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "margaret@acme.dev",
@@ -6370,9 +6698,14 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -6385,7 +6718,7 @@
       "path": "src/git/parse.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 904,
       "deletions": 162,
       "churn": 1066,
@@ -6394,11 +6727,6 @@
       "ownership": [
         {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "alan@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -6413,12 +6741,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "alan@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -6426,6 +6754,16 @@
           "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -6441,7 +6779,7 @@
       "path": "web/graphs/CoChange.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 864,
       "deletions": 198,
       "churn": 1062,
@@ -6459,14 +6797,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "kj@acme.dev",
@@ -6479,9 +6817,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "alan@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "alan@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -6497,18 +6840,13 @@
       "path": "src/config.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 846,
       "deletions": 200,
       "churn": 1046,
       "firstSeen": "2021-03-19T09:07:00.000Z",
       "lastSeen": "2021-11-18T11:57:00.000Z",
       "ownership": [
-        {
-          "contributorId": "grace@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "linus@acme.dev",
           "commits": 3,
@@ -6520,9 +6858,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -6538,9 +6881,14 @@
           "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -6553,7 +6901,7 @@
       "path": "src/analysis/eras.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 830,
       "deletions": 216,
       "churn": 1046,
@@ -6562,11 +6910,6 @@
       "ownership": [
         {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "alan@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -6581,12 +6924,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "alan@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -6594,6 +6937,16 @@
           "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -6609,7 +6962,7 @@
       "path": "web/timemachine/Player.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 814,
       "deletions": 224,
       "churn": 1038,
@@ -6618,11 +6971,6 @@
       "ownership": [
         {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "margaret@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -6637,12 +6985,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "kj@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -6650,6 +6998,16 @@
           "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "kj@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -6665,7 +7023,7 @@
       "path": "docs/architecture.md",
       "language": "Markdown",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 848,
       "deletions": 186,
       "churn": 1034,
@@ -6683,14 +7041,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -6703,9 +7061,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "margaret@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -6721,18 +7084,13 @@
       "path": "Dockerfile",
       "language": "Docker",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 882,
       "deletions": 148,
       "churn": 1030,
       "firstSeen": "2021-03-27T15:49:00.000Z",
       "lastSeen": "2021-11-26T17:39:00.000Z",
       "ownership": [
-        {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "kj@acme.dev",
           "commits": 3,
@@ -6744,9 +7102,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "margaret@acme.dev",
@@ -6762,9 +7125,14 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -6777,7 +7145,7 @@
       "path": "README.md",
       "language": "Markdown",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 862,
       "deletions": 160,
       "churn": 1022,
@@ -6786,11 +7154,6 @@
       "ownership": [
         {
           "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -6805,12 +7168,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -6818,6 +7181,16 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "grace@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -6833,18 +7206,13 @@
       "path": "web/App.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 824,
       "deletions": 174,
       "churn": 998,
       "firstSeen": "2021-03-22T12:28:00.000Z",
       "lastSeen": "2021-11-21T14:18:00.000Z",
       "ownership": [
-        {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "ada@acme.dev",
           "commits": 3,
@@ -6856,9 +7224,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "alan@acme.dev",
@@ -6874,9 +7247,14 @@
           "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -6889,18 +7267,13 @@
       "path": "web/styles.css",
       "language": "CSS",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 812,
       "deletions": 186,
       "churn": 998,
       "firstSeen": "2021-03-22T12:28:00.000Z",
       "lastSeen": "2021-11-21T14:18:00.000Z",
       "ownership": [
-        {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "ada@acme.dev",
           "commits": 3,
@@ -6912,9 +7285,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "alan@acme.dev",
@@ -6930,9 +7308,14 @@
           "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -6945,7 +7328,7 @@
       "path": "tests/jobs.test.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 846,
       "deletions": 148,
       "churn": 994,
@@ -6954,11 +7337,6 @@
       "ownership": [
         {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "ada@users.noreply.github.com",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -6973,12 +7351,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -6986,6 +7364,16 @@
           "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "linus@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7001,7 +7389,7 @@
       "path": "src/routes/projects.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 806,
       "deletions": 184,
       "churn": 990,
@@ -7019,14 +7407,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@acme.dev",
@@ -7039,9 +7427,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@users.noreply.github.com",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@users.noreply.github.com",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7057,18 +7450,13 @@
       "path": ".github/workflows/ci.yml",
       "language": "YAML",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 796,
       "deletions": 174,
       "churn": 970,
       "firstSeen": "2021-03-27T15:49:00.000Z",
       "lastSeen": "2021-11-26T17:39:00.000Z",
       "ownership": [
-        {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "kj@acme.dev",
           "commits": 3,
@@ -7080,9 +7468,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "alan@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "margaret@acme.dev",
@@ -7098,9 +7491,14 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -7113,7 +7511,7 @@
       "path": "src/analysis/metrics.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 756,
       "deletions": 210,
       "churn": 966,
@@ -7122,11 +7520,6 @@
       "ownership": [
         {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "alan@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -7141,12 +7534,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "alan@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -7154,6 +7547,16 @@
           "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7169,7 +7572,7 @@
       "path": "package.json",
       "language": "JSON",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 788,
       "deletions": 174,
       "churn": 962,
@@ -7178,11 +7581,6 @@
       "ownership": [
         {
           "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -7197,12 +7595,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -7210,6 +7608,16 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "grace@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7225,7 +7633,7 @@
       "path": "web/people/Profile.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 790,
       "deletions": 172,
       "churn": 962,
@@ -7243,14 +7651,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "ada@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "kj@acme.dev",
@@ -7263,9 +7671,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "alan@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "alan@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7281,7 +7694,7 @@
       "path": "src/db.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 720,
       "deletions": 230,
       "churn": 950,
@@ -7299,14 +7712,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@acme.dev",
@@ -7319,9 +7732,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@users.noreply.github.com",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@users.noreply.github.com",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7337,7 +7755,7 @@
       "path": "src/jobs/queue.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 772,
       "deletions": 162,
       "churn": 934,
@@ -7346,11 +7764,6 @@
       "ownership": [
         {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "ada@users.noreply.github.com",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -7365,12 +7778,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -7378,6 +7791,16 @@
           "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "linus@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7393,7 +7816,7 @@
       "path": "CONTRIBUTING.md",
       "language": "Markdown",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 756,
       "deletions": 178,
       "churn": 934,
@@ -7411,14 +7834,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "ada@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "ada@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -7431,9 +7854,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "margaret@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7449,7 +7877,7 @@
       "path": "src/server.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 732,
       "deletions": 198,
       "churn": 930,
@@ -7467,14 +7895,14 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "linus@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@acme.dev",
@@ -7487,9 +7915,14 @@
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "ada@users.noreply.github.com",
+          "contributorId": "barbara@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "ada@users.noreply.github.com",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7505,18 +7938,13 @@
       "path": "tests/config.test.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 754,
       "deletions": 172,
       "churn": 926,
       "firstSeen": "2021-03-19T09:07:00.000Z",
       "lastSeen": "2021-11-18T11:57:00.000Z",
       "ownership": [
-        {
-          "contributorId": "grace@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "linus@acme.dev",
           "commits": 3,
@@ -7528,9 +7956,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -7546,9 +7979,14 @@
           "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -7561,7 +7999,7 @@
       "path": "src/cli.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 714,
       "deletions": 188,
       "churn": 902,
@@ -7570,11 +8008,6 @@
       "ownership": [
         {
           "contributorId": "ada@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "kj@acme.dev",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -7589,12 +8022,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "kj@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -7602,6 +8035,16 @@
           "contributorId": "linus@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "grace@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7617,18 +8060,13 @@
       "path": "web/charts/Activity.tsx",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 738,
       "deletions": 160,
       "churn": 898,
       "firstSeen": "2021-03-22T12:28:00.000Z",
       "lastSeen": "2021-11-21T14:18:00.000Z",
       "ownership": [
-        {
-          "contributorId": "linus@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "ada@acme.dev",
           "commits": 3,
@@ -7640,9 +8078,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "linus@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "ada@users.noreply.github.com",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "alan@acme.dev",
@@ -7658,9 +8101,14 @@
           "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -7673,7 +8121,7 @@
       "path": "src/jobs/worker.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 698,
       "deletions": 196,
       "churn": 894,
@@ -7682,11 +8130,6 @@
       "ownership": [
         {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
-        {
-          "contributorId": "ada@users.noreply.github.com",
           "commits": 3,
           "share": 0.16666666666666666
         },
@@ -7701,12 +8144,12 @@
           "share": 0.16666666666666666
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.1111111111111111
         },
         {
-          "contributorId": "linus@acme.dev",
+          "contributorId": "grace@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
         },
@@ -7714,6 +8157,16 @@
           "contributorId": "ada@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "linus@acme.dev",
+          "commits": 1,
+          "share": 0.05555555555555555
         }
       ],
       "busFactor": 3,
@@ -7729,18 +8182,13 @@
       "path": "src/logger.ts",
       "language": "TypeScript",
       "commits": 18,
-      "contributors": 7,
+      "contributors": 8,
       "additions": 680,
       "deletions": 186,
       "churn": 866,
       "firstSeen": "2021-03-19T09:07:00.000Z",
       "lastSeen": "2021-11-18T11:57:00.000Z",
       "ownership": [
-        {
-          "contributorId": "grace@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
-        },
         {
           "contributorId": "linus@acme.dev",
           "commits": 3,
@@ -7752,9 +8200,14 @@
           "share": 0.16666666666666666
         },
         {
+          "contributorId": "grace@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
+        },
+        {
           "contributorId": "kj@acme.dev",
-          "commits": 3,
-          "share": 0.16666666666666666
+          "commits": 2,
+          "share": 0.1111111111111111
         },
         {
           "contributorId": "ada@users.noreply.github.com",
@@ -7770,9 +8223,14 @@
           "contributorId": "margaret@acme.dev",
           "commits": 2,
           "share": 0.1111111111111111
+        },
+        {
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.1111111111111111
         }
       ],
-      "busFactor": 3,
+      "busFactor": 4,
       "riskScore": 65,
       "riskReasons": [
         "High change frequency",
@@ -7798,11 +8256,6 @@
           "share": 0.18181818181818182
         },
         {
-          "contributorId": "kj@acme.dev",
-          "commits": 2,
-          "share": 0.18181818181818182
-        },
-        {
           "contributorId": "ada@users.noreply.github.com",
           "commits": 2,
           "share": 0.18181818181818182
@@ -7813,12 +8266,17 @@
           "share": 0.18181818181818182
         },
         {
-          "contributorId": "margaret@acme.dev",
+          "contributorId": "barbara@acme.dev",
+          "commits": 2,
+          "share": 0.18181818181818182
+        },
+        {
+          "contributorId": "kj@acme.dev",
           "commits": 1,
           "share": 0.09090909090909091
         },
         {
-          "contributorId": "grace@acme.dev",
+          "contributorId": "margaret@acme.dev",
           "commits": 1,
           "share": 0.09090909090909091
         },
@@ -8457,10 +8915,10 @@
       "name": "Era of v1.1.0",
       "start": "2021-09-08",
       "end": "2021-11-03",
-      "summary": "41 commits. Primary contributors: Grace Hopper, Alan Turing, Katherine Johnson.",
+      "summary": "41 commits. Primary contributors: Barbara Liskov, Alan Turing, Katherine Johnson.",
       "commitCount": 41,
       "topContributors": [
-        "Grace Hopper",
+        "Barbara Liskov",
         "Alan Turing",
         "Katherine Johnson"
       ],
@@ -8474,12 +8932,12 @@
       "name": "Era of v2.0.0",
       "start": "2021-11-03",
       "end": "2021-11-28",
-      "summary": "20 commits. Primary contributors: Ada Lovelace, Ada Lovelace, Grace Hopper.",
+      "summary": "20 commits. Primary contributors: Barbara Liskov, Ada Lovelace, Ada Lovelace.",
       "commitCount": 20,
       "topContributors": [
+        "Barbara Liskov",
         "Ada Lovelace",
-        "Ada Lovelace",
-        "Grace Hopper"
+        "Ada Lovelace"
       ],
       "tags": [
         "v2.0.0"
@@ -8761,14 +9219,10 @@
       "kj@acme.dev",
       "linus@acme.dev",
       "margaret@acme.dev",
-      "ada@users.noreply.github.com"
+      "ada@users.noreply.github.com",
+      "barbara@acme.dev"
     ],
     "edges": [
-      {
-        "source": "ada@acme.dev",
-        "target": "grace@acme.dev",
-        "weight": 31
-      },
       {
         "source": "ada@acme.dev",
         "target": "linus@acme.dev",
@@ -8791,31 +9245,6 @@
       },
       {
         "source": "ada@acme.dev",
-        "target": "margaret@acme.dev",
-        "weight": 31
-      },
-      {
-        "source": "grace@acme.dev",
-        "target": "linus@acme.dev",
-        "weight": 31
-      },
-      {
-        "source": "grace@acme.dev",
-        "target": "kj@acme.dev",
-        "weight": 31
-      },
-      {
-        "source": "ada@users.noreply.github.com",
-        "target": "grace@acme.dev",
-        "weight": 31
-      },
-      {
-        "source": "alan@acme.dev",
-        "target": "grace@acme.dev",
-        "weight": 31
-      },
-      {
-        "source": "grace@acme.dev",
         "target": "margaret@acme.dev",
         "weight": 31
       },
@@ -8868,6 +9297,71 @@
         "source": "ada@users.noreply.github.com",
         "target": "margaret@acme.dev",
         "weight": 31
+      },
+      {
+        "source": "ada@acme.dev",
+        "target": "grace@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "ada@acme.dev",
+        "target": "barbara@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "grace@acme.dev",
+        "target": "linus@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "grace@acme.dev",
+        "target": "kj@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "ada@users.noreply.github.com",
+        "target": "grace@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "alan@acme.dev",
+        "target": "grace@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "grace@acme.dev",
+        "target": "margaret@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "alan@acme.dev",
+        "target": "barbara@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "barbara@acme.dev",
+        "target": "kj@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "barbara@acme.dev",
+        "target": "linus@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "barbara@acme.dev",
+        "target": "margaret@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "ada@users.noreply.github.com",
+        "target": "barbara@acme.dev",
+        "weight": 30
+      },
+      {
+        "source": "barbara@acme.dev",
+        "target": "grace@acme.dev",
+        "weight": 29
       }
     ]
   },
@@ -8881,11 +9375,12 @@
       "contributors": [
         "alan@acme.dev",
         "kj@acme.dev",
-        "linus@acme.dev",
+        "barbara@acme.dev",
         "margaret@acme.dev",
         "ada@users.noreply.github.com",
-        "ada@acme.dev",
-        "grace@acme.dev"
+        "grace@acme.dev",
+        "linus@acme.dev",
+        "ada@acme.dev"
       ],
       "categories": [
         {
@@ -8941,7 +9436,8 @@
         "ada@acme.dev",
         "grace@acme.dev",
         "alan@acme.dev",
-        "kj@acme.dev"
+        "kj@acme.dev",
+        "barbara@acme.dev"
       ],
       "categories": [
         {
@@ -21612,7 +22108,7 @@
       "hash": "demo000000000000000000000000000000000078",
       "date": "2021-09-08T08:00:00.000Z",
       "subject": "build: docker multi-stage image",
-      "author": "Grace Hopper",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 4,
@@ -21623,7 +22119,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 121,
@@ -21730,7 +22227,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 122,
@@ -21837,7 +22335,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 123,
@@ -21933,7 +22432,7 @@
       "hash": "demo00000000000000000000000000000000007b",
       "date": "2021-09-11T11:21:00.000Z",
       "subject": "perf: cache analysis results",
-      "author": "Linus Torvalds",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -21944,7 +22443,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 124,
@@ -22051,7 +22551,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 125,
@@ -22158,7 +22659,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 126,
@@ -22254,7 +22756,7 @@
       "hash": "demo00000000000000000000000000000000007e",
       "date": "2021-09-16T14:42:00.000Z",
       "subject": "refactor: migrate to TypeScript",
-      "author": "Ada Lovelace",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -22265,7 +22767,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 127,
@@ -22372,7 +22875,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 128,
@@ -22479,7 +22983,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 129,
@@ -22575,7 +23080,7 @@
       "hash": "demo000000000000000000000000000000000081",
       "date": "2021-09-19T17:03:00.000Z",
       "subject": "feat: story presentation mode",
-      "author": "Katherine Johnson",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -22586,7 +23091,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 130,
@@ -22693,7 +23199,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 131,
@@ -22800,7 +23307,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 132,
@@ -22896,7 +23404,7 @@
       "hash": "demo000000000000000000000000000000000084",
       "date": "2021-09-24T08:24:00.000Z",
       "subject": "feat: language evolution view",
-      "author": "Ada Lovelace",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -22907,7 +23415,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 133,
@@ -23014,7 +23523,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 134,
@@ -23121,7 +23631,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 135,
@@ -23217,7 +23728,7 @@
       "hash": "demo000000000000000000000000000000000087",
       "date": "2021-09-29T11:45:00.000Z",
       "subject": "fix: ownership calculation edge case",
-      "author": "Alan Turing",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 2,
@@ -23228,7 +23739,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 136,
@@ -23335,7 +23847,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 137,
@@ -23442,7 +23955,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 138,
@@ -23538,7 +24052,7 @@
       "hash": "demo00000000000000000000000000000000008a",
       "date": "2021-10-02T14:06:00.000Z",
       "subject": "feat: import public GitHub repos",
-      "author": "Margaret Hamilton",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -23549,7 +24063,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 139,
@@ -23656,7 +24171,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 140,
@@ -23763,7 +24279,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 141,
@@ -23859,7 +24376,7 @@
       "hash": "demo00000000000000000000000000000000008d",
       "date": "2021-10-07T17:27:00.000Z",
       "subject": "feat: markdown report export",
-      "author": "Grace Hopper",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -23870,7 +24387,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 142,
@@ -23977,7 +24495,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 143,
@@ -24084,7 +24603,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 144,
@@ -24180,7 +24700,7 @@
       "hash": "demo000000000000000000000000000000000090",
       "date": "2021-10-10T08:48:00.000Z",
       "subject": "fix: mobile layout regressions",
-      "author": "Linus Torvalds",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -24191,7 +24711,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 145,
@@ -24298,7 +24819,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 146,
@@ -24405,7 +24927,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 147,
@@ -24501,7 +25024,7 @@
       "hash": "demo000000000000000000000000000000000093",
       "date": "2021-10-15T11:09:00.000Z",
       "subject": "feat: development eras detection",
-      "author": "Ada Lovelace",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -24512,7 +25035,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 148,
@@ -24619,7 +25143,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 149,
@@ -24726,7 +25251,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 150,
@@ -24822,7 +25348,7 @@
       "hash": "demo000000000000000000000000000000000096",
       "date": "2021-10-20T14:30:00.000Z",
       "subject": "feat: initial project scaffold",
-      "author": "Katherine Johnson",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 4,
@@ -24833,7 +25359,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 151,
@@ -24940,7 +25467,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 152,
@@ -25047,7 +25575,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 153,
@@ -25143,7 +25672,7 @@
       "hash": "demo000000000000000000000000000000000099",
       "date": "2021-10-23T17:51:00.000Z",
       "subject": "feat: implement config parser",
-      "author": "Ada Lovelace",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -25154,7 +25683,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 154,
@@ -25261,7 +25791,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 155,
@@ -25368,7 +25899,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 156,
@@ -25464,7 +25996,7 @@
       "hash": "demo00000000000000000000000000000000009c",
       "date": "2021-10-28T08:12:00.000Z",
       "subject": "refactor: extract logger module",
-      "author": "Alan Turing",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -25475,7 +26007,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 157,
@@ -25582,7 +26115,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 158,
@@ -25689,7 +26223,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 159,
@@ -25785,7 +26320,7 @@
       "hash": "demo00000000000000000000000000000000009f",
       "date": "2021-10-31T11:33:00.000Z",
       "subject": "chore: bump dependencies",
-      "author": "Margaret Hamilton",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -25796,7 +26331,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 160,
@@ -25903,7 +26439,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 161,
@@ -26010,7 +26547,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 162,
@@ -26106,7 +26644,7 @@
       "hash": "demo0000000000000000000000000000000000a2",
       "date": "2021-11-05T14:54:00.000Z",
       "subject": "docs: API documentation",
-      "author": "Grace Hopper",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -26117,7 +26655,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 163,
@@ -26224,7 +26763,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 164,
@@ -26331,7 +26871,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 165,
@@ -26427,7 +26968,7 @@
       "hash": "demo0000000000000000000000000000000000a5",
       "date": "2021-11-10T17:15:00.000Z",
       "subject": "refactor: simplify job state machine",
-      "author": "Linus Torvalds",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 2,
@@ -26438,7 +26979,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 166,
@@ -26545,7 +27087,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 167,
@@ -26652,7 +27195,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 168,
@@ -26748,7 +27292,7 @@
       "hash": "demo0000000000000000000000000000000000a8",
       "date": "2021-11-13T08:36:00.000Z",
       "subject": "fix: timezone handling in heatmap",
-      "author": "Ada Lovelace",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -26759,7 +27303,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 169,
@@ -26866,7 +27411,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 170,
@@ -26973,7 +27519,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 171,
@@ -27069,7 +27616,7 @@
       "hash": "demo0000000000000000000000000000000000ab",
       "date": "2021-11-18T11:57:00.000Z",
       "subject": "ci: github actions workflow",
-      "author": "Katherine Johnson",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -27080,7 +27627,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 172,
@@ -27187,7 +27735,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 173,
@@ -27294,7 +27843,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 174,
@@ -27390,7 +27940,7 @@
       "hash": "demo0000000000000000000000000000000000ae",
       "date": "2021-11-21T14:18:00.000Z",
       "subject": "feat: co-change graph",
-      "author": "Ada Lovelace",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -27401,7 +27951,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 175,
@@ -27508,7 +28059,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 176,
@@ -27615,7 +28167,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 177,
@@ -27711,7 +28264,7 @@
       "hash": "demo0000000000000000000000000000000000b1",
       "date": "2021-11-26T17:39:00.000Z",
       "subject": "feat: time machine playback",
-      "author": "Alan Turing",
+      "author": "Barbara Liskov",
       "filesCreated": 0,
       "filesDeleted": 0,
       "filesModified": 3,
@@ -27722,7 +28275,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 178,
@@ -27829,7 +28383,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 179,
@@ -27936,7 +28491,8 @@
         "kj@acme.dev",
         "linus@acme.dev",
         "margaret@acme.dev",
-        "ada@users.noreply.github.com"
+        "ada@users.noreply.github.com",
+        "barbara@acme.dev"
       ],
       "cumulativeFiles": 51,
       "cumulativeCommits": 180,
@@ -28033,11 +28589,11 @@
       "id": "intro",
       "date": "2021-03-18T08:00:00.000Z",
       "title": "The story of acme-toolkit",
-      "body": "acme-toolkit is approximately 255 days old with 180 commits from 7 contributors across roughly 76 files. Primary language signal: TypeScript. Most active contributor: Ada Lovelace. History spans 6 development eras, from “Founding era” to “Era of v2.0.0”.",
+      "body": "acme-toolkit is approximately 255 days old with 180 commits from 8 contributors across roughly 76 files. Primary language signal: TypeScript. Most active contributor: Ada Lovelace. History spans 6 development eras, from “Founding era” to “Era of v2.0.0”.",
       "kind": "summary",
       "metrics": {
         "Commits": 180,
-        "Contributors": 7,
+        "Contributors": 8,
         "Files": 76,
         "Age (days)": 255
       }
@@ -28094,7 +28650,7 @@
       "id": "era-4",
       "date": "2021-09-08",
       "title": "Era of v1.1.0",
-      "body": "41 commits. Primary contributors: Grace Hopper, Alan Turing, Katherine Johnson.",
+      "body": "41 commits. Primary contributors: Barbara Liskov, Alan Turing, Katherine Johnson.",
       "kind": "era",
       "metrics": {
         "Commits": 41,
@@ -28106,7 +28662,7 @@
       "id": "era-5",
       "date": "2021-11-03",
       "title": "Era of v2.0.0",
-      "body": "20 commits. Primary contributors: Ada Lovelace, Ada Lovelace, Grace Hopper.",
+      "body": "20 commits. Primary contributors: Barbara Liskov, Ada Lovelace, Ada Lovelace.",
       "kind": "era",
       "metrics": {
         "Commits": 20,
@@ -28153,55 +28709,55 @@
       "id": "person-ada@acme.dev",
       "date": "2021-03-18T08:00:00.000Z",
       "title": "Ada Lovelace",
-      "body": "26 commits from 2021-03-18 to 2021-11-24. Primary paths: src, /, web.",
+      "body": "23 commits from 2021-03-18 to 2021-11-24. Primary paths: src, /, web.",
       "kind": "contributor",
       "metrics": {
-        "Commits": 26,
-        "Active days": 25
+        "Commits": 23,
+        "Active days": 22
       }
     },
     {
       "id": "person-grace@acme.dev",
       "date": "2021-03-19T09:07:00.000Z",
       "title": "Grace Hopper",
-      "body": "26 commits from 2021-03-19 to 2021-11-25. Primary paths: src, /, docs.",
+      "body": "23 commits from 2021-03-19 to 2021-11-25. Primary paths: src, /, docs.",
       "kind": "contributor",
       "metrics": {
-        "Commits": 26,
-        "Active days": 25
+        "Commits": 23,
+        "Active days": 22
       }
     },
     {
       "id": "person-alan@acme.dev",
       "date": "2021-03-20T10:14:00.000Z",
       "title": "Alan Turing",
-      "body": "26 commits from 2021-03-20 to 2021-11-26. Primary paths: src, /, src/analysis.",
+      "body": "23 commits from 2021-03-20 to 2021-11-17. Primary paths: src, /, src/jobs.",
       "kind": "contributor",
       "metrics": {
-        "Commits": 26,
-        "Active days": 24
+        "Commits": 23,
+        "Active days": 21
       }
     },
     {
       "id": "person-kj@acme.dev",
       "date": "2021-03-21T11:21:00.000Z",
       "title": "Katherine Johnson",
-      "body": "26 commits from 2021-03-21 to 2021-11-27. Primary paths: src, /, src/jobs.",
+      "body": "23 commits from 2021-03-21 to 2021-11-27. Primary paths: /, src, src/jobs.",
       "kind": "contributor",
       "metrics": {
-        "Commits": 26,
-        "Active days": 25
+        "Commits": 23,
+        "Active days": 22
       }
     },
     {
       "id": "person-linus@acme.dev",
       "date": "2021-03-22T12:28:00.000Z",
       "title": "Linus Torvalds",
-      "body": "26 commits from 2021-03-22 to 2021-11-28. Primary paths: src, /, web.",
+      "body": "23 commits from 2021-03-22 to 2021-11-28. Primary paths: src, /, docs.",
       "kind": "contributor",
       "metrics": {
-        "Commits": 26,
-        "Active days": 25
+        "Commits": 23,
+        "Active days": 22
       }
     },
     {
@@ -28229,7 +28785,7 @@
       "id": "outro",
       "date": "2021-11-28T19:53:00.000Z",
       "title": "Where it stands today",
-      "body": "acme-toolkit continues with 7 known contributors and 5 tags. Explore Time Machine, Hotspots, and Graphs for deeper detail.",
+      "body": "acme-toolkit continues with 8 known contributors and 5 tags. Explore Time Machine, Hotspots, and Graphs for deeper detail.",
       "kind": "summary"
     }
   ],

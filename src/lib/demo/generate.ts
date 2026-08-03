@@ -22,6 +22,8 @@ export function generateDemoCommits(): {
     { name: "Margaret Hamilton", email: "margaret@acme.dev" },
     { name: "Ada Lovelace", email: "ada@users.noreply.github.com" }, // alias
   ];
+  /** Late-joining high-velocity contributor — powers the rising-star scene */
+  const risingStar = { name: "Barbara Liskov", email: "barbara@acme.dev" };
 
   const subjects = [
     "feat: initial project scaffold",
@@ -100,7 +102,12 @@ export function generateDemoCommits(): {
     if (i > 100 && i < 115) dayOffset += 0; // dense burst
     else dayOffset += 1 + (i % 5 === 0 ? 2 : 0);
 
-    const author = authors[i % authors.length]!;
+    // After ~65% of history, inject a dense late-joiner (~18 commits) without
+    // overtaking the founding lead — powers rising-star without stealing main character
+    const author =
+      i >= 120 && i % 3 === 0
+        ? risingStar
+        : authors[i % authors.length]!;
     const subject = subjects[i % subjects.length]!;
     const pool = filePools[i % filePools.length]!;
     const filesChanged = pool.map((path, fi) => {

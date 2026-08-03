@@ -49,14 +49,20 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] Share card PNG palette aligned to green/black brand
 - [x] Token/chrome unit tests (`src/lib/theme/spotify-light.test.ts`) — 39 unit tests total
 
+## Rising star (2026-08-03)
+- [x] Pure `pickRisingStar` (`src/lib/wrapped/rising-star.ts`) — lateness ≥ 40% of timeline, density/velocity score, score floor
+- [x] Scene metrics + share card kind `rising_star`
+- [x] Demo seeds late-joiner **Barbara Liskov** (~20 commits after ~65% of history) without overtaking founding lead
+- [x] Unit tests: demo pick, synthetic late dense star, early-cast skip (42 unit tests total)
+
 ## Notes
 - Classic Story deck kept as secondary chronological slides
-- Rising star scene only when late-joining contributor signal is strong
+- Rising star requires ≥3 contributors, ≥20 commits, late firstCommit, score floor — skipped when weak
 - Wrapped player remains intentionally dark cinematic; product shell is light-first
 - Optional dark theme still available via toggle (storage key `gitchronicle-theme`)
 
 ## Suggested next (priority)
-1. Re-run e2e on production build after visual pass; refresh `docs/screenshots/` if stale
-2. Light-theme dashboard chart colors pass (recharts still fine; verify contrast)
-3. Rising-star refinement from fuller late-join heuristics
+1. Refresh `docs/screenshots/` after Spotify rebrand + rising-star (landing + wrapped-open + overview)
+2. Failed-job retry UI (`reanalyze` job type exists; JobStatusPanel still “try another”)
+3. Light-theme dashboard chart contrast pass
 4. Performance pass on very large local repos (caps already exist — measure)

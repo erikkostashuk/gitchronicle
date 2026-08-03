@@ -60,6 +60,13 @@
 - Share cards use browser canvas PNG export (no extra deps); closing scene hosts downloads.
 - Demo and import completion routes land on `/repo/<slug>/wrapped` first; analytics remain one click away.
 
+## Rising star selection
+- Pure function `pickRisingStar(AnalysisResult)` — no per-commit author histogram required.
+- Late = firstCommit at or after **40%** of the repo timeline; min 4 commits / 2 active days; overall ≥3 people and ≥20 commits.
+- Score blends lateness, tenure density, velocity, and commit share; small score floor rejects cameo blips.
+- Top committer is excluded only when they are an **early** founder (so main-character and rising-star frames stay distinct). A late #1 can still be the rising star.
+- Demo history injects **Barbara Liskov** after ~65% of synthetic commits so the scene is visible offline.
+
 ## Visual identity (Spotify-adjacent)
 - **Product chrome defaults to light** (`next-themes` `defaultTheme="light"`, `enableSystem={false}`, storage key `gitchronicle-theme`). Users can still toggle dark.
 - Brand primary is Spotify-family green (`#1DB954` light / `#1ED760` dark), not teal/indigo. Surfaces are near-white (`#f6f6f6`) with near-black text (`#121212`).

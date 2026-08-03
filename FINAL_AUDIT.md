@@ -24,7 +24,7 @@ pnpm dev
 | --- | --- |
 | `pnpm lint` | pass |
 | `pnpm typecheck` | pass |
-| `pnpm test` | 39 pass (parse + metrics + wrapped + theme tokens) |
+| `pnpm test` | 42 pass (parse + metrics + wrapped + rising-star + theme tokens) |
 | `pnpm build` | pass |
 | `pnpm test:e2e` | **14 pass** (desktop + mobile), including hard keyboard advance + closing scroll + PNG magic |
 | Demo Wrapped | 21 adaptive scenes, analysis-backed |
@@ -90,6 +90,6 @@ Captured under `docs/screenshots/` and e2e `test-results` / session scratch `sho
 
 - SSE streaming progress  
 - Light-theme-specific Wrapped *scene* palettes (player is intentionally dark cinematic; shell is light-first with green brand as of 2026-08-03)  
-- Rising-star refinement from full per-commit split histograms  
+- Per-commit author split histograms for even richer rising-star curves (current pure picker uses first/last + density)  
 - Multi-forge imports beyond public HTTPS GitHub  
 - Fresh marketing screenshots after Spotify-adjacent rebrand  

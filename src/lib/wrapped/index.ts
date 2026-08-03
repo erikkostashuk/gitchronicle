@@ -1,5 +1,6 @@
 export { buildWrappedStory } from "./scenes";
 export { computePersonality } from "./personality";
+export { pickRisingStar } from "./rising-star";
 export { computeStreaks } from "./streaks";
 export type {
   RepositoryPersonality,
@@ -10,3 +11,4 @@ export type {
   WrappedShareCard,
   WrappedStory,
 } from "./types";
+export type { RisingStarPick } from "./rising-star";

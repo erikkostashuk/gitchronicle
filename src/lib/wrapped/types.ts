@@ -39,6 +39,7 @@ export interface WrappedShareCard {
     | "recap"
     | "personality"
     | "top_contributor"
+    | "rising_star"
     | "busiest"
     | "streak"
     | "language"

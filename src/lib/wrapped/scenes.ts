@@ -1,5 +1,6 @@
 import type { AnalysisResult } from "../types/analysis";
 import { computePersonality } from "./personality";
+import { pickRisingStar } from "./rising-star";
 import { computeStreaks } from "./streaks";
 import type {
   RepositoryPersonality,
@@ -405,40 +406,37 @@ function sceneMainCharacter(a: AnalysisResult): WrappedScene | null {
 }
 
 function sceneRisingStar(a: AnalysisResult): WrappedScene | null {
-  if (a.contributors.length < 3 || a.overview.commitCount < 20) return null;
-  // Split timeline in half; find contributor with biggest second-half growth ratio
-  const mid =
-    (new Date(a.overview.firstCommit).getTime() +
-      new Date(a.overview.lastCommit).getTime()) /
-    2;
-  // Use first/last commit windows as proxy (no per-commit authors in result) —
-  // rising star: late firstCommit + high commits relative to tenure
-  const ranked = a.contributors
-    .filter((c) => c.commits >= 3)
-    .map((c) => {
-      const start = new Date(c.firstCommit).getTime();
-      const lateStart = start > mid ? 1 : 0;
-      const velocity =
-        c.activeDays > 0 ? c.commits / Math.max(1, c.activeDays) : 0;
-      const score = lateStart * 2 + velocity + c.commits / 100;
-      return { c, score, lateStart };
-    })
-    .filter((x) => x.c.id !== a.contributors[0]?.id)
-    .sort((x, y) => y.score - x.score);
-
-  const star = ranked[0];
-  if (!star || star.lateStart === 0) return null;
-
+  const star = pickRisingStar(a);
+  if (!star) return null;
+  const c = star.contributor;
+  const sharePct = Math.round(star.share * 100);
+  const latePct = Math.round(star.lateness * 100);
   return {
     id: "rising_star",
     type: "rising_star",
     kicker: "Rookie of the year",
-    title: star.c.name,
-    subtitle: `Showed up fashionably late and stole the season — ${star.c.commits} commits since ${fmtDate(star.c.firstCommit)}.`,
-    hero: star.c.commits,
+    title: c.name,
+    subtitle: `Joined after ${latePct}% of the timeline — then hit ${c.commits} commits (${sharePct}% of the plot). Fashionably late. Extremely effective.`,
+    hero: c.commits,
     heroLabel: "commits after the plot twist",
+    metrics: [
+      { label: "First appearance", value: fmtDate(c.firstCommit) },
+      { label: "Active days", value: c.activeDays },
+      {
+        label: "Velocity",
+        value: `${star.velocity.toFixed(1)}/day`,
+      },
+    ],
+    chips: c.languages.slice(0, 3).map((l) => l.language),
     palette: "gold",
-    a11y: `Rising contributor ${star.c.name}.`,
+    share: {
+      kind: "rising_star",
+      headline: "Rising star",
+      stat: c.name,
+      detail: `${c.commits} commits after joining late · ${sharePct}% share`,
+      repoName: a.repository.name,
+    },
+    a11y: `Rising contributor ${c.name} with ${c.commits} commits after a late start.`,
   };
 }
 
