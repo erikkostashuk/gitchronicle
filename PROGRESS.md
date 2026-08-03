@@ -39,6 +39,24 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] e2e production server for reliable client hydration
 - [x] PNG export evidence (export-cards.log / test-results/exports)
 
+## Visual identity — Spotify-adjacent light default (2026-08-03)
+- [x] Light product chrome default (`defaultTheme="light"`, `enableSystem={false}`)
+- [x] CSS tokens: near-white surfaces + Spotify green `#1DB954` / `#1ED760` (not teal)
+- [x] Pill buttons, solid green active nav, rounded inputs/tabs/badges
+- [x] Landing hero: bold type + green accent (no teal/indigo gradients)
+- [x] Scene copy: punchier deterministic jokes; density caps for single-screen film
+- [x] Player: ~2.8s film autoplay, full-viewport frame, bounce/float motion, reduced-motion safe
+- [x] Share card PNG palette aligned to green/black brand
+- [x] Token/chrome unit tests (`src/lib/theme/spotify-light.test.ts`) — 39 unit tests total
+
 ## Notes
 - Classic Story deck kept as secondary chronological slides
 - Rising star scene only when late-joining contributor signal is strong
+- Wrapped player remains intentionally dark cinematic; product shell is light-first
+- Optional dark theme still available via toggle (storage key `gitchronicle-theme`)
+
+## Suggested next (priority)
+1. Re-run e2e on production build after visual pass; refresh `docs/screenshots/` if stale
+2. Light-theme dashboard chart colors pass (recharts still fine; verify contrast)
+3. Rising-star refinement from fuller late-join heuristics
+4. Performance pass on very large local repos (caps already exist — measure)

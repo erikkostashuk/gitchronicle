@@ -23,23 +23,20 @@ export default function HomePage() {
     <div className="flex min-h-full flex-col">
       <SiteHeader />
       <main className="relative flex-1">
-        <div className="pointer-events-none absolute inset-0 gc-grid-bg opacity-70" />
+        <div className="pointer-events-none absolute inset-0 gc-grid-bg opacity-40" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] gc-glow" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-teal-500/5 via-transparent to-indigo-500/5" />
 
         <section className="relative mx-auto max-w-7xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
+            <Badge variant="secondary" className="mb-5">
               Open source · Self-hosted · No credentials required
             </Badge>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-primary">
               GitChronicle Wrapped
             </p>
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl md:leading-[1.05]">
               Your repository had a year.{" "}
-              <span className="bg-gradient-to-r from-primary via-chart-2 to-chart-4 bg-clip-text text-transparent">
-                Let’s replay it.
-              </span>
+              <span className="text-primary">Let’s replay it.</span>
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
               A cinematic, data-true recap of how a codebase became itself —
@@ -48,9 +45,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mx-auto mt-10 max-w-xl rounded-2xl border border-border bg-card/90 p-5 shadow-lg backdrop-blur">
+          <div className="mx-auto mt-10 max-w-xl rounded-3xl border border-border bg-card p-6 shadow-md">
             <ImportForm />
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
               <Button asChild size="sm">
                 <Link href={demo ? `/repo/${demo.slug}/wrapped` : "/demo"}>
                   <Play className="h-4 w-4" />
@@ -66,7 +63,7 @@ export default function HomePage() {
             </div>
             <p className="mt-3 text-center text-xs text-muted-foreground">
               Local repos:{" "}
-              <code className="rounded bg-muted px-1.5 py-0.5 font-mono">
+              <code className="rounded-full bg-muted px-2 py-0.5 font-mono">
                 pnpm analyze -- /path
               </code>
             </p>
@@ -74,10 +71,10 @@ export default function HomePage() {
 
           {projects.length > 0 && (
             <div className="mx-auto mt-12 max-w-3xl">
-              <h2 className="mb-3 text-sm font-medium text-muted-foreground">
+              <h2 className="mb-3 text-sm font-bold tracking-tight text-muted-foreground">
                 Recent repositories
               </h2>
-              <ul className="divide-y divide-border rounded-xl border border-border bg-card">
+              <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
                 {projects.slice(0, 8).map((p) => (
                   <li key={p.id}>
                     <Link
@@ -86,9 +83,11 @@ export default function HomePage() {
                           ? `/repo/${p.slug}/wrapped`
                           : `/repo/${p.slug}`
                       }
-                      className="flex items-center justify-between gap-3 px-4 py-3 text-sm hover:bg-accent/50"
+                      className="flex items-center justify-between gap-3 px-4 py-3.5 text-sm transition-colors hover:bg-muted/70"
                     >
-                      <span className="font-medium">{p.fullName || p.name}</span>
+                      <span className="font-semibold tracking-tight">
+                        {p.fullName || p.name}
+                      </span>
                       <span className="flex items-center gap-2">
                         {p.isDemo && <Badge variant="secondary">Demo</Badge>}
                         <Badge
@@ -111,8 +110,8 @@ export default function HomePage() {
           )}
         </section>
 
-        <section className="relative border-t border-border bg-card/40 py-16">
-          <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-3">
+        <section className="relative border-t border-border bg-card py-16">
+          <div className="mx-auto grid max-w-7xl gap-5 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-3">
             {[
               {
                 icon: Play,
@@ -147,10 +146,12 @@ export default function HomePage() {
             ].map((f) => (
               <div
                 key={f.title}
-                className="rounded-xl border border-border bg-background p-5 shadow-sm"
+                className="rounded-2xl border border-border bg-background p-5 shadow-sm transition-shadow hover:shadow-md"
               >
-                <f.icon className="h-5 w-5 text-primary" />
-                <h3 className="mt-3 font-semibold">{f.title}</h3>
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/12 text-primary">
+                  <f.icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-3 font-bold tracking-tight">{f.title}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">{f.body}</p>
               </div>
             ))}

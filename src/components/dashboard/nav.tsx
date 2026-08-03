@@ -48,9 +48,9 @@ export function DashboardNav({ slug }: { slug: string }) {
             key={item.label}
             href={href}
             className={cn(
-              "flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
+              "flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold tracking-tight transition-colors",
               active
-                ? "bg-primary/15 font-medium text-primary"
+                ? "bg-primary text-primary-foreground shadow-sm"
                 : "text-muted-foreground hover:bg-accent hover:text-foreground"
             )}
           >

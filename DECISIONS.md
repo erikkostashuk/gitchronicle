@@ -60,3 +60,10 @@
 - Share cards use browser canvas PNG export (no extra deps); closing scene hosts downloads.
 - Demo and import completion routes land on `/repo/<slug>/wrapped` first; analytics remain one click away.
 
+## Visual identity (Spotify-adjacent)
+- **Product chrome defaults to light** (`next-themes` `defaultTheme="light"`, `enableSystem={false}`, storage key `gitchronicle-theme`). Users can still toggle dark.
+- Brand primary is Spotify-family green (`#1DB954` light / `#1ED760` dark), not teal/indigo. Surfaces are near-white (`#f6f6f6`) with near-black text (`#121212`).
+- UI chrome uses pill shapes (buttons, nav active states, inputs, tabs, badges) for a familiar music-app feel without copying Spotify UI pixel-for-pixel.
+- **Wrapped player stays full-bleed dark cinematic** regardless of shell theme — the story is a “film,” not a dashboard. Share-card canvas uses the same green/black language.
+- Scene dwell ~2.8s for film pacing; autoplay stops on closing. Scene copy is deterministic and playful; metrics remain analysis-backed.
+

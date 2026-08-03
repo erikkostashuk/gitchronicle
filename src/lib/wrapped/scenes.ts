@@ -124,11 +124,11 @@ function sceneOpening(a: AnalysisResult): WrappedScene {
     type: "opening",
     kicker: "GitChronicle Wrapped",
     title: a.repository.name,
-    subtitle: "Your repository had a year. Let’s replay it.",
-    body: `${fmtDate(o.firstCommit)} → ${fmtDate(o.lastCommit)}`,
+    subtitle: "Your repo had a year. We’re putting it on the big screen.",
+    body: `${fmtDate(o.firstCommit)} → ${fmtDate(o.lastCommit)} · grab popcorn 🍿`,
     metrics: [
       { label: "Commits", value: o.commitCount },
-      { label: "Contributors", value: o.contributorCount },
+      { label: "People", value: o.contributorCount },
       { label: "Files", value: o.fileCount },
     ],
     palette: "aurora",
@@ -151,19 +151,19 @@ function sceneBeginning(a: AnalysisResult): WrappedScene | null {
   return {
     id: "beginning",
     type: "beginning",
-    kicker: "The beginning",
-    title: "Day zero",
+    kicker: "Cold open",
+    title: "Someone typed git init",
     subtitle: first
-      ? truncate(first.subject, 80)
-      : `Born ${fmtDate(a.overview.firstCommit)}`,
+      ? `First line of dialogue: “${truncate(first.subject, 64)}”`
+      : `Born ${fmtDate(a.overview.firstCommit)} — destiny said “bet.”`,
     hero: fmtDate(a.overview.firstCommit),
-    heroLabel: "First commit",
+    heroLabel: "the day the chaos began",
     list: [
       {
-        label: "Founding contributor",
-        value: founder?.name ?? "Unknown",
+        label: "Founding hero",
+        value: founder?.name ?? "Unknown legend",
       },
-      ...firstFiles.map((p) => ({ label: "Early file", value: p })),
+      ...firstFiles.slice(0, 3).map((p) => ({ label: "Early prop", value: p })),
     ],
     palette: "midnight",
     a11y: `Repository began on ${fmtDate(a.overview.firstCommit)}.`,
@@ -177,15 +177,15 @@ function sceneHeadline(a: AnalysisResult): WrappedScene {
   return {
     id: "headline",
     type: "headline",
-    kicker: "The headline number",
-    title: "Commits that shaped it",
-    subtitle: `${o.activeDays} active days · ${o.ageDays} days of history`,
+    kicker: "The money shot",
+    title: "That’s a lot of “fix typo”",
+    subtitle: `${o.activeDays} days of actually showing up · ${o.ageDays} days on Earth`,
     hero: o.commitCount,
-    heroLabel: "total commits",
+    heroLabel: "commits (yes, that many)",
     metrics: [
       { label: "Per active day", value: perDay },
-      { label: "Lines added", value: o.totalAdditions },
-      { label: "Lines removed", value: o.totalDeletions },
+      { label: "Lines yeeted in", value: o.totalAdditions },
+      { label: "Lines yeeted out", value: o.totalDeletions },
     ],
     palette: "ember",
     a11y: `${o.commitCount} commits across ${o.activeDays} active days.`,
@@ -202,22 +202,20 @@ function sceneBusiest(a: AnalysisResult): WrappedScene | null {
   return {
     id: "busiest",
     type: "busiest",
-    kicker: "Peak intensity",
-    title: "Your busiest period",
-    subtitle: `On ${fmtDate(day.date)}, the repo hit ${day.commits} commits in a single day.`,
+    kicker: "Main-character day",
+    title: day.commits >= 5 ? "HR would like a word" : "Busy bee energy",
+    subtitle: `On ${fmtDate(day.date)} this repo went full send — ${day.commits} commits before dinner.`,
     hero: day.commits,
-    heroLabel: "commits on the busiest day",
+    heroLabel: "commits in one day 🔥",
     metrics: [
-      { label: "Busiest day", value: fmtDate(day.date) },
+      { label: "That day", value: fmtDate(day.date) },
       {
-        label: "Busiest week",
+        label: "Wildest week",
         value: week ? `${fmtDate(week.date)} · ${week.commits}` : "—",
       },
       {
-        label: "Busiest month",
-        value: month
-          ? `${month.date.slice(0, 7)} · ${month.commits}`
-          : "—",
+        label: "Chaos month",
+        value: month ? `${month.date.slice(0, 7)} · ${month.commits}` : "—",
       },
     ],
     palette: "gold",
@@ -242,14 +240,27 @@ function sceneCommitPersonality(a: AnalysisResult): WrappedScene | null {
     max: top.count,
   }));
   const word = topCommitWord(a);
+  const pct = Math.round((top.count / total) * 100);
+  const jokes: Record<string, string> = {
+    feature: "Feature factory. Product managers are sweating (in a good way).",
+    fix: "Bug squasher energy. The bugs filed a restraining order.",
+    refactor: "Refactor romantic. Same app, hotter internals.",
+    docs: "Docs hero. Future-you just sent a thank-you card.",
+    test: "Test gremlin. Coverage is a love language.",
+    build: "Pipeline poet. CI is your co-author.",
+    chore: "Chore champion. Somebody has to take out the trash.",
+    other: "Commit wildcards. Labels are for cowards.",
+  };
   return {
     id: "commit_personality",
     type: "commit_personality",
-    kicker: "Commit personality",
+    kicker: "Vibe check",
     title: `Mostly ${labelCategory(top.category)}`,
-    subtitle: `${Math.round((top.count / total) * 100)}% of categorized commits lean ${labelCategory(top.category)}.`,
-    bars,
-    chips: word ? [`Recurring word: “${word}”`] : undefined,
+    subtitle: jokes[top.category] ?? `${pct}% of the plot is ${labelCategory(top.category)}.`,
+    bars: bars.slice(0, 5),
+    chips: word
+      ? [`Favorite word: “${word}”`, `${pct}% ${top.category}`]
+      : [`${pct}% ${top.category}`],
     palette: "violet",
     a11y: `Top commit category ${top.category} with ${top.count} commits.`,
   };
@@ -266,14 +277,14 @@ function sceneRhythm(a: AnalysisResult): WrappedScene | null {
   return {
     id: "rhythm",
     type: "rhythm",
-    kicker: "Coding rhythm",
+    kicker: "When the magic happens",
     title: rhythm.label,
     subtitle: rhythm.blurb,
     hero: `${peakHour}:00`,
-    heroLabel: "peak hour (UTC)",
+    heroLabel: "peak hour UTC (circadian chaos)",
     metrics: [
       { label: "Peak weekday", value: wdNames[peakWd] ?? "—" },
-      { label: "Style", value: rhythm.label },
+      { label: "Archetype", value: rhythm.label },
     ],
     bars: hours.map((v, i) => ({
       label: `${i}`,
@@ -295,24 +306,24 @@ function sceneStreak(
   return {
     id: "streak",
     type: "streak",
-    kicker: "Streaks",
+    kicker: "Duolingo would be proud",
     title:
       streaks.longestActiveDays >= 3
-        ? `${streaks.longestActiveDays}-day hot streak`
-        : "Quiet and loud chapters",
+        ? `${streaks.longestActiveDays}-day hot streak 🔥`
+        : "On-again, off-again",
     subtitle:
       streaks.longestActiveStart && streaks.longestActiveEnd
-        ? `Longest active run ${fmtDate(streaks.longestActiveStart)} → ${fmtDate(streaks.longestActiveEnd)}`
-        : "Activity came in waves.",
+        ? `Kept the lights on ${fmtDate(streaks.longestActiveStart)} → ${fmtDate(streaks.longestActiveEnd)}. Consistency is sexy.`
+        : "Activity came in waves. Surf’s up.",
     hero: streaks.longestActiveDays,
-    heroLabel: "longest active-day streak",
+    heroLabel: "days in a row (no skip)",
     metrics: [
       {
-        label: "Longest quiet",
+        label: "Longest nap",
         value:
           streaks.longestQuietDays > 0
-            ? `${streaks.longestQuietDays} days`
-            : "None long enough",
+            ? `${streaks.longestQuietDays} quiet days`
+            : "Basically no napping",
       },
     ],
     palette: "forest",
@@ -334,15 +345,15 @@ function scenePeople(a: AnalysisResult): WrappedScene | null {
   return {
     id: "people",
     type: "people",
-    kicker: "The cast",
-    title: `${a.contributors.length} people left fingerprints`,
-    subtitle: "Contribution share from Git history (by commit count).",
-    list: top.map((c) => ({
+    kicker: "Ensemble cast",
+    title: `${a.contributors.length} humans left fingerprints`,
+    subtitle: "Nobody ships alone… except when they absolutely do.",
+    list: top.slice(0, 5).map((c) => ({
       label: c.name,
       value: c.commits,
       hint: `${Math.round((c.commits / total) * 100)}%`,
     })),
-    bars: top.map((c) => ({
+    bars: top.slice(0, 5).map((c) => ({
       label: c.name,
       value: c.commits,
       max: top[0]!.commits,
@@ -360,20 +371,24 @@ function sceneMainCharacter(a: AnalysisResult): WrappedScene | null {
   return {
     id: "main_character",
     type: "main_character",
-    kicker: "Main character energy",
+    kicker: "And the Oscar goes to…",
     title: lead.name,
-    subtitle: `About ${share}% of commits — a playful profile, not a scoreboard.`,
+    subtitle:
+      share >= 40
+        ? `${share}% of commits. Main character energy. They know.`
+        : `${share}% of the plot — co-star with veto power.`,
     hero: lead.commits,
-    heroLabel: "commits",
+    heroLabel: "personal body count (commits)",
     metrics: [
       { label: "Active days", value: lead.activeDays },
       { label: "Peak hour UTC", value: `${peakHour}:00` },
       {
-        label: "Primary paths",
-        value: lead.primaryPaths
-          .slice(0, 2)
-          .map((p) => p.path)
-          .join(", ") || "—",
+        label: "Hangouts",
+        value:
+          lead.primaryPaths
+            .slice(0, 2)
+            .map((p) => p.path)
+            .join(", ") || "—",
       },
     ],
     chips: lead.languages.slice(0, 4).map((l) => l.language),
@@ -417,11 +432,11 @@ function sceneRisingStar(a: AnalysisResult): WrappedScene | null {
   return {
     id: "rising_star",
     type: "rising_star",
-    kicker: "Rising star",
+    kicker: "Rookie of the year",
     title: star.c.name,
-    subtitle: `Joined the story later and ramped up — ${star.c.commits} commits since ${fmtDate(star.c.firstCommit)}.`,
+    subtitle: `Showed up fashionably late and stole the season — ${star.c.commits} commits since ${fmtDate(star.c.firstCommit)}.`,
     hero: star.c.commits,
-    heroLabel: "commits after joining",
+    heroLabel: "commits after the plot twist",
     palette: "gold",
     a11y: `Rising contributor ${star.c.name}.`,
   };
@@ -433,20 +448,20 @@ function sceneBusiestFile(a: AnalysisResult): WrappedScene | null {
   return {
     id: "busiest_file",
     type: "busiest_file",
-    kicker: "Hot path",
+    kicker: "This file has trauma",
     title: basename(f.path),
-    subtitle: f.path,
+    subtitle: `${f.path} — changed so often it deserves hazard pay.`,
     hero: f.commits,
-    heroLabel: "times changed",
+    heroLabel: "times someone poked it",
     metrics: [
       { label: "Churn", value: f.churn },
-      { label: "People", value: f.contributors },
+      { label: "Suspects", value: f.contributors },
       {
         label: "Lifespan",
         value: `${fmtDate(f.firstSeen)} → ${fmtDate(f.lastSeen)}`,
       },
     ],
-    chips: f.riskReasons.slice(0, 3),
+    chips: f.riskReasons.slice(0, 2),
     palette: "ember",
     a11y: `Busiest file ${f.path} changed ${f.commits} times.`,
   };
@@ -461,15 +476,15 @@ function sceneDramaticFile(a: AnalysisResult): WrappedScene | null {
   return {
     id: "dramatic_file",
     type: "dramatic_file",
-    kicker: "Drama in the diff",
+    kicker: "Oscar for best drama",
     title: basename(f.path),
-    subtitle: `Largest cumulative rewrite signal: +${f.additions} / −${f.deletions}`,
+    subtitle: `+${f.additions} / −${f.deletions}. Deleted more lines than a bad reboot.`,
     hero: f.additions + f.deletions,
-    heroLabel: "lines touched (lifetime)",
+    heroLabel: "lines that lived through it",
     metrics: [
-      { label: "Additions", value: f.additions },
-      { label: "Deletions", value: f.deletions },
-      { label: "Commits", value: f.commits },
+      { label: "Born", value: `+${f.additions}` },
+      { label: "Yeeted", value: `−${f.deletions}` },
+      { label: "Acts", value: f.commits },
     ],
     palette: "ember",
     share: {
@@ -489,13 +504,13 @@ function sceneFavorites(a: AnalysisResult): WrappedScene | null {
   return {
     id: "favorites",
     type: "favorites",
-    kicker: "Codebase favorites",
+    kicker: "House language",
     title: lang ? lang.language : "Favorite corners",
     subtitle: lang
-      ? `${Math.round(lang.percent * 100)}% of tracked files speak ${lang.language}`
-      : "Most active directories by churn",
-    chips: a.languages.slice(0, 5).map((l) => `${l.language} ${l.count}`),
-    list: a.directories.slice(0, 5).map((d) => ({
+      ? `${Math.round(lang.percent * 100)}% of the files are speaking ${lang.language}. The rest are freelancers.`
+      : "Directories with the most drama (churn).",
+    chips: a.languages.slice(0, 4).map((l) => `${l.language}`),
+    list: a.directories.slice(0, 4).map((d) => ({
       label: d.path,
       value: d.churn,
       hint: `${d.files} files`,
@@ -522,12 +537,12 @@ function sceneArchitecture(a: AnalysisResult): WrappedScene | null {
   return {
     id: "architecture",
     type: "architecture",
-    kicker: "Architecture shifted",
-    title: migrations[0]?.title ?? "Eras of structure",
+    kicker: "The set redesign",
+    title: migrations[0]?.title ?? "The floor plan changed",
     subtitle:
       migrations[0]?.description ??
-      "Development eras mark natural structural chapters.",
-    list: (migrations.length ? migrations : a.eras).slice(0, 5).map((m) => ({
+      "Eras dropped. The furniture moved. Nobody asked the files.",
+    list: (migrations.length ? migrations : a.eras).slice(0, 4).map((m) => ({
       label: "title" in m ? m.title : m.name,
       value: "date" in m ? fmtDate(m.date) : `${fmtDate(m.start)} → ${fmtDate(m.end)}`,
       hint: "summary" in m ? m.summary : m.description,
@@ -546,11 +561,11 @@ function sceneGiantCommit(a: AnalysisResult): WrappedScene | null {
   return {
     id: "giant_commit",
     type: "giant_commit",
-    kicker: "The giant commit",
-    title: truncate(c.subject, 72),
-    subtitle: `${fmtDate(c.date)} · ${c.hash.slice(0, 7)}`,
+    kicker: "Boss fight commit",
+    title: truncate(c.subject, 56),
+    subtitle: `${fmtDate(c.date)} · ${c.hash.slice(0, 7)} — that’s not a commit, that’s a cry for help.`,
     hero: c.filesChanged,
-    heroLabel: "files touched",
+    heroLabel: "files in the blast radius",
     metrics: [
       { label: "Additions", value: c.additions },
       { label: "Deletions", value: c.deletions },
@@ -566,10 +581,10 @@ function sceneReleases(a: AnalysisResult): WrappedScene | null {
   return {
     id: "releases",
     type: "releases",
-    kicker: "Release era",
-    title: `${a.releases.length} tagged releases`,
-    subtitle: `Most active range: ${biggest.tag} with ${biggest.commits} commits`,
-    list: a.releases.slice(0, 6).map((r) => ({
+    kicker: "Season finales",
+    title: `${a.releases.length} tagged drops`,
+    subtitle: `Biggest season: ${biggest.tag} with ${biggest.commits} commits. Ship it.`,
+    list: a.releases.slice(0, 4).map((r) => ({
       label: r.tag,
       value: r.commits,
       hint: fmtDate(r.date),
@@ -594,9 +609,9 @@ function scenePlotTwist(
     return {
       id: "plot_twist",
       type: "plot_twist",
-      kicker: "Plot twist",
-      title: "The long silence",
-      subtitle: `${quiet.days} quiet days from ${fmtDate(quiet.start)} to ${fmtDate(quiet.end)} — then history continued.`,
+      kicker: "Plot twist 😱",
+      title: "…and then nobody committed",
+      subtitle: `${quiet.days} days of radio silence (${fmtDate(quiet.start)} → ${fmtDate(quiet.end)}). Then: sequel energy.`,
       palette: "slate",
       a11y: `Quiet period of ${quiet.days} days.`,
     };
@@ -605,11 +620,11 @@ function scenePlotTwist(
     return {
       id: "plot_twist",
       type: "plot_twist",
-      kicker: "Plot twist",
-      title: "Sudden acceleration",
-      subtitle: burst.description,
+      kicker: "Plot twist ⚡",
+      title: "Everyone panic-shipped",
+      subtitle: burst.description + " Caffeine was involved.",
       hero: burst.commits,
-      heroLabel: "commits in the burst",
+      heroLabel: "commits in the sprint of doom",
       palette: "gold",
       a11y: burst.description,
     };
@@ -618,9 +633,9 @@ function scenePlotTwist(
     return {
       id: "plot_twist",
       type: "plot_twist",
-      kicker: "Plot twist",
+      kicker: "Plot twist 🌀",
       title: migration.title,
-      subtitle: migration.description,
+      subtitle: migration.description + " The furniture moved overnight.",
       palette: "violet",
       a11y: migration.description,
     };
@@ -629,9 +644,9 @@ function scenePlotTwist(
     return {
       id: "plot_twist",
       type: "plot_twist",
-      kicker: "Plot twist",
-      title: "A chapter of stillness",
-      subtitle: `${streaks.longestQuietDays} days without commits between active stretches.`,
+      kicker: "Plot twist 😴",
+      title: "Vacation arc",
+      subtitle: `${streaks.longestQuietDays} days without commits. Touching grass? Or just stuck in review?`,
       palette: "midnight",
       a11y: `Quiet streak ${streaks.longestQuietDays} days.`,
     };
@@ -650,10 +665,10 @@ function sceneCollaboration(a: AnalysisResult): WrappedScene | null {
   return {
     id: "collaboration",
     type: "collaboration",
-    kicker: "Collaboration",
-    title: "Who builds together",
-    subtitle: "Shared file ownership pairs from Git history.",
-    list: top.map((e) => ({
+    kicker: "Buddy-cop energy",
+    title: "Dynamic duos",
+    subtitle: "They keep touching the same files. It’s giving pair programming… or shared pain.",
+    list: top.slice(0, 4).map((e) => ({
       label: `${nameById.get(e.source) ?? e.source} × ${nameById.get(e.target) ?? e.target}`,
       value: e.weight,
       hint: "shared files",
@@ -671,13 +686,13 @@ function sceneCochange(a: AnalysisResult): WrappedScene | null {
   return {
     id: "cochange",
     type: "cochange",
-    kicker: "Co-change constellation",
-    title: "Files that move together",
-    subtitle: "Often edited in the same commit — a structural hint.",
-    list: top.map((e) => ({
+    kicker: "Ride-or-die files",
+    title: "Never commit alone",
+    subtitle: "These files show up to the same parties. Codependency, but make it architecture.",
+    list: top.slice(0, 4).map((e) => ({
       label: `${basename(e.source)} ↔ ${basename(e.target)}`,
       value: e.weight,
-      hint: "co-changes",
+      hint: "together",
     })),
     palette: "ocean",
     a11y: "Top co-changed file pairs.",
@@ -691,10 +706,10 @@ function scenePersonality(
   return {
     id: "personality",
     type: "personality",
-    kicker: "Repository personality",
+    kicker: "Zodiac, but for git",
     title: personality.label,
-    subtitle: personality.blurb,
-    chips: personality.reasons,
+    subtitle: personality.blurb + " (This was math. Not vibes. Mostly.)",
+    chips: personality.reasons.slice(0, 3),
     palette: "violet",
     share: {
       kind: "personality",
@@ -714,24 +729,22 @@ function sceneRecap(
 ): WrappedScene {
   const o = a.overview;
   const month = maxBy(a.activity.byMonth, (d) => d.commits);
-  const topFile = a.hotspots[0]?.path;
   return {
     id: "recap",
     type: "recap",
-    kicker: "Final recap",
-    title: "The year in a glance",
-    subtitle: personality.label,
+    kicker: "End credits roll",
+    title: "In case you zoned out",
+    subtitle: `${personality.label} · ${a.repository.name} · we love a full circle`,
     metrics: [
       { label: "Commits", value: o.commitCount },
-      { label: "Contributors", value: o.contributorCount },
+      { label: "People", value: o.contributorCount },
       { label: "Active days", value: o.activeDays },
-      { label: "Top language", value: a.languages[0]?.language ?? "—" },
+      { label: "Language", value: a.languages[0]?.language ?? "—" },
       {
-        label: "Busiest month",
+        label: "Peak month",
         value: month ? month.date.slice(0, 7) : "—",
       },
-      { label: "Longest streak", value: streaks.longestActiveDays },
-      { label: "Top file", value: topFile ? basename(topFile) : "—" },
+      { label: "Streak", value: streaks.longestActiveDays },
     ],
     palette: "aurora",
     share: {
@@ -752,16 +765,11 @@ function sceneClosing(
   return {
     id: "closing",
     type: "closing",
-    kicker: "That’s a wrap",
-    title: "Replay complete",
-    subtitle: `${a.repository.name} · ${personality.label}`,
-    body: "Download share cards, open the full analytics dashboard, or analyze another repository.",
-    chips: [
-      "Share cards",
-      "Deep analytics",
-      "Markdown report",
-      "Another repo",
-    ],
+    kicker: "Cut! Print it!",
+    title: "Go touch grass",
+    subtitle: `${a.repository.name} · ${personality.label} · thanks for sitting through git theater`,
+    body: "Steal a share card. Dive into analytics. Or analyze another victim—uh, repository.",
+    chips: ["Share cards", "Analytics", "Report", "Another repo"],
     palette: "midnight",
     a11y: "Closing scene with export and dashboard options.",
   };
@@ -847,25 +855,25 @@ function labelCategory(c: string): string {
 function classifyRhythm(peakHour: number): { label: string; blurb: string } {
   if (peakHour >= 5 && peakHour < 11) {
     return {
-      label: "Early bird",
-      blurb: "Commits cluster in the morning UTC window.",
+      label: "Early bird ☕",
+      blurb: "Commits before breakfast. Sleep is for people without merge conflicts… wait.",
     };
   }
   if (peakHour >= 11 && peakHour < 17) {
     return {
-      label: "Daytime driver",
-      blurb: "Classic working-hours energy in the commit log.",
+      label: "9-to-5 chaos agent",
+      blurb: "Peak during work hours. Respectable. Suspicious. Both.",
     };
   }
   if (peakHour >= 17 && peakHour < 22) {
     return {
-      label: "Evening shipper",
-      blurb: "History thickens after the workday winds down.",
+      label: "After-hours shipper 🌙",
+      blurb: "The real work starts when Slack goes quiet.",
     };
   }
   return {
-    label: "Night owl",
-    blurb: "Peak commits land deep into the night (UTC).",
+    label: "Night owl 🦉",
+    blurb: "Peak commits after midnight UTC. Sleep schedule? Never heard of her.",
   };
 }
 

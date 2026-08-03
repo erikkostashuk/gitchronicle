@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 
 const PALETTE = {
-  bg0: "#070b12",
-  bg1: "#0f172a",
-  accent: "#2dd4bf",
-  accent2: "#818cf8",
-  text: "#e8eef7",
-  muted: "#94a3b8",
+  bg0: "#0a0a0a",
+  bg1: "#121212",
+  accent: "#1ed760",
+  accent2: "#1db954",
+  text: "#ffffff",
+  muted: "#b3b3b3",
 };
 
 function drawCard(
@@ -26,15 +26,15 @@ function drawCard(
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
-  // Background gradient
+  // Background gradient — Spotify-adjacent dark shell
   const g = ctx.createLinearGradient(0, 0, w, h);
   g.addColorStop(0, PALETTE.bg0);
-  g.addColorStop(0.5, "#0c1a2e");
-  g.addColorStop(1, "#1a1030");
+  g.addColorStop(0.45, "#121212");
+  g.addColorStop(1, "#0d1f14");
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, w, h);
 
-  // Soft orbs
+  // Soft green orbs
   const orb = (x: number, y: number, r: number, color: string) => {
     const rg = ctx.createRadialGradient(x, y, 0, x, y, r);
     rg.addColorStop(0, color);
@@ -42,8 +42,8 @@ function drawCard(
     ctx.fillStyle = rg;
     ctx.fillRect(0, 0, w, h);
   };
-  orb(w * 0.15, h * 0.2, w * 0.4, "rgba(45,212,191,0.25)");
-  orb(w * 0.85, h * 0.75, w * 0.45, "rgba(129,140,248,0.22)");
+  orb(w * 0.15, h * 0.2, w * 0.4, "rgba(30,215,96,0.28)");
+  orb(w * 0.85, h * 0.75, w * 0.45, "rgba(29,185,84,0.22)");
 
   // Grain-ish dots (light)
   ctx.fillStyle = "rgba(255,255,255,0.03)";
