@@ -15,7 +15,8 @@
     "seed": "tsx scripts/seed.ts",
     "analyze": "tsx scripts/analyze.ts",
     "worker": "tsx scripts/worker.ts",
-    "cleanup": "tsx scripts/cleanup.ts"
+    "cleanup": "tsx scripts/cleanup.ts",
+    "screenshots": "tsx scripts/capture-screenshots.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.23",

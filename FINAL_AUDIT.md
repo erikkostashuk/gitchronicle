@@ -92,4 +92,5 @@ Captured under `docs/screenshots/` and e2e `test-results` / session scratch `sho
 - Light-theme-specific Wrapped *scene* palettes (player is intentionally dark cinematic; shell is light-first with green brand as of 2026-08-03)  
 - Per-commit author split histograms for even richer rising-star curves (current pure picker uses first/last + density)  
 - Multi-forge imports beyond public HTTPS GitHub  
-- Fresh marketing screenshots after Spotify-adjacent rebrand  
+- (done) Fresh marketing screenshots via `pnpm screenshots` after Spotify-adjacent rebrand  
+ 

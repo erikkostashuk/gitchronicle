@@ -4,7 +4,7 @@
 
 GitChronicle turns a Git repository into a cinematic, shareable recap — then a deep engineering-intelligence dashboard. Import a public GitHub URL, analyze a local repo, or open the bundled demo.
 
-![GitChronicle](https://img.shields.io/badge/stack-Next.js%20%7C%20SQLite%20%7C%20Vitest-0d9488) ![license](https://img.shields.io/badge/license-MIT-blue)
+![GitChronicle](https://img.shields.io/badge/stack-Next.js%20%7C%20SQLite%20%7C%20Vitest-1DB954) ![license](https://img.shields.io/badge/license-MIT-blue)
 
 ![Landing](./docs/screenshots/landing.png)
 
@@ -20,7 +20,9 @@ GitChronicle turns a Git repository into a cinematic, shareable recap — then a
 - **Releases** — tags + Markdown notes
 - **Exports** — PNG social cards + Markdown repository report
 
-![Wrapped](./docs/screenshots/overview.png)
+![Wrapped](./docs/screenshots/wrapped-open.png)
+
+![Overview](./docs/screenshots/overview.png)
 
 ## Sixty-second local setup
 
@@ -90,6 +92,7 @@ See `src/lib/wrapped/personality.ts` and [FINAL_AUDIT.md](./FINAL_AUDIT.md). Exa
 | `pnpm db:migrate` / `seed` | DB + demo |
 | `pnpm analyze -- <path>` | Local analyze |
 | `pnpm worker` / `cleanup` | Jobs + cleanup |
+| `pnpm screenshots` | Refresh `docs/screenshots/` (server on :3000) |
 
 ## Contributing
 

@@ -69,8 +69,14 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - Optional dark theme still available via toggle (storage key `gitchronicle-theme`)
 - Demo projects reject retry (re-seed with `pnpm seed`); GitHub failed jobs re-clone after cleanup
 
+## Marketing screenshots (2026-08-03)
+- [x] `pnpm screenshots` → `scripts/capture-screenshots.ts` (Playwright, light theme forced)
+- [x] Regenerated all `docs/screenshots/*` post Spotify rebrand + rising-star (22 scenes)
+- [x] README badge green `#1DB954`; Wrapped image points at `wrapped-open.png`
+- [x] Fixed Wrapped title visibility: `gc-title-shine` no longer uses `background-clip:text` (was invisible under transforms / Chromium capture)
+
 ## Suggested next (priority)
-1. Refresh `docs/screenshots/` after Spotify rebrand + rising-star (landing + wrapped-open + overview)
-2. Light-theme dashboard chart contrast pass
-3. Stale `running` job recovery (worker crash → mark failed after TTL)
-4. Performance pass on very large local repos (caps already exist — measure)
+1. Light-theme dashboard chart contrast pass (axis labels / tooltip on near-white)
+2. Stale `running` job recovery (worker crash → mark failed after TTL)
+3. Performance pass on very large local repos (caps already exist — measure)
+4. Landing “recent repos” dedupe / cleanup of accidental re-imports

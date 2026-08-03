@@ -44,6 +44,16 @@ pnpm build
 
 Optional: `pnpm test:e2e` (requires Playwright browsers).
 
+### Marketing screenshots
+
+With a production server on port 3000 (`pnpm seed && pnpm build && PORT=3000 pnpm start`):
+
+```bash
+pnpm screenshots
+```
+
+Writes light-theme captures to `docs/screenshots/` (landing, Wrapped, dashboard sections).
+
 ## Commit style
 
 - Use clear, descriptive commit messages.

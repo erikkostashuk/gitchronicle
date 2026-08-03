@@ -60,6 +60,11 @@
 - Share cards use browser canvas PNG export (no extra deps); closing scene hosts downloads.
 - Demo and import completion routes land on `/repo/<slug>/wrapped` first; analytics remain one click away.
 
+## Marketing screenshots
+- Capture script: `scripts/capture-screenshots.ts` (`pnpm screenshots`) against production `next start` on `:3000`.
+- Forces light theme via `localStorage gitchronicle-theme` + `colorScheme: "light"`.
+- Wrapped titles use solid white + green glow (not `background-clip: text`) so they stay visible under CSS transforms and in PNG captures.
+
 ## Analysis retry
 - `POST /api/repos/[slug]/retry` enqueues a new job; never reuses a failed row as running without a clean pending insert.
 - Decision tree is pure (`planRetryJob`): failed GitHub → `clone_and_analyze`; ready GitHub with `localPath` → `reanalyze`; local → `analyze_local`; demo → 400 (seed offline JSON).
