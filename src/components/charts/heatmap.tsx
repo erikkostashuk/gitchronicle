@@ -44,8 +44,9 @@ export function CommitHeatmap({ cells }: { cells: HeatmapCell[] }) {
     return 4;
   }
 
+  // Empty cells use a visible light-theme tile (not pure white-on-white)
   const colors = [
-    "bg-muted",
+    "bg-muted ring-1 ring-inset ring-border/80",
     "bg-primary/25",
     "bg-primary/45",
     "bg-primary/70",
@@ -54,7 +55,7 @@ export function CommitHeatmap({ cells }: { cells: HeatmapCell[] }) {
 
   return (
     <TooltipProvider>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" data-testid="commit-heatmap">
         <div className="inline-flex gap-1">
           {weeks.map((week, wi) => (
             <div key={wi} className="flex flex-col gap-1">
@@ -69,10 +70,7 @@ export function CommitHeatmap({ cells }: { cells: HeatmapCell[] }) {
                     content={`${day.date}: ${day.count} commit${day.count === 1 ? "" : "s"}`}
                   >
                     <div
-                      className={cn(
-                        "h-3 w-3 rounded-[3px]",
-                        colors[lv]
-                      )}
+                      className={cn("h-3 w-3 rounded-[3px]", colors[lv])}
                       aria-label={`${day.date}: ${day.count} commits`}
                     />
                   </Tooltip>
@@ -80,6 +78,15 @@ export function CommitHeatmap({ cells }: { cells: HeatmapCell[] }) {
               })}
             </div>
           ))}
+        </div>
+        <div className="mt-3 flex items-center gap-2 text-[10px] text-muted-foreground">
+          <span>Less</span>
+          <div className="flex gap-1">
+            {colors.map((c, i) => (
+              <div key={i} className={cn("h-2.5 w-2.5 rounded-[2px]", c)} />
+            ))}
+          </div>
+          <span>More</span>
         </div>
       </div>
     </TooltipProvider>

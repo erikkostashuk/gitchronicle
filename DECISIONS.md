@@ -60,6 +60,11 @@
 - Share cards use browser canvas PNG export (no extra deps); closing scene hosts downloads.
 - Demo and import completion routes land on `/repo/<slug>/wrapped` first; analytics remain one click away.
 
+## Dashboard chart colors
+- Brand green remains `--primary` / `--chart-1` for single-series emphasis (activity area).
+- Multi-series lines use diverging tokens: `--chart-2` is blue `#509bf5` (not a second green) so Files vs Commits read on light cards.
+- Recharts chrome is centralized in `src/components/charts/theme.ts` so tooltips always set `color: var(--popover-foreground)` (Recharts defaults ignore theme otherwise).
+
 ## Marketing screenshots
 - Capture script: `scripts/capture-screenshots.ts` (`pnpm screenshots`) against production `next start` on `:3000`.
 - Forces light theme via `localStorage gitchronicle-theme` + `colorScheme: "light"`.

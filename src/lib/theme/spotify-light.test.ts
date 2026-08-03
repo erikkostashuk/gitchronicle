@@ -58,9 +58,40 @@ describe("Spotify-like light theme tokens (shipped CSS)", () => {
     expect(primary).not.toBe("#2dd4bf");
   });
 
+  it("keeps multi-series chart colors distinct from brand green", () => {
+    const chart1 = cssVar(css, ":root", "--chart-1")!.toLowerCase();
+    const chart2 = cssVar(css, ":root", "--chart-2")!.toLowerCase();
+    const chart3 = cssVar(css, ":root", "--chart-3")!.toLowerCase();
+    // chart-2 must not be a near-identical green (was #1ed760 next to #1db954)
+    expect(chart2).not.toBe(chart1);
+    expect(chart2).not.toMatch(/^#(1db954|1ed760)$/);
+    expect(chart3).not.toBe(chart1);
+    expect(chart3).not.toBe(chart2);
+  });
+
   it("keeps optional dark tokens with green primary (not product default)", () => {
     const darkPrimary = cssVar(css, ".dark", "--primary")!.toLowerCase();
     expect(darkPrimary).toMatch(/^#(1db954|1ed760)$/);
+  });
+});
+
+describe("dashboard chart theme helpers (shipped)", () => {
+  it("binds tooltip and axis colors to CSS variables", () => {
+    const theme = readSrc("components/charts/theme.ts");
+    expect(theme).toMatch(/muted-foreground/);
+    expect(theme).toMatch(/popover-foreground/);
+    expect(theme).toMatch(/--popover/);
+    expect(theme).toMatch(/--border/);
+  });
+
+  it("activity and growth charts use shared theme + empty states", () => {
+    const activity = readSrc("components/charts/activity-chart.tsx");
+    const growth = readSrc("components/charts/growth-chart.tsx");
+    expect(activity).toMatch(/from "\.\/theme"/);
+    expect(growth).toMatch(/from "\.\/theme"/);
+    expect(activity).toMatch(/No activity data/);
+    expect(growth).toMatch(/No growth series/);
+    expect(growth).toMatch(/Legend/);
   });
 });
 

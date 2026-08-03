@@ -75,8 +75,14 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] README badge green `#1DB954`; Wrapped image points at `wrapped-open.png`
 - [x] Fixed Wrapped title visibility: `gc-title-shine` no longer uses `background-clip:text` (was invisible under transforms / Chromium capture)
 
+## Light-theme chart contrast (2026-08-03)
+- [x] Shared Recharts theme (`src/components/charts/theme.ts`) — axis/grid/tooltip use CSS tokens + popover-foreground
+- [x] Multi-series: `--chart-2` is blue `#509bf5` (not near-identical green) on light and dark
+- [x] Growth chart legend; empty states; heatmap empty-tile ring + Less/More legend
+- [x] Theme tests assert chart-2 ≠ chart-1 (52 unit tests total)
+
 ## Suggested next (priority)
-1. Light-theme dashboard chart contrast pass (axis labels / tooltip on near-white)
-2. Stale `running` job recovery (worker crash → mark failed after TTL)
-3. Performance pass on very large local repos (caps already exist — measure)
-4. Landing “recent repos” dedupe / cleanup of accidental re-imports
+1. Stale `running` job recovery (worker crash → mark failed after TTL)
+2. Performance pass on very large local repos (caps already exist — measure)
+3. Landing “recent repos” dedupe / cleanup of accidental re-imports
+4. Optional: re-run `pnpm screenshots` after chart contrast for docs/overview
