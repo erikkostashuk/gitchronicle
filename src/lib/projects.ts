@@ -1,6 +1,7 @@
 import { desc, eq } from "drizzle-orm";
 import { getDb } from "./db/client";
 import { analyses, jobs, projects, type Project } from "./db/schema";
+import { recoverStaleJobs } from "./jobs/stale";
 import type { AnalysisResult } from "./types/analysis";
 import { dedupeProjectsForDisplay } from "./projects/dedupe";
 
@@ -14,6 +15,8 @@ export function listProjects(): Project[] {
 
 /** Recent list for landing / switcher — one row per logical repository. */
 export function listProjectsForDisplay(limit = 8): Project[] {
+  // Reap zombie jobs + orphan project statuses before listing
+  recoverStaleJobs();
   return dedupeProjectsForDisplay(listProjects(), limit);
 }
 

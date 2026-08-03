@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import { getDb } from "../db/client";
 import { jobs, projects, type Job } from "../db/schema";
 import { logger } from "../logger";
+import { recoverOrphanProjects } from "./orphans";
 
 /**
  * Running jobs with no `updatedAt` heartbeat for this long are treated as
@@ -59,7 +60,9 @@ export function isJobStale(
 export function recoverStaleJobs(options?: {
   nowMs?: number;
   ttlMs?: number;
-}): { recoveredJobIds: string[] } {
+  /** Also repair projects stuck in-progress with terminal/missing jobs (default true). */
+  orphans?: boolean;
+}): { recoveredJobIds: string[]; repairedProjectIds: string[] } {
   const nowMs = options?.nowMs ?? Date.now();
   const ttlMs = options?.ttlMs ?? STALE_JOB_TTL_MS;
   const db = getDb();
@@ -103,5 +106,10 @@ export function recoverStaleJobs(options?: {
     });
   }
 
-  return { recoveredJobIds };
+  const repairedProjectIds =
+    options?.orphans === false
+      ? []
+      : recoverOrphanProjects().repairedProjectIds;
+
+  return { recoveredJobIds, repairedProjectIds };
 }

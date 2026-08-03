@@ -100,8 +100,14 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] Co-change caps: `MAX_COCHANGE_PAIRS` (40k) + `MAX_COCHANGE_FILES_PER_COMMIT` (24)
 - [x] Unit tests for caps + wide synthetic history (73 tests total)
 
+## Orphan project status repair (2026-08-03)
+- [x] Pure `planOrphanProjectRepair` (`src/lib/jobs/orphans.ts`)
+- [x] Stuck pending/cloning/analyzing + terminal/missing job → ready or failed
+- [x] Folded into `recoverStaleJobs()`; also runs on landing/switcher list
+- [x] Unit tests (79 total)
+
 ## Suggested next (priority)
 1. Optional: re-run `pnpm screenshots` after chart contrast for docs/overview
-2. Optional: orphan project status repair (analyzing with no active job)
-3. Optional: admin cleanup to delete superseded duplicate project rows
-4. Optional: stream/parse git log incrementally for multi‑GB histories
+2. Optional: admin cleanup to delete superseded duplicate project rows
+3. Optional: stream/parse git log incrementally for multi‑GB histories
+4. Publication check: full e2e + local analyze smoke; consider loop stop if bar met

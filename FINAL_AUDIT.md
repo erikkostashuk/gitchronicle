@@ -24,7 +24,7 @@ pnpm dev
 | --- | --- |
 | `pnpm lint` | pass |
 | `pnpm typecheck` | pass |
-| `pnpm test` | 73 pass (parse + metrics + wrapped + jobs + dedupe + perf helpers + theme) |
+| `pnpm test` | 79 pass (parse + metrics + wrapped + jobs stale/orphan/retry + dedupe + theme) |
 | `pnpm build` | pass |
 | `pnpm test:e2e` | **16 pass** (desktop + mobile), including hard keyboard advance + closing scroll + PNG magic + retry API |
 | Demo Wrapped | 21 adaptive scenes, analysis-backed |

@@ -86,6 +86,11 @@
 - `recoverStaleJobs()` flips job + project to `failed` with a message that points users at **Retry analysis**.
 - Invoked from the worker idle loop, job claim paths, job status polling, and retry enqueue so the UI unsticks even without a separate sweeper process.
 
+## Orphan project status
+- Projects can remain `pending`/`cloning`/`analyzing` after a job already completed/failed (process crash mid-status update).
+- `planOrphanProjectRepair` + `recoverOrphanProjects` reconcile: completed+analysis → `ready`; failed job → `failed`; missing job → `failed`; active job → leave alone.
+- Runs after stale-job recovery inside `recoverStaleJobs()`, and whenever the recent-repo list is built.
+
 ## Analysis retry
 - `POST /api/repos/[slug]/retry` enqueues a new job; never reuses a failed row as running without a clean pending insert.
 - Decision tree is pure (`planRetryJob`): failed GitHub → `clone_and_analyze`; ready GitHub with `localPath` → `reanalyze`; local → `analyze_local`; demo → 400 (seed offline JSON).
