@@ -70,6 +70,11 @@
 - Forces light theme via `localStorage gitchronicle-theme` + `colorScheme: "light"`.
 - Wrapped titles use solid white + green glow (not `background-clip: text`) so they stay visible under CSS transforms and in PNG captures.
 
+## Stale job recovery
+- Running jobs refresh `updatedAt` on every progress tick. Silence longer than **20 minutes** (`STALE_JOB_TTL_MS`) ⇒ treat as dead worker.
+- `recoverStaleJobs()` flips job + project to `failed` with a message that points users at **Retry analysis**.
+- Invoked from the worker idle loop, job claim paths, job status polling, and retry enqueue so the UI unsticks even without a separate sweeper process.
+
 ## Analysis retry
 - `POST /api/repos/[slug]/retry` enqueues a new job; never reuses a failed row as running without a clean pending insert.
 - Decision tree is pure (`planRetryJob`): failed GitHub → `clone_and_analyze`; ready GitHub with `localPath` → `reanalyze`; local → `analyze_local`; demo → 400 (seed offline JSON).

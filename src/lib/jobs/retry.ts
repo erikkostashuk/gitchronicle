@@ -3,6 +3,7 @@ import { getDb } from "../db/client";
 import { jobs, projects, type Project } from "../db/schema";
 import { randomId } from "../id";
 import { logger } from "../logger";
+import { recoverStaleJobs } from "./stale";
 import { processJobById } from "./worker";
 
 export type RetryJobType = "clone_and_analyze" | "analyze_local" | "reanalyze";
@@ -107,7 +108,15 @@ export type EnqueueRetryResult =
  * Returns the new job id or a structured error.
  */
 export function enqueueRetry(project: Project): EnqueueRetryResult {
-  const plan = planRetryJob(project);
+  // Reap crashed workers before deciding the project is still "in progress"
+  recoverStaleJobs();
+
+  // Re-read project after possible stale recovery updated status → failed
+  const fresh =
+    getDb().select().from(projects).where(eq(projects.id, project.id)).get() ??
+    project;
+
+  const plan = planRetryJob(fresh);
   if (!plan.ok) return plan;
 
   const db = getDb();

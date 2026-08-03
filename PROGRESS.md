@@ -81,8 +81,14 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] Growth chart legend; empty states; heatmap empty-tile ring + Less/More legend
 - [x] Theme tests assert chart-2 ≠ chart-1 (52 unit tests total)
 
+## Stale running-job recovery (2026-08-03)
+- [x] Pure `isJobStale` / heartbeat age (`src/lib/jobs/stale.ts`) — TTL 20m since last `updatedAt`
+- [x] `recoverStaleJobs()` marks job + project failed with retry-friendly message
+- [x] Wired into worker loop, `processNextJob`, `processJobById`, job poll API, and `enqueueRetry`
+- [x] Unit tests for stale pure logic (60 unit tests total)
+
 ## Suggested next (priority)
-1. Stale `running` job recovery (worker crash → mark failed after TTL)
-2. Performance pass on very large local repos (caps already exist — measure)
-3. Landing “recent repos” dedupe / cleanup of accidental re-imports
-4. Optional: re-run `pnpm screenshots` after chart contrast for docs/overview
+1. Performance pass on very large local repos (caps already exist — measure)
+2. Landing “recent repos” dedupe / cleanup of accidental re-imports
+3. Optional: re-run `pnpm screenshots` after chart contrast for docs/overview
+4. Optional: orphan project status repair (analyzing with no active job)

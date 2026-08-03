@@ -9,8 +9,12 @@ import { cloneGitHubRepo, removeRepoData } from "../git/clone";
 import { logger } from "../logger";
 import type { AnalysisResult } from "../types/analysis";
 import { randomId } from "../id";
+import { recoverStaleJobs } from "./stale";
 
 export async function processNextJob(): Promise<boolean> {
+  // Free jobs stuck after a crashed worker before claiming new work
+  recoverStaleJobs();
+
   const db = getDb();
   const pending = db
     .select()
@@ -211,10 +215,16 @@ export async function persistAnalysis(
 }
 
 export async function processJobById(jobId: string): Promise<void> {
+  recoverStaleJobs();
+
   const db = getDb();
   const job = db.select().from(jobs).where(eq(jobs.id, jobId)).get();
   if (!job) throw new Error("Job not found");
   if (job.status === "completed") return;
+  // Stale recovery may have just failed this id; do not resurrect it
+  if (job.status === "failed") {
+    throw new Error(job.errorMessage || "Job already failed");
+  }
 
   db.update(jobs)
     .set({
@@ -261,10 +271,13 @@ export async function processJobById(jobId: string): Promise<void> {
 
 export async function workerLoop(intervalMs = 1500) {
   logger.info("Worker started");
+  recoverStaleJobs();
   for (;;) {
     try {
       const worked = await processNextJob();
       if (!worked) {
+        // Idle tick still reaps zombies left by a previous process
+        recoverStaleJobs();
         await sleep(intervalMs);
       }
     } catch (err) {
