@@ -1,7 +1,34 @@
 {
   "name": "gitchronicle",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "Turn any Git repository into a cinematic, shareable Wrapped story and an engineering-intelligence dashboard — deterministic, local-first, no AI APIs.",
+  "license": "MIT",
+  "author": "Erik Kostashuk",
+  "homepage": "https://github.com/erikkostashuk/gitchronicle#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikkostashuk/gitchronicle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erikkostashuk/gitchronicle/issues"
+  },
+  "keywords": [
+    "git",
+    "git-history",
+    "repository-analysis",
+    "code-analytics",
+    "wrapped",
+    "year-in-review",
+    "data-visualization",
+    "nextjs",
+    "sqlite",
+    "self-hosted"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "packageManager": "pnpm@10.14.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -57,17 +84,17 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^6.0.5",
-    "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
-    "jsdom": "^30.0.1",
     "tailwindcss": "^4",
     "tsx": "^4.23.5",
     "typescript": "^5",
     "vitest": "^4.1.10"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["better-sqlite3", "esbuild"]
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "esbuild"
+    ]
   }
 }
