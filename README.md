@@ -4,7 +4,12 @@
 
 GitChronicle turns a Git repository into a cinematic, shareable recap — then a deep engineering-intelligence dashboard. Import a public GitHub URL, analyze a local repo, or open the bundled demo.
 
-![GitChronicle](https://img.shields.io/badge/stack-Next.js%20%7C%20SQLite%20%7C%20Vitest-FF4D2E) ![license](https://img.shields.io/badge/license-MIT-blue)
+[![CI](https://github.com/erikkostashuk/gitchronicle/actions/workflows/ci.yml/badge.svg)](https://github.com/erikkostashuk/gitchronicle/actions/workflows/ci.yml) ![GitChronicle](https://img.shields.io/badge/stack-Next.js%20%7C%20SQLite%20%7C%20Vitest-FF4D2E) ![license](https://img.shields.io/badge/license-MIT-blue)
+
+### ▶ [Try the live demo](https://gitchronicle.up.railway.app)
+
+No sign-up, no API key. Open the bundled demo story, or paste a public GitHub
+URL and watch a real repository get analysed.
 
 ![Landing](./docs/screenshots/landing.png)
 
@@ -19,6 +24,29 @@ GitChronicle turns a Git repository into a cinematic, shareable recap — then a
 - **Graphs** — co-change & collaboration (capped)
 - **Releases** — tags + Markdown notes
 - **Exports** — PNG social cards + Markdown repository report
+
+Everything is computed from Git history alone, deterministically. **No AI API,
+no third-party service, no account.**
+
+## Limitations
+
+Worth knowing before you invest time:
+
+- **Public HTTPS GitHub URLs only** for remote import. Private repositories,
+  other hosts (GitLab, Bitbucket), and SSH remotes aren't supported — clone them
+  yourself and use `pnpm analyze` instead.
+- **Needs a writable disk and the `git` binary**, so serverless platforms are out.
+  It wants a small container with a volume.
+- **One replica.** SQLite plus a single attached volume doesn't scale
+  horizontally, and rate limiting is in-process.
+- **Large repositories are bounded, not streamed.** Analysis stops at
+  `MAX_COMMITS` (default 50,000); clones over `MAX_CLONE_SIZE_MB` are rejected
+  rather than partially processed. A very large monorepo will be truncated.
+- **Identity is taken at face value** from Git metadata — someone committing
+  under several emails shows up as several people unless `.mailmap` resolves them.
+- **Analysis is a snapshot**, not a live feed. Re-import to refresh.
+- **Everything on an instance is public to everyone on it.** There are no
+  accounts and no per-repository access control.
 
 ## The Wrapped story
 
@@ -43,25 +71,109 @@ navigate. `prefers-reduced-motion` keeps every end state and drops the movement.
 
 ![Overview](./docs/screenshots/overview.png)
 
+## Requirements
+
+| | |
+| --- | --- |
+| **Node.js** | 22 or newer (`node -v`) |
+| **pnpm** | 10 or newer — `corepack enable && corepack prepare pnpm@10.14.0 --activate` |
+| **git** | On `PATH` — the analysis engine shells out to it |
+| **Disk** | A writable data directory for SQLite and clones |
+
+No database server, no API keys, no accounts.
+
 ## Sixty-second local setup
 
 ```bash
+git clone https://github.com/erikkostashuk/gitchronicle.git
+cd gitchronicle
 pnpm install
 cp .env.example .env
-pnpm db:migrate
-pnpm seed
+pnpm db:migrate   # creates data/gitchronicle.db
+pnpm seed         # loads the bundled Acme Toolkit demo project
 pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) → **Play bundled Wrapped**.
 
-No API keys required.
+Everything in `.env.example` has a working default, so `cp .env.example .env` is
+enough — the file exists so you have something to tune later. Missing or invalid
+variables fail fast at startup with the offending key named
+(`src/lib/env.ts`).
+
+**Database.** SQLite at `$DATA_DIR/gitchronicle.db` (default `./data`).
+`pnpm db:migrate` is idempotent — run it after every pull. `pnpm seed` is also
+idempotent; it builds the demo project from a deterministic generator in code
+(`src/lib/demo/generate.ts`), so seeding needs no network and no downloaded
+fixture. To start over, delete `data/gitchronicle.db*` and re-run both.
+
+Nothing under `data/` is tracked in Git — it is entirely runtime state that
+`pnpm db:migrate && pnpm seed` recreates.
+
+## Environment variables
+
+Every variable is optional and has the default shown. Copy `.env.example` and
+change only what you need.
+
+**Core**
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `NODE_ENV` | `development` | Standard Node environment |
+| `PORT` | `3000` | HTTP port. Container hosts inject this — don't set it there |
+| `DATA_DIR` | `./data` | SQLite database, clones, and temp files. Absolute or project-relative |
+| `DATABASE_URL` | `$DATA_DIR/gitchronicle.db` | Override the SQLite file path only |
+| `APP_URL` | *(unset)* | Public origin for canonical and Open Graph URLs. Set when deploying |
+| `LOG_LEVEL` | `info` | `debug` \| `info` \| `warn` \| `error` |
+
+**Analysis limits** — raise for big repositories, lower for small hosts.
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `MAX_COMMITS` | `50000` | Commits analysed before truncation |
+| `MAX_CLONE_SIZE_MB` | `500` | Per-repository clone ceiling; larger repos are rejected |
+| `CLONE_TIMEOUT_MS` | `300000` | Kill a clone after 5 minutes |
+| `ANALYZE_TIMEOUT_MS` | `600000` | Kill analysis after 10 minutes |
+| `MAX_GRAPH_NODES` | `80` | Co-change / collaboration graph node cap |
+| `MAX_GRAPH_EDGES` | `200` | Graph edge cap |
+| `MAX_TIMELINE_SAMPLES` | `200` | Time Machine sample points |
+| `MAX_COCHANGE_PAIRS` | `40000` | Distinct co-change pairs tracked (memory bound) |
+| `MAX_COCHANGE_FILES_PER_COMMIT` | `24` | Files considered per commit when pairing |
+
+**Public-instance abuse controls** — see [Security](#security--running-a-public-instance).
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `MAX_CONCURRENT_ANALYSES` | `1` | Simultaneous clone+analyse jobs; excess requests get `503` |
+| `IMPORT_RATE_LIMIT` | `5` | Imports per client IP per window |
+| `IMPORT_RATE_WINDOW_MS` | `600000` | Rate-limit window (10 minutes) |
+| `MAX_TOTAL_CLONE_MB` | `2000` | Total retained clone budget; `0` disables the check |
+| `KEEP_CLONES` | `false` | Keep clones after analysis. Leave `false` — clones are the only unbounded disk growth |
+
+**Container only**
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `SKIP_SEED` | `0` | Set to `1` to stop the Docker entrypoint recreating the demo project on every boot |
+
+Nothing here is a secret, and nothing is exposed to the browser — there are no
+`NEXT_PUBLIC_*` variables.
 
 ## Docker
 
 ```bash
 docker compose up --build
 ```
+
+Serves on [http://localhost:3000](http://localhost:3000) with the data directory
+on a named volume. The entrypoint (`scripts/docker-entrypoint.sh`) takes
+ownership of the mounted volume, runs migrations, seeds the demo, then drops
+privileges before starting the server — so a fresh volume produces a working
+instance with no manual steps.
+
+The compose file also starts a `worker` service sharing the same volume. It is
+optional: imports are processed in-process by `POST /api/projects`, and the
+worker exists to pick up recovery work. Remove it if you want a single container.
 
 ## Deploying (Railway / Fly / Render)
 
@@ -150,7 +262,11 @@ up automatically via its file conventions.
 
 ## Personality (deterministic)
 
-See `src/lib/wrapped/personality.ts` and [FINAL_AUDIT.md](./FINAL_AUDIT.md). Examples: The Night Owl, The Weekend Builder, The Phoenix, The Feature Factory. **No AI API.**
+Every repository gets a personality from its own history — The Night Owl, The
+Weekend Builder, The Phoenix, The Feature Factory and others. Rules live in
+`src/lib/wrapped/personality.ts` and are listed in
+[DECISIONS.md](./DECISIONS.md#repository-personality-deterministic-first-match-wins).
+First match wins, so the same repository always gets the same answer. **No AI API.**
 
 ## Security & running a public instance
 
@@ -159,12 +275,16 @@ the threat model is **abuse and resource exhaustion**, not data theft.
 
 **Input handling**
 
-- Only public HTTPS `github.com` URLs; owner/repo are charset-restricted and the
-  clone URL is *rebuilt* from validated parts, so query strings, credentials,
-  fragments and `--flag`-shaped input never reach `git`
+- Only public HTTPS `github.com` URLs; owner/repo are charset-restricted and may
+  not look like a `git` option (`-upload-pack`) or a path segment (`..`)
+- The clone URL is *rebuilt* from validated parts, so query strings, fragments
+  and `--flag`-shaped input never reach `git`
+- URLs with embedded credentials are refused rather than silently stripped
 - `git` runs via argument-array `spawn` — never a shell
 - Other transports (`git://`, `ssh://`, `file://`, `ext::`) and look-alike hosts
   (`github.com.evil.tld`) are rejected; covered by `src/lib/security/security.test.ts`
+- Rejections return one clean sentence — never a validation-library issue dump —
+  and every other failure is logged server-side behind a generic message
 
 **Abuse controls** (tunable via env, defaults suit a small public box)
 
@@ -203,10 +323,51 @@ platform-level WAF.
 | `pnpm screenshots` | Refresh `docs/screenshots/` (server on :3000) |
 | `pnpm icons` | Rebuild `favicon.ico` + `apple-icon.png` from `src/app/icon.svg` |
 
+## Roadmap
+
+Not commitments — the directions worth pursuing, roughly in order of value.
+[Open an issue](https://github.com/erikkostashuk/gitchronicle/issues/new/choose)
+if you want one of these, or something else entirely.
+
+**Analysis**
+
+- `.mailmap` support so one contributor with several emails counts as one person
+- Streaming `git log` parsing to lift the `MAX_COMMITS` ceiling on large monorepos
+- Incremental re-analysis — fetch and process only new commits instead of recloning
+- Branch and merge-pattern analysis (currently the default branch only)
+
+**Experience**
+
+- Year and date-range scoping, so "Wrapped" can mean an actual year
+- Shareable permalinks for individual scenes
+- Compare two repositories, or one repository across two periods
+- More export formats (PDF report, animated share video)
+
+**Platform**
+
+- GitLab and Bitbucket ingestion
+- Optional authentication for private repositories and private instances
+- Admin view for managing and deleting stored projects
+- Postgres storage option to allow more than one replica
+
+## Project documents
+
+| | |
+| --- | --- |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Setup, structure, data flows, and how-to recipes |
+| [SECURITY.md](./SECURITY.md) | Threat model, reporting, public-instance guidance |
+| [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) | Community standards |
+| [CHANGELOG.md](./CHANGELOG.md) | Release history |
+| [RELEASE_CHECKLIST.md](./RELEASE_CHECKLIST.md) | Pre-release verification steps |
+| [DECISIONS.md](./DECISIONS.md) | Architectural decisions and their rationale |
+
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md). Audit notes: [FINAL_AUDIT.md](./FINAL_AUDIT.md).
+Contributions are welcome. [CONTRIBUTING.md](./CONTRIBUTING.md) covers the
+project structure, the analysis data flow, and step-by-step recipes for adding a
+metric, a Wrapped scene, a migration, a test, and a visualization. By
+participating you agree to the [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## License
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) © Erik Kostashuk

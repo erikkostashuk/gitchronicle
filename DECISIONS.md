@@ -23,8 +23,8 @@
 - Progress stored as integer 0–100 + stage message; clients poll `/api/jobs/[id]`.
 
 ## Demo data
-- Precomputed analysis JSON for a synthetic “Acme Toolkit” repository lives under `data/demo/`.
-- `pnpm seed` inserts the demo project into SQLite so the UI works offline with no Git clone.
+- The synthetic “Acme Toolkit” history is **generated deterministically in code** (`src/lib/demo/generate.ts`) — fixed dates, no randomness — so the demo needs no network and no committed fixture.
+- `pnpm seed` runs the generator, inserts the project into SQLite, and dumps the analysis to `data/demo/acme-toolkit.json` for inspection. That JSON is a build artifact, not an input: nothing reads it, and `data/` is untracked.
 - Demo is the primary zero-setup path.
 
 ## Ingestion safeguards
@@ -61,14 +61,17 @@
 - Demo and import completion routes land on `/repo/<slug>/wrapped` first; analytics remain one click away.
 
 ## Dashboard chart colors
-- Brand green remains `--primary` / `--chart-1` for single-series emphasis (activity area).
-- Multi-series lines use diverging tokens: `--chart-2` is blue `#509bf5` (not a second green) so Files vs Commits read on light cards.
+- Six hue-separated series tokens, each held to ≥2.4:1 against paper. `--chart-4` is a deepened amber (`#c97a06`) because bright amber only clears 1.9:1 and disappears on thin marks.
+- `--chart-1` is coral, matching `--primary`; the rest diverge in hue (not lightness) so adjacent series stay distinguishable in both themes.
 - Recharts chrome is centralized in `src/components/charts/theme.ts` so tooltips always set `color: var(--popover-foreground)` (Recharts defaults ignore theme otherwise).
+- `src/lib/theme/design-system.test.ts` asserts these contrast and hue-separation rules, so a regression fails the test run rather than shipping.
 
 ## Marketing screenshots
 - Capture script: `scripts/capture-screenshots.ts` (`pnpm screenshots`) against production `next start` on `:3000`.
 - Forces light theme via `localStorage gitchronicle-theme` + `colorScheme: "light"`.
-- Wrapped titles use solid white + green glow (not `background-clip: text`) so they stay visible under CSS transforms and in PNG captures.
+- Wrapped titles paint solid ink rather than `background-clip: text`, so they stay visible under CSS transforms and in PNG captures.
+- Capture Wrapped frames on a fresh page: a prior `fullPage: true` capture leaves Chromium's compositor mid-resize and offsets screenshots of fixed-position overlays — the DOM is correct, the PNG is not.
+- Only ever capture the demo project or a public repository; a local-path project leaks the developer's filesystem path into the README.
 
 ## Large-repo analysis cost
 - Live `git log` uses subject-only pretty format (no `%b`) — commit messages drive categories; PR bodies dominate log size.
@@ -104,10 +107,29 @@
 - Top committer is excluded only when they are an **early** founder (so main-character and rising-star frames stay distinct). A late #1 can still be the rising star.
 - Demo history injects **Barbara Liskov** after ~65% of synthetic commits so the scene is visible offline.
 
-## Visual identity (Spotify-adjacent)
+## Visual identity — “Warm Press”
 - **Product chrome defaults to light** (`next-themes` `defaultTheme="light"`, `enableSystem={false}`, storage key `gitchronicle-theme`). Users can still toggle dark.
-- Brand primary is Spotify-family green (`#1DB954` light / `#1ED760` dark), not teal/indigo. Surfaces are near-white (`#f6f6f6`) with near-black text (`#121212`).
-- UI chrome uses pill shapes (buttons, nav active states, inputs, tabs, badges) for a familiar music-app feel without copying Spotify UI pixel-for-pixel.
-- **Wrapped player stays full-bleed dark cinematic** regardless of shell theme — the story is a “film,” not a dashboard. Share-card canvas uses the same green/black language.
-- Scene dwell ~2.8s for film pacing; autoplay stops on closing. Scene copy is deterministic and playful; metrics remain analysis-backed.
+- Surfaces are warm off-white paper (`--paper #fbf7f1`) with near-black ink (`--ink #16130f`, ≈17:1). The accent set is coral, cobalt, teal, amber, plum and lime, used for large colour fields rather than tinting the whole UI.
+- An earlier iteration used Spotify's brand greens (`#1db954` / `#1ed760`) as the product identity. **They were removed deliberately** — the product should not read as someone else's brand — and `design-system.test.ts` fails if either value reappears in the stylesheet.
+- **Wrapped is light-first too**, punctuated by a few deliberately dark beats (`midnight`, `slate` palettes) so the dark scenes land as emphasis rather than as the default.
+- Scene dwell is **4.3s** (`SCENE_MS` in `wrapped-player.tsx`); autoplay stops on the closing scene and switches itself off under `prefers-reduced-motion`. Scene copy is deterministic and playful; metrics stay analysis-backed.
+
+## Repository personality (deterministic, first match wins)
+Rules live in `src/lib/wrapped/personality.ts`. No AI, no external call — the same repository always yields the same personality.
+
+1. **The Phoenix** — a quiet stretch of ≥30 days, then activity resumes
+2. **The Night Owl** — peak commit hour between 22:00 and 05:00 UTC
+3. **The Weekend Builder** — ≥35% of commits on weekends
+4. **The Relentless Refactorer** — ≥25% of commits categorised as refactors
+5. **The Feature Factory** — ≥40% categorised as features
+6. **The Steady Ship** — commit density ≥0.55 and age ≥60 days
+7. **The Carefully Curated Monolith** — ≥80 files, ≤3 contributors
+8. **The Fast-Moving Experiment** — age ≤45 days with ≥40 commits
+9. **First Light** — ≤3 commits
+10. Default — **The Steady Ship**
+
+## Scene selection
+- `buildWrappedStory` emits only scenes the data can fill, so a solo repository skips people/collaboration/releases and a two-commit repository still gets opening → recap → closing without empty visuals.
+- `trimScenesToBudget` then holds the story to **16** scenes (`TARGET_MAX_SCENES`): narrative order is preserved, the spine (opening, headline, personality, recap, closing) is pinned, and the remainder fills by priority.
+- `SceneStage` routes each scene *type* to its own layout — there is no shared template with swapped numbers.
 
