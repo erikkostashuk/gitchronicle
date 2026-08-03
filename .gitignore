@@ -24,32 +24,56 @@
 
 # misc
 .DS_Store
-*.pem
-*.log
+Thumbs.db
 
-# debug
+# editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# logs
+*.log
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
+# secrets and credentials — deny every .env variant, then allow the template.
+# GitChronicle needs no secrets to run, but never let one land here by accident.
 .env
-.env*.local
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+id_rsa*
+*credentials*.json
+secrets/
 
 # vercel
 .vercel
+
+# build caches
+.turbo/
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
-# app data (clones + local DB; keep demo seed JSON)
-/data/repos
-/data/tmp
-/data/*.db
-/data/*.db-*
-/data/gitchronicle.db
+# Runtime app data: SQLite database, cloned repositories, temp clone staging,
+# and the demo analysis JSON. Nothing under data/ is tracked — the demo project
+# is generated deterministically in code (src/lib/demo/generate.ts), so
+# `pnpm seed` recreates everything here from scratch. Committing the generated
+# JSON only ever produced a dirty tree after every seed.
+/data/
 
-# drizzle
-/drizzle/meta
+# databases (anywhere)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
