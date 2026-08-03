@@ -83,7 +83,7 @@ export function CommandPalette({
                   }}
                   className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-foreground aria-selected:bg-accent"
                 >
-                  <s.icon className="h-4 w-4 text-primary" />
+                  <s.icon className="h-4 w-4 text-[var(--coral-deep)] dark:text-[var(--coral)]" />
                   {s.label}
                 </Command.Item>
               ))}
@@ -100,7 +100,7 @@ export function CommandPalette({
                 }}
                 className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-foreground aria-selected:bg-accent"
               >
-                <GitGraph className="h-4 w-4 text-primary" />
+                <GitGraph className="h-4 w-4 text-[var(--coral-deep)] dark:text-[var(--coral)]" />
                 {p.name}
               </Command.Item>
             ))}
@@ -112,7 +112,7 @@ export function CommandPalette({
               }}
               className="flex cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-sm text-foreground aria-selected:bg-accent"
             >
-              <Home className="h-4 w-4 text-primary" />
+              <Home className="h-4 w-4 text-[var(--coral-deep)] dark:text-[var(--coral)]" />
               Home
             </Command.Item>
           </Command.Group>

@@ -20,10 +20,10 @@ export default async function GraphsPage({
   const r = analysis.result;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold tracking-tight">Graphs</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <h2 className="gc-eyebrow text-muted-foreground">Graphs</h2>
+        <p className="mt-2 max-w-[62ch] text-[0.95rem] leading-relaxed">
           Interactive co-change and collaboration graphs. Data is capped and
           aggregated during analysis so the UI stays responsive.
         </p>

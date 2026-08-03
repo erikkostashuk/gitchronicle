@@ -1,4 +1,8 @@
-export { buildWrappedStory } from "./scenes";
+export {
+  buildWrappedStory,
+  TARGET_MAX_SCENES,
+  trimScenesToBudget,
+} from "./scenes";
 export { computePersonality } from "./personality";
 export { pickRisingStar } from "./rising-star";
 export { computeStreaks } from "./streaks";

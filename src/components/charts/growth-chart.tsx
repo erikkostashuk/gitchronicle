@@ -14,6 +14,7 @@ import type { GrowthPoint } from "@/lib/types/analysis";
 import {
   chartAxisLine,
   chartAxisTick,
+  chartCursorStyle,
   chartGridProps,
   chartLegendWrapperStyle,
   chartMargin,
@@ -26,9 +27,12 @@ import {
 export function GrowthChart({ data }: { data: GrowthPoint[] }) {
   if (data.length === 0) {
     return (
-      <p className="flex h-64 items-center justify-center text-sm text-muted-foreground">
-        No growth series yet.
-      </p>
+      <div className="flex h-64 flex-col items-center justify-center gap-1 rounded-xl border border-dashed text-center">
+        <p className="text-sm font-bold">No growth series yet.</p>
+        <p className="text-xs text-muted-foreground">
+          File and commit growth appears once history is sampled.
+        </p>
+      </div>
     );
   }
 
@@ -47,12 +51,13 @@ export function GrowthChart({ data }: { data: GrowthPoint[] }) {
           />
           <YAxis
             tick={chartAxisTick}
-            axisLine={chartAxisLine}
+            axisLine={false}
             tickLine={chartTickLine}
             width={44}
             allowDecimals={false}
           />
           <Tooltip
+            cursor={chartCursorStyle}
             contentStyle={chartTooltipContentStyle}
             labelStyle={chartTooltipLabelStyle}
             itemStyle={chartTooltipItemStyle}

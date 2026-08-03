@@ -96,7 +96,7 @@ export function JobStatusPanel({
 
   return (
     <div
-      className="mb-6 rounded-2xl border border-border bg-card p-5 shadow-sm"
+      className="gc-card mb-8 p-5"
       data-testid="job-status-panel"
       data-status={status}
     >

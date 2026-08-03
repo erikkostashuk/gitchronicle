@@ -14,6 +14,16 @@ import { formatNumber } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
+/** Matches the overview language field so the two pages read as one system. */
+const LANGUAGE_HUES = [
+  "var(--chart-2)",
+  "var(--chart-1)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+  "var(--chart-5)",
+  "var(--chart-6)",
+];
+
 export default async function EvolutionPage({
   params,
 }: {
@@ -43,10 +53,10 @@ export default async function EvolutionPage({
     .slice(0, 12);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold tracking-tight">Evolution</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <h2 className="gc-eyebrow text-muted-foreground">Evolution</h2>
+        <p className="mt-2 max-w-[62ch] text-[0.95rem] leading-relaxed">
           Growth, language mix, structural shifts, bursts, and quiet periods.
         </p>
       </div>
@@ -67,16 +77,19 @@ export default async function EvolutionPage({
             <CardTitle className="text-base">Language mix</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
-            {r.languages.slice(0, 12).map((l) => (
-              <div key={l.language} className="flex items-center gap-2 text-sm">
-                <div className="w-28 truncate">{l.language}</div>
+            {r.languages.slice(0, 12).map((l, i) => (
+              <div key={l.language} className="flex items-center gap-3 text-sm">
+                <div className="w-28 truncate font-semibold">{l.language}</div>
                 <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
                   <div
-                    className="h-full rounded-full bg-chart-2"
-                    style={{ width: `${Math.max(3, l.percent * 100)}%` }}
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${Math.max(3, l.percent * 100)}%`,
+                      background: LANGUAGE_HUES[i % LANGUAGE_HUES.length],
+                    }}
                   />
                 </div>
-                <span className="w-14 text-right text-xs text-muted-foreground">
+                <span className="w-14 text-right text-xs tabular-nums text-muted-foreground">
                   {(l.percent * 100).toFixed(1)}%
                 </span>
               </div>

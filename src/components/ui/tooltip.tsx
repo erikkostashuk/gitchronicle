@@ -33,7 +33,7 @@ export function Tooltip({
         <TooltipPrimitive.Content
           side={side}
           className={cn(
-            "z-50 max-w-xs overflow-hidden rounded-md bg-popover px-3 py-1.5 text-xs text-popover-foreground shadow-md border border-border animate-in fade-in-0 zoom-in-95"
+            "z-50 max-w-xs overflow-hidden rounded-lg bg-popover px-3 py-2 text-xs font-medium text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95"
           )}
           sideOffset={6}
         >

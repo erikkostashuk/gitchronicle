@@ -98,7 +98,7 @@ export function TimeMachinePlayer({
           <label className="text-xs text-muted-foreground">
             Contributor
             <select
-              className="mt-1 block h-9 rounded-md border border-input bg-background px-2 text-sm"
+              className="mt-1 block h-10 rounded-full border border-input bg-card px-3 text-sm"
               value={filterAuthor}
               onChange={(e) => setFilterAuthor(e.target.value)}
             >
@@ -113,7 +113,7 @@ export function TimeMachinePlayer({
           <label className="text-xs text-muted-foreground">
             Path contains
             <input
-              className="mt-1 block h-9 w-48 rounded-md border border-input bg-background px-2 text-sm font-mono"
+              className="gc-mono mt-1 block h-10 w-48 rounded-full border border-input bg-card px-4 text-sm"
               value={filterPath}
               onChange={(e) => setFilterPath(e.target.value)}
               placeholder="src/"
@@ -165,7 +165,7 @@ export function TimeMachinePlayer({
                   key={`${t.kind}-${t.path}`}
                   className="flex items-center gap-2 truncate"
                 >
-                  <span className="text-primary">{t.kind === "dir" ? "▸" : "·"}</span>
+                  <span className="text-[var(--coral-deep)] dark:text-[var(--coral)]">{t.kind === "dir" ? "▸" : "·"}</span>
                   <span className="truncate">{t.path}</span>
                 </div>
               ))}

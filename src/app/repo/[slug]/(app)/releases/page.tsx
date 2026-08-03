@@ -30,11 +30,11 @@ export default async function ReleasesPage({
   const categories = analysis.result.categories;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">Releases</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <h2 className="gc-eyebrow text-muted-foreground">Releases</h2>
+          <p className="mt-2 max-w-[62ch] text-[0.95rem] leading-relaxed">
             Tags and inferred release ranges with categorized change summaries.
           </p>
         </div>
@@ -68,7 +68,7 @@ export default async function ReleasesPage({
           description="This repository has no Git tags, so release ranges could not be inferred."
         />
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {releases.map((rel) => (
             <Card key={rel.tag}>
               <CardHeader className="flex flex-row items-start justify-between gap-3 space-y-0">

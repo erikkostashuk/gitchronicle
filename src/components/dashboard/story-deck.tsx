@@ -73,7 +73,7 @@ export function StoryDeck({ slides }: { slides: StorySlide[] }) {
 
       <div
         className={cn(
-          "flex flex-1 flex-col justify-center rounded-2xl border border-border bg-card p-8 shadow-sm sm:p-12",
+          "gc-card flex flex-1 flex-col justify-center p-8 sm:p-12",
           fullscreen && "min-h-0"
         )}
       >
@@ -120,7 +120,7 @@ export function StoryDeck({ slides }: { slides: StorySlide[] }) {
               onClick={() => setIndex(i)}
               className={cn(
                 "h-1.5 w-4 rounded-full transition-colors",
-                i === index ? "bg-primary" : "bg-muted hover:bg-muted-foreground/40"
+                i === index ? "bg-[var(--coral)]" : "bg-muted hover:bg-muted-foreground/40"
               )}
             />
           ))}

@@ -53,10 +53,10 @@ export default async function HotspotsPage({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold tracking-tight">Hotspots</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <h2 className="gc-eyebrow text-muted-foreground">Hotspots</h2>
+        <p className="mt-2 max-w-[62ch] text-[0.95rem] leading-relaxed">
           Files and directories ranked by churn, change frequency, ownership
           concentration, and recency.
         </p>
@@ -69,11 +69,11 @@ export default async function HotspotsPage({
           defaultValue={q}
           placeholder="Filter paths…"
           aria-label="Filter hotspot paths"
-          className="h-9 w-full max-w-xs rounded-md border border-input bg-background px-3 text-sm font-mono sm:w-64"
+          className="gc-mono h-10 w-full max-w-xs rounded-full border border-input bg-card px-4 text-sm sm:w-64"
         />
         <button
           type="submit"
-          className="h-9 rounded-md border border-border px-3 text-sm hover:bg-accent"
+          className="gc-press h-10 rounded-full border-2 border-foreground/80 px-5 text-sm font-bold hover:bg-foreground hover:text-background"
         >
           Search
         </button>
@@ -100,8 +100,8 @@ export default async function HotspotsPage({
             href={sortHref(key)}
             className={
               sort === key
-                ? "rounded-md bg-primary px-3 py-1.5 text-primary-foreground"
-                : "rounded-md border border-border px-3 py-1.5 hover:bg-accent"
+                ? "rounded-full bg-foreground px-4 py-2 font-bold text-background"
+                : "rounded-full border px-4 py-2 font-semibold text-muted-foreground hover:bg-foreground/6 hover:text-foreground"
             }
           >
             {label}
@@ -117,32 +117,35 @@ export default async function HotspotsPage({
           </CardDescription>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full min-w-[720px] text-left text-sm">
-            <thead className="border-b border-border text-xs uppercase text-muted-foreground">
+          <table className="w-full min-w-[760px] text-left text-sm">
+            <thead className="border-b text-[0.6rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">
               <tr>
-                <th className="pb-2 pr-3 font-medium">Path</th>
-                <th className="pb-2 pr-3 font-medium">Risk</th>
-                <th className="pb-2 pr-3 font-medium">Churn</th>
-                <th className="pb-2 pr-3 font-medium">Commits</th>
-                <th className="pb-2 pr-3 font-medium">People</th>
-                <th className="pb-2 pr-3 font-medium">Bus factor</th>
-                <th className="pb-2 font-medium">Why</th>
+                <th className="pb-2.5 pr-3 font-bold">Path</th>
+                <th className="pb-2.5 pr-3 font-bold">Risk</th>
+                <th className="pb-2.5 pr-3 font-bold">Churn</th>
+                <th className="pb-2.5 pr-3 font-bold">Commits</th>
+                <th className="pb-2.5 pr-3 font-bold">People</th>
+                <th className="pb-2.5 pr-3 font-bold">Bus factor</th>
+                <th className="pb-2.5 font-bold">Why</th>
               </tr>
             </thead>
             <tbody>
               {rows.slice(0, 40).map((f) => (
-                <tr key={f.path} className="border-b border-border/60 align-top">
-                  <td className="py-2.5 pr-3 font-mono text-xs">{f.path}</td>
-                  <td className="py-2.5 pr-3">
+                <tr key={f.path} className="border-b align-top transition-colors hover:bg-foreground/4">
+                  <td className="gc-mono py-3 pr-3 text-[0.8rem] font-semibold">{f.path}</td>
+                  <td className="py-3 pr-3">
                     <Badge variant={f.riskScore >= 50 ? "danger" : f.riskScore >= 30 ? "warning" : "secondary"}>
                       {f.riskScore}
                     </Badge>
                   </td>
-                  <td className="py-2.5 pr-3 tabular-nums">{formatNumber(f.churn)}</td>
-                  <td className="py-2.5 pr-3 tabular-nums">{f.commits}</td>
-                  <td className="py-2.5 pr-3 tabular-nums">{f.contributors}</td>
-                  <td className="py-2.5 pr-3 tabular-nums">{f.busFactor}</td>
-                  <td className="py-2.5 text-xs text-muted-foreground">
+                  <td className="py-3 pr-3 font-semibold tabular-nums">{formatNumber(f.churn)}</td>
+                  <td className="py-3 pr-3 font-semibold tabular-nums">{f.commits}</td>
+                  <td className="py-3 pr-3 font-semibold tabular-nums">{f.contributors}</td>
+                  <td className="py-3 pr-3 font-semibold tabular-nums">{f.busFactor}</td>
+                  <td
+                    className="max-w-[26rem] truncate py-3 text-xs text-muted-foreground"
+                    title={f.riskReasons.join(" · ")}
+                  >
                     {f.riskReasons.join(" · ")}
                   </td>
                 </tr>
@@ -158,13 +161,13 @@ export default async function HotspotsPage({
         </CardHeader>
         <CardContent className="overflow-x-auto">
           <table className="w-full min-w-[480px] text-left text-sm">
-            <thead className="border-b border-border text-xs uppercase text-muted-foreground">
+            <thead className="border-b text-[0.6rem] font-bold uppercase tracking-[0.14em] text-muted-foreground">
               <tr>
-                <th className="pb-2 pr-3 font-medium">Directory</th>
-                <th className="pb-2 pr-3 font-medium">Files</th>
-                <th className="pb-2 pr-3 font-medium">Churn</th>
-                <th className="pb-2 pr-3 font-medium">Commits</th>
-                <th className="pb-2 font-medium">Contributors</th>
+                <th className="pb-2.5 pr-3 font-bold">Directory</th>
+                <th className="pb-2.5 pr-3 font-bold">Files</th>
+                <th className="pb-2.5 pr-3 font-bold">Churn</th>
+                <th className="pb-2.5 pr-3 font-bold">Commits</th>
+                <th className="pb-2.5 font-bold">Contributors</th>
               </tr>
             </thead>
             <tbody>

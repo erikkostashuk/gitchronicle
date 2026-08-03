@@ -1,30 +1,36 @@
 import Link from "next/link";
-import { GitBranch } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
 
-export function SiteHeader({
-  right,
-}: {
-  right?: React.ReactNode;
-}) {
+export function SiteHeader({ right }: { right?: React.ReactNode }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-[86rem] items-center justify-between gap-4 px-4 sm:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2.5 text-base font-bold tracking-tight"
+          className="group flex items-center gap-2.5 text-[0.95rem] font-extrabold tracking-tight"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm">
-            <GitBranch className="h-4 w-4" />
+          <span
+            aria-hidden
+            className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-foreground"
+          >
+            <span className="absolute inset-x-0 bottom-0 h-1/2 bg-[var(--coral)]" />
           </span>
           <span>
-            Git<span className="text-primary">Chronicle</span>
+            GitChronicle
+            <span className="ml-1.5 hidden text-[var(--coral-deep)] sm:inline dark:text-[var(--coral)]">
+              Wrapped
+            </span>
           </span>
         </Link>
         <div className="flex items-center gap-2">
           {right}
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="hidden sm:inline-flex"
+          >
             <Link href="/demo">Open demo</Link>
           </Button>
           <ThemeToggle />

@@ -2,10 +2,15 @@ import { describe, expect, it } from "vitest";
 import { generateDemoAnalysis } from "../demo/generate";
 import { analyzeRepository } from "../analysis/metrics";
 import type { CommitWithFiles } from "../types/analysis";
-import { buildWrappedStory } from "./scenes";
+import {
+  buildWrappedStory,
+  TARGET_MAX_SCENES,
+  trimScenesToBudget,
+} from "./scenes";
 import { computePersonality } from "./personality";
 import { pickRisingStar } from "./rising-star";
 import { computeStreaks } from "./streaks";
+import type { WrappedScene } from "./types";
 
 function commit(
   partial: Partial<CommitWithFiles> & {
@@ -53,22 +58,27 @@ describe("computeStreaks", () => {
 });
 
 describe("buildWrappedStory", () => {
-  it("builds a substantial adaptive story from the demo analysis", () => {
+  it("builds an attention-friendly adaptive story from the demo analysis", () => {
     const analysis = generateDemoAnalysis();
     const story = buildWrappedStory(analysis);
-    expect(story.scenes.length).toBeGreaterThanOrEqual(12);
+    expect(story.scenes.length).toBeLessThanOrEqual(TARGET_MAX_SCENES);
+    expect(story.scenes.length).toBeGreaterThanOrEqual(8);
     expect(story.scenes[0]!.type).toBe("opening");
     expect(story.scenes[story.scenes.length - 1]!.type).toBe("closing");
+    // spine always present on rich repos
+    const types = story.scenes.map((s) => s.type);
+    expect(types).toContain("headline");
+    expect(types).toContain("personality");
+    expect(types).toContain("recap");
     expect(story.personality.label.length).toBeGreaterThan(0);
     expect(story.shareCards.some((c) => c.kind === "recap")).toBe(true);
     expect(story.shareCards.some((c) => c.kind === "personality")).toBe(true);
-    // no duplicate scene types in primary set (except we only emit once each)
-    const types = story.scenes.map((s) => s.type);
+    // no duplicate scene types
     expect(new Set(types).size).toBe(types.length);
     // headline uses real commit count
     const headline = story.scenes.find((s) => s.type === "headline");
     expect(headline?.hero).toBe(analysis.overview.commitCount);
-    // demo seeds a late-joining Barbara Liskov for rising-star
+    // demo seeds a late-joining Barbara Liskov for rising-star (high priority)
     const rising = story.scenes.find((s) => s.type === "rising_star");
     expect(rising?.title).toBe("Barbara Liskov");
     expect(story.shareCards.some((c) => c.kind === "rising_star")).toBe(true);
@@ -109,6 +119,65 @@ describe("buildWrappedStory", () => {
     const b = buildWrappedStory(analysis);
     expect(a.scenes.map((s) => s.id)).toEqual(b.scenes.map((s) => s.id));
     expect(a.personality.label).toBe(b.personality.label);
+  });
+});
+
+describe("trimScenesToBudget", () => {
+  function fake(type: WrappedScene["type"]): WrappedScene {
+    return {
+      id: type,
+      type,
+      title: type,
+      subtitle: "",
+      palette: "aurora",
+      a11y: type,
+    };
+  }
+
+  it("keeps order, pins spine, and drops lowest-priority overflow", () => {
+    const input = [
+      fake("opening"),
+      fake("beginning"),
+      fake("headline"),
+      fake("busiest"),
+      fake("commit_personality"),
+      fake("rhythm"),
+      fake("streak"),
+      fake("people"),
+      fake("main_character"),
+      fake("rising_star"),
+      fake("busiest_file"),
+      fake("favorites"),
+      fake("architecture"),
+      fake("personality"),
+      fake("recap"),
+      fake("closing"),
+    ];
+    const out = trimScenesToBudget(input, 12);
+    expect(out.length).toBe(12);
+    expect(out[0]!.type).toBe("opening");
+    expect(out[out.length - 1]!.type).toBe("closing");
+    expect(out.map((s) => s.type)).toEqual(
+      expect.arrayContaining([
+        "opening",
+        "headline",
+        "personality",
+        "recap",
+        "closing",
+      ])
+    );
+    // lowest-priority extras should be cut first
+    expect(out.some((s) => s.type === "commit_personality")).toBe(false);
+    expect(out.some((s) => s.type === "architecture")).toBe(false);
+    // still narrative order (not re-sorted by priority)
+    const idx = (t: string) => out.findIndex((s) => s.type === t);
+    expect(idx("beginning")).toBeLessThan(idx("people"));
+    expect(idx("people")).toBeLessThan(idx("personality"));
+  });
+
+  it("is a no-op when already within budget", () => {
+    const input = [fake("opening"), fake("headline"), fake("closing")];
+    expect(trimScenesToBudget(input, 12)).toEqual(input);
   });
 });
 

@@ -12,13 +12,14 @@ Verified end-to-end:
 
 | Check | Result |
 | --- | --- |
-| `pnpm lint` / `typecheck` / `test` / `build` | pass (79 unit tests) |
-| `pnpm test:e2e` | **16/16** pass (desktop + mobile) |
-| Demo Wrapped | 22 adaptive scenes (incl. rising star), analysis-backed |
+| `pnpm lint` / `typecheck` / `test` / `build` | pass (85 unit tests) |
+| `pnpm test:e2e` | **16/16** pass (desktop + mobile, production server) |
+| Demo Wrapped | **16** adaptive scenes, one composition each, analysis-backed |
+| Console errors | none across 10 routes in light **and** dark |
 | Local analyze | reuses project by path; Wrapped **200** |
 | Markdown export | non-empty report (Overview) |
 | Share PNG | e2e magic-byte verified |
-| Marketing screenshots | refreshed via `pnpm screenshots` (post chart contrast) |
+| Marketing screenshots | refreshed via `pnpm screenshots` |
 
 No high-priority unfinished product work remains. Remaining ideas are optional stretch (admin DB cleanup, streaming git log).
 
@@ -30,16 +31,28 @@ No high-priority unfinished product work remains. Remaining ideas are optional s
 
 ## Wrapped Phase A–C — complete
 - [x] Story engine, cinematic player, share cards, landing, e2e
-- [x] Spotify-adjacent light theme; rising star; retry; stale/orphan recovery
+- [x] Rising star; retry; stale/orphan recovery
 - [x] Recent-repos dedupe; large-repo perf; chart contrast; screenshots
 
+## Design pass — "Warm Press" (complete)
+- [x] Light-first token system: warm paper, near-black ink, six saturated accents, hue-separated chart series
+- [x] Removed the borrowed streaming-brand greens; `design-system.test.ts` guards contrast, hues, palette balance and reduced motion
+- [x] Motion system: nine entrances, per-scene-type transitions, staggered reveals, animated numerals, ambient drift, press feedback — all transform/opacity/clip only
+- [x] Wrapped rebuilt as 16 distinct compositions via `SceneStage` (dial, ranked rows, colour fields, monogram, receipt, mosaic, share wall…)
+- [x] Editorial landing: display hero, marquee ticker, ranked repo list, dark feature section
+- [x] Dashboard aligned: masthead, ruled `Section`s, flat panels, custom charts and tables
+- [x] Reviewed at 1440×900 / 1280×720 / 390×844 in light, dark and reduced-motion; long names and sparse repos included
+
 ## Continuous-improvement log (2026-08-03)
-- Visual identity, rising star, failed-job retry, screenshots + title shine
+- Visual identity, rising star, failed-job retry, screenshots
 - Chart contrast, stale jobs, project dedupe, large-repo perf, orphan repair
 - Publication verification + screenshot refresh
+- Light-first redesign; fixed dark-theme hydration mismatch, heatmap ramp,
+  amber chart contrast, dial label clipping, closing-CTA fold, mobile ambient blur
 
 ## Optional later (not blocking)
 1. Admin cleanup of superseded duplicate project rows
 2. Stream/parse git log for multi‑GB histories
 3. Per-commit author histograms for richer rising-star curves
 4. Multi-forge imports beyond public HTTPS GitHub
+5. Force-directed layout for the co-change graph

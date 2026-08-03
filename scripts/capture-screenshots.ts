@@ -67,29 +67,51 @@ async function main() {
   await page.getByRole("heading", { level: 1 }).waitFor();
   await shot(page, "landing.png", { fullPage: true });
 
-  // Wrapped open
-  await page.goto(`${baseURL}/repo/${slug}/wrapped`, {
+  // Wrapped runs on a fresh page: a prior fullPage capture leaves Chromium's
+  // compositor mid-resize, which offsets screenshots of fixed-position overlays.
+  const story = await context.newPage();
+  await story.goto(`${baseURL}/repo/${slug}/wrapped`, {
     waitUntil: "networkidle",
   });
-  await page.getByTestId("wrapped-player").waitFor({ timeout: 15_000 });
-  await page.getByTestId("wrapped-counter").waitFor();
+  await story.getByTestId("wrapped-player").waitFor({ timeout: 15_000 });
+  await story.getByTestId("wrapped-counter").waitFor();
   // Pause autoplay so frames are stable
-  const auto = page.getByTestId("wrapped-autoplay");
+  const auto = story.getByTestId("wrapped-autoplay");
   if (await auto.count()) {
-    const state = await page.getByTestId("wrapped-player").getAttribute("data-autoplay");
+    const state = await story
+      .getByTestId("wrapped-player")
+      .getAttribute("data-autoplay");
     if (state === "on") await auto.click();
   }
-  await page.waitForTimeout(400);
-  await shot(page, "wrapped.png");
-  await shot(page, "wrapped-open.png");
+  await story.waitForTimeout(700);
+  await shot(story, "wrapped.png");
+  await shot(story, "wrapped-open.png");
 
-  // Advance a couple scenes for variety
-  await page.getByTestId("wrapped-player").focus();
-  await page.keyboard.press("ArrowRight");
-  await page.waitForTimeout(350);
-  await page.keyboard.press("ArrowRight");
-  await page.waitForTimeout(350);
-  await shot(page, "wrapped-next.png");
+  // Walk the story and keep one frame per distinct composition
+  const wanted = new Map([
+    ["headline", "wrapped-headline.png"],
+    ["rhythm", "wrapped-rhythm.png"],
+    ["people", "wrapped-people.png"],
+    ["favorites", "wrapped-languages.png"],
+    ["personality", "wrapped-personality.png"],
+    ["recap", "wrapped-recap.png"],
+    ["closing", "wrapped-closing.png"],
+  ]);
+  const total = Number(
+    (await story.getByTestId("wrapped-counter").textContent())?.split("/")[1] ??
+      "1"
+  );
+  for (let i = 0; i < total; i++) {
+    await story.waitForTimeout(650);
+    const type = await story
+      .getByTestId("wrapped-scene-body")
+      .getAttribute("data-scene-type");
+    if (i === 2) await shot(story, "wrapped-next.png");
+    const file = type ? wanted.get(type) : undefined;
+    if (file) await shot(story, file);
+    if (i < total - 1) await story.getByTestId("wrapped-next").click();
+  }
+  await story.close();
 
   // Dashboard sections
   const sections: { path: string; file: string; heading?: RegExp }[] = [

@@ -1,8 +1,8 @@
 # FINAL_AUDIT — GitChronicle Wrapped
 
-**Date:** 2026-08-03 (publication verification re-run)  
-**Product:** GitChronicle Wrapped — cinematic repository recap  
-**Tagline:** Your repository had a year. Let’s replay it.  
+**Date:** 2026-08-03 (light-first redesign pass)
+**Product:** GitChronicle Wrapped — cinematic repository recap
+**Tagline:** Your repository had a year. Let’s replay it.
 **Status:** **Publication-ready**
 
 ## Startup (local)
@@ -25,22 +25,101 @@ pnpm dev
 | --- | --- |
 | `pnpm lint` | pass |
 | `pnpm typecheck` | pass |
-| `pnpm test` | 79 pass (parse + metrics + wrapped + jobs stale/orphan/retry + dedupe + theme) |
+| `pnpm test` | **85 pass** (parse + metrics + wrapped + jobs + dedupe + design system) |
 | `pnpm build` | pass |
-| `pnpm test:e2e` | **16 pass** (desktop + mobile), including hard keyboard advance + closing scroll + PNG magic + retry API |
-| Demo Wrapped | **22** adaptive scenes (incl. rising star), analysis-backed |
-| Local CLI analyze | path reuse + Wrapped **200** |
-| Markdown export | non-empty report with Overview (~5KB+) |
+| `pnpm test:e2e` | **16 pass** (desktop + mobile) |
+| Demo Wrapped | **16** adaptive scenes, analysis-backed |
+| Sparse repo (`hello-world`) | 16 scenes, no empty visuals |
+| Console errors (light + dark, 10 routes) | **none** |
+| Markdown export | non-empty report with Overview |
 | PNG share cards | recap landscape PNG signature verified in e2e |
 | Invalid GitHub URL | 400 |
-| Marketing screenshots | regenerated with light theme + chart contrast |
+| Marketing screenshots | regenerated (`pnpm screenshots`) |
 
-### Skeptic fixes (2026-08-03)
+## Design system — "Warm Press"
 
-- Scene body is `flex-1 min-h-0 overflow-y-auto` so closing CTAs/share cards scroll on 390×844
-- Wrapped route sits **outside** dashboard `(app)` layout (no chrome intercepting pointers)
-- Playwright webServer uses **production** `pnpm build && pnpm start` (Turbopack dev HMR can leave Client Components inert)
-- e2e hard-asserts keyboard `1/→2/`, closing tab, scroll `overflow-y`, PNG download
+Light is the product default; dark is a fully-supported opt-in shell.
+
+| Token group | Values |
+| --- | --- |
+| Surfaces | `--paper #fbf7f1`, `--paper-sunk`, `--paper-raised` |
+| Ink | `--ink #16130f` (≈17:1 on paper), `--ink-soft`, `--ink-faint` |
+| Accents | coral `#ff4d2e`, cobalt `#2447f0`, teal `#0e9f8e`, amber `#f5a524`, plum `#7c3aed`, lime `#c9f03a` |
+| Charts | six hue-separated series, each ≥2.4:1 on paper (`--chart-4` is deepened to `#c97a06` — bright amber only clears 1.9:1 and is too weak for thin marks) |
+| Type | `gc-display`, `gc-numeral`, `gc-eyebrow`, `gc-mono`, `gc-underline` |
+
+The previous theme used Spotify’s brand greens (`#1db954` / `#1ed760`) as the
+product identity. Those are gone; `design-system.test.ts` fails the build if they
+reappear.
+
+### Motion system
+
+- **Entrances** — `gc-in-rise`, `-drop`, `-left`, `-right`, `-zoom`, `-pop`, `-tilt`, `-wipe`, `-wipe-across`
+- **Scene transitions** — chosen per scene *type* and index (`sceneTransition`), so consecutive beats never repeat the same move; stepping back always reverses
+- **Reveals** — `gc-stagger` (index-based delays), `gc-bar-grow`, `gc-col-grow`, `gc-draw`
+- **Ambient** — `gc-drift-a/b`, `gc-spin-slow`, `gc-breathe`, `gc-marquee`
+- **Feedback** — `gc-press` (buttons), `gc-card-hover` (panels)
+- **Numbers** — rAF `CountUp`, keyed by target so a scene change never shows a stale frame and SSR renders the final value
+- **Reduced motion** — one global `@media (prefers-reduced-motion: reduce)` block collapses every animation and transition to 0.001ms and pins end states (`scaleX(1)`, drawn underlines, `stroke-dashoffset: 0`)
+
+Everything animates on transform / opacity / clip-path only.
+
+## Wrapped scene compositions
+
+`SceneStage` routes each scene type to its own layout — no shared template:
+
+| Layout | Scene types | Visual idea |
+| --- | --- | --- |
+| `OpeningStage` | opening | Repo name at display scale + ruled stat triptych |
+| `BeginningStage` | beginning | Giant origin date + early-files slate |
+| `HeadlineStage` | headline | Colossal numeral + monthly column chart |
+| `BusiestStage` | busiest | Peak-day plaque + ±10-day column window |
+| `SegmentStage` | favorites, commit_personality | Proportional colour field with an “Other” remainder |
+| `RhythmStage` | rhythm | 24-hour radial dial, peak spoke in accent |
+| `StreakStage` | streak | Run of day blocks, sized to streak length |
+| `EnsembleStage` | people | Ranked rows with proportional accent bars |
+| `PersonStage` | main_character, rising_star | Monogram portrait (+ ascending spark for rising star) |
+| `FileStage` | busiest_file, dramatic_file | Mono path plate + diverging churn bar |
+| `CommitStage` | giant_commit | Receipt-style commit card |
+| `RailStage` | architecture, releases, collaboration, cochange | Vertical moment rail |
+| `TwistStage` | plot_twist | Oversized type on a dark beat |
+| `EmblemStage` | personality | Rotating emblem + reasons |
+| `RecapStage` | recap | Six-tile tinted stat mosaic |
+| `ClosingStage` | closing | CTAs above the fold, then a live share-card wall |
+
+Palettes: 8 scene themes, 6 light / 2 dark, each declaring its own `ink`,
+`inkSoft`, `rule`, `accent` and `onAccent` so contrast is never incidental
+(`onAccent` vs `accent` is asserted >3:1 in tests).
+
+Story length is now **16** scenes (`TARGET_MAX_SCENES`), with `rhythm` promoted
+above `busiest_file`/`releases` so the coding-rhythm beat survives the budget.
+
+## Responsive review
+
+Reviewed at 1440×900, 1280×720 and 390×844, in light, dark and reduced-motion.
+
+- Mobile is composed, not scaled: single column, one central idea per scene,
+  stat labels wrap instead of truncating, share cards go two-up, swipe ignores
+  mostly-vertical gestures so scrollable scenes still scroll
+- Long repository names wrap in the dashboard masthead and reflow the stat strip
+- Sparse repositories (2-commit local, `hello-world`) produce no empty visuals
+- Closing is the only scene allowed to exceed one screen; the scroll lives on the
+  scene body so CTAs and cards are both reachable
+
+## Defects found and fixed in this pass
+
+| Defect | Fix |
+| --- | --- |
+| Hydration mismatch on every route in dark theme | `ThemeToggle` rendered a theme-dependent `aria-label` the server could not know; the label is now theme-independent |
+| Heatmap would have rendered solid black | `bg-primary` became ink under the new tokens; the heatmap now uses an explicit coral ramp |
+| Chart amber at 1.9:1 on paper | `--chart-4` deepened to `#c97a06` (test-enforced ≥2.4:1) |
+| Hour labels clipped out of the rhythm dial viewBox | viewBox widened to fit the label radius |
+| Ranked-row values unreadable on mid-weight bars | non-leading bars capped at 40% tint |
+| Language percentages disagreed with the headline stat | proportional fields fold the tail into an “Other” segment |
+| Closing CTAs below the fold | CTAs moved above the share-card wall |
+| File scene repeated its path in the subtitle | subtitle split; the plate owns the path |
+| Hero numerals colliding with their labels | labels moved to their own line |
+| `blur(90–110px)` on viewport-sized ambient layers | replaced with radial-gradient fields (cheaper on mobile, same look) |
 
 ## Architecture
 
@@ -49,7 +128,7 @@ Git (spawn argv) → parse → pure metrics (AnalysisResult)
                               ↓
                     buildWrappedStory()  [pure]
                               ↓
-                    WrappedPlayer + share PNG canvas
+                  WrappedPlayer → SceneStage (per-type layout)
                               ↓
                     Dashboard sections (unchanged spine)
 ```
@@ -58,41 +137,56 @@ Git (spawn argv) → parse → pure metrics (AnalysisResult)
 
 Documented in `src/lib/wrapped/personality.ts`:
 
-1. **The Phoenix** — quiet ≥ 30 days with continued activity  
-2. **The Night Owl** — peak hour 22–05 UTC  
-3. **The Weekend Builder** — ≥ 35% weekend commits  
-4. **The Relentless Refactorer** — ≥ 25% refactor category  
-5. **The Feature Factory** — ≥ 40% feature category  
-6. **The Steady Ship** — density ≥ 0.55 and age ≥ 60 days  
-7. **The Carefully Curated Monolith** — ≥ 80 files, ≤ 3 contributors  
-8. **The Fast-Moving Experiment** — age ≤ 45 days, ≥ 40 commits  
-9. **First Light** — ≤ 3 commits  
+1. **The Phoenix** — quiet ≥ 30 days with continued activity
+2. **The Night Owl** — peak hour 22–05 UTC
+3. **The Weekend Builder** — ≥ 35% weekend commits
+4. **The Relentless Refactorer** — ≥ 25% refactor category
+5. **The Feature Factory** — ≥ 40% feature category
+6. **The Steady Ship** — density ≥ 0.55 and age ≥ 60 days
+7. **The Carefully Curated Monolith** — ≥ 80 files, ≤ 3 contributors
+8. **The Fast-Moving Experiment** — age ≤ 45 days, ≥ 40 commits
+9. **First Light** — ≤ 3 commits
 10. Default **The Steady Ship**
 
 No AI APIs.
 
 ### Scene selection
 
-`buildWrappedStory` emits only scenes with enough data (solo repos skip people/collaboration/releases; tiny repos still get opening → recap → closing). Demo Acme Toolkit yields **22** scenes (includes rising star: Barbara Liskov).
+`buildWrappedStory` emits only scenes with enough data (solo repos skip
+people/collaboration/releases; tiny repos still get opening → recap → closing),
+then `trimScenesToBudget` keeps narrative order, pins the spine
+(opening/headline/personality/recap/closing) and fills the rest by priority.
+
+## Accessibility
+
+- Full keyboard transport (`← →`, `Space`, `PageUp/Down`, `Home`, `End`, `P`)
+- Scene rail is a real `tablist` with per-scene labels and `aria-current`
+- Every scene carries an `sr-only` summary; charts expose `role="img"` + label
+- Global 3px `:focus-visible` ring on the cobalt token
+- Reduced motion honoured globally, and autoplay switches itself off
 
 ## Screenshots
 
-Captured under `docs/screenshots/` and e2e `test-results` / session scratch `shots/`.
+`docs/screenshots/` — landing, six distinct Wrapped compositions, the closing
+share wall and every dashboard section. Regenerate with `pnpm screenshots`
+against a running server.
+
+**Capture note:** take Wrapped frames on a fresh page. A prior `fullPage: true`
+capture leaves Chromium's compositor mid-resize and offsets screenshots of
+fixed-position overlays — the DOM is correct, the PNG is not.
 
 ## Limitations
 
-- Ownership is commit-share approximate, not blame-accurate  
-- Rename detection is best-effort via Git  
-- Graph nodes/edges and timeline samples are capped  
-- PNG share cards render client-side (canvas); fonts are system-ui  
-- Remote GitHub clone is secondary; demo + local analyze are the spine  
-- Classic Story deck remains as a secondary chronological view  
+- Ownership is commit-share approximate, not blame-accurate
+- Rename detection is best-effort via Git
+- Graph nodes/edges and timeline samples are capped
+- PNG share cards render client-side (canvas); fonts are system-ui
+- Remote GitHub clone is secondary; demo + local analyze are the spine
+- Classic Story deck remains as a secondary chronological view
 
 ## Deferred (not blocking)
 
-- SSE streaming progress  
-- Light-theme-specific Wrapped *scene* palettes (player is intentionally dark cinematic; shell is light-first with green brand as of 2026-08-03)  
-- Per-commit author split histograms for even richer rising-star curves (current pure picker uses first/last + density)  
-- Multi-forge imports beyond public HTTPS GitHub  
-- (done) Fresh marketing screenshots via `pnpm screenshots` after Spotify-adjacent rebrand  
- 
+- SSE streaming progress
+- Per-commit author split histograms for richer rising-star curves
+- Multi-forge imports beyond public HTTPS GitHub
+- Force-directed layout for the co-change graph (currently a capped grid)

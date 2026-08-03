@@ -4,13 +4,13 @@
 
 GitChronicle turns a Git repository into a cinematic, shareable recap — then a deep engineering-intelligence dashboard. Import a public GitHub URL, analyze a local repo, or open the bundled demo.
 
-![GitChronicle](https://img.shields.io/badge/stack-Next.js%20%7C%20SQLite%20%7C%20Vitest-1DB954) ![license](https://img.shields.io/badge/license-MIT-blue)
+![GitChronicle](https://img.shields.io/badge/stack-Next.js%20%7C%20SQLite%20%7C%20Vitest-FF4D2E) ![license](https://img.shields.io/badge/license-MIT-blue)
 
 ![Landing](./docs/screenshots/landing.png)
 
 ## Features
 
-- **Wrapped** — 15–25 adaptive full-screen scenes: personality, streaks, people, plot twists, share cards
+- **Wrapped** — up to 16 adaptive full-screen scenes, each with its own composition: personality, streaks, people, plot twists, share cards
 - **Overview** — age, commits, heatmap, eras, narrative
 - **Time Machine** — play / scrub sampled history
 - **Hotspots** — churn, ownership, bus-factor
@@ -20,7 +20,26 @@ GitChronicle turns a Git repository into a cinematic, shareable recap — then a
 - **Releases** — tags + Markdown notes
 - **Exports** — PNG social cards + Markdown repository report
 
-![Wrapped](./docs/screenshots/wrapped-open.png)
+## The Wrapped story
+
+Every beat is a different layout, not one template with swapped numbers — a
+colossal numeral for the headline, a 24-hour radial dial for rhythm, a ranked
+ensemble for contributors, a proportional colour field for languages, and a
+share-card wall to close. Light warm-paper scenes carry the story, punctuated by
+a few deliberately dark beats.
+
+| | |
+| --- | --- |
+| ![Headline](./docs/screenshots/wrapped-headline.png) | ![Rhythm](./docs/screenshots/wrapped-rhythm.png) |
+| ![Contributors](./docs/screenshots/wrapped-people.png) | ![Languages](./docs/screenshots/wrapped-languages.png) |
+| ![Personality](./docs/screenshots/wrapped-personality.png) | ![Recap](./docs/screenshots/wrapped-recap.png) |
+
+Autoplay, keyboard (`← →`, `Home`/`End`, `P`), tap-the-edges and swipe all
+navigate. `prefers-reduced-motion` keeps every end state and drops the movement.
+
+![Closing](./docs/screenshots/wrapped-closing.png)
+
+## Dashboard
 
 ![Overview](./docs/screenshots/overview.png)
 
@@ -69,7 +88,19 @@ flowchart LR
 | Metrics | `src/lib/analysis/*` |
 | Wrapped story | `src/lib/wrapped/*` |
 | Player + share cards | `src/components/wrapped/*` |
+| Scene layouts + palettes | `src/components/wrapped/scene-stage.tsx`, `scene-theme.ts` |
+| Design tokens + motion | `src/app/globals.css` |
 | Persistence | `src/lib/db/*`, `src/lib/jobs/*` |
+
+## Design system
+
+Light-first "warm press" theme: warm off-white paper (`--paper`), near-black ink,
+and a saturated accent set (coral, cobalt, teal, amber, plum, lime) used for
+large colour fields and hue-separated chart series. Tokens, typographic
+primitives (`gc-display`, `gc-numeral`, `gc-eyebrow`) and the motion system
+(`gc-in-*` entrances, `gc-stagger`, `gc-drift-*`, `gc-marquee`) all live in
+`src/app/globals.css`; `src/lib/theme/design-system.test.ts` guards contrast,
+hue separation, palette balance and reduced-motion coverage.
 
 ## Personality (deterministic)
 

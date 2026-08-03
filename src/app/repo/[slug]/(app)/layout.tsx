@@ -58,11 +58,13 @@ export default async function RepoLayout({
         }))}
       />
 
-      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-6 sm:px-6 md:flex-row">
-        <aside className="md:w-52 md:shrink-0">
-          <div className="mb-4 md:mb-6">
-            <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-lg font-semibold tracking-tight">
+      {/* Repository masthead */}
+      <div className="border-b bg-muted/35">
+        <div className="mx-auto flex w-full max-w-[86rem] flex-wrap items-end justify-between gap-x-6 gap-y-3 px-4 py-6 sm:px-8 sm:py-8">
+          <div className="min-w-0">
+            <p className="gc-eyebrow text-muted-foreground">Repository</p>
+            <div className="mt-1.5 flex flex-wrap items-center gap-3">
+              <h1 className="gc-display max-w-full break-words text-[clamp(1.6rem,4vw,2.75rem)]">
                 {project.fullName || project.name}
               </h1>
               {project.isDemo && <Badge variant="secondary">Demo</Badge>}
@@ -70,20 +72,43 @@ export default async function RepoLayout({
             {project.sourceUrl && (
               <Link
                 href={project.sourceUrl}
-                className="mt-1 block truncate text-xs text-muted-foreground hover:text-primary"
+                className="gc-mono mt-2 block max-w-full truncate text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
                 target="_blank"
                 rel="noreferrer"
               >
                 {project.sourceUrl}
               </Link>
             )}
-            {analysis && (
-              <p className="mt-2 text-xs text-muted-foreground">
-                {analysis.result.overview.commitCount} commits ·{" "}
-                {analysis.result.overview.contributorCount} contributors
-              </p>
-            )}
           </div>
+          {analysis && (
+            <dl className="flex shrink-0 gap-6 sm:gap-9">
+              {[
+                {
+                  k: "Commits",
+                  v: analysis.result.overview.commitCount,
+                },
+                {
+                  k: "Contributors",
+                  v: analysis.result.overview.contributorCount,
+                },
+                { k: "Files", v: analysis.result.overview.fileCount },
+              ].map((s) => (
+                <div key={s.k}>
+                  <dd className="text-xl font-extrabold tabular-nums tracking-tight sm:text-2xl">
+                    {s.v.toLocaleString("en-US")}
+                  </dd>
+                  <dt className="gc-eyebrow mt-1 text-[0.55rem] text-muted-foreground">
+                    {s.k}
+                  </dt>
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
+      </div>
+
+      <div className="mx-auto flex w-full max-w-[86rem] flex-1 flex-col gap-6 px-4 py-6 sm:px-8 md:flex-row md:gap-10">
+        <aside className="md:sticky md:top-20 md:h-fit md:w-48 md:shrink-0">
           <DashboardNav slug={slug} />
         </aside>
 

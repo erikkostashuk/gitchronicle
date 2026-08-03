@@ -31,10 +31,10 @@ export default async function PeoplePage({
   const maxCommits = Math.max(1, ...people.map((p) => p.commits));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold tracking-tight">People</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <h2 className="gc-eyebrow text-muted-foreground">People</h2>
+        <p className="mt-2 max-w-[62ch] text-[0.95rem] leading-relaxed">
           Profiles derived from Git history — volume, hours, paths, languages,
           collaboration, and approximate ownership.
         </p>
@@ -51,7 +51,7 @@ export default async function PeoplePage({
               <div className="w-36 truncate font-medium sm:w-48">{p.name}</div>
               <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
                 <div
-                  className="h-full rounded-full bg-primary"
+                  className="h-full rounded-full bg-[var(--chart-2)]"
                   style={{ width: `${(p.commits / maxCommits) * 100}%` }}
                 />
               </div>

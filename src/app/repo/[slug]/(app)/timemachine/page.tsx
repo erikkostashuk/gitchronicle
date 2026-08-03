@@ -24,10 +24,10 @@ export default async function TimeMachinePage({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div>
-        <h2 className="text-xl font-semibold tracking-tight">Time Machine</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <h2 className="gc-eyebrow text-muted-foreground">Time Machine</h2>
+        <p className="mt-2 max-w-[62ch] text-[0.95rem] leading-relaxed">
           Play, pause, scrub, and step through sampled repository history.
           Large repositories use cached timeline samples.
         </p>

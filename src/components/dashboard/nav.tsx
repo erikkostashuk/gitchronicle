@@ -34,7 +34,7 @@ export function DashboardNav({ slug }: { slug: string }) {
   return (
     <nav
       aria-label="Dashboard sections"
-      className="flex gap-1 overflow-x-auto pb-1 md:flex-col md:overflow-visible md:pb-0"
+      className="-mx-1 flex gap-1 overflow-x-auto px-1 pb-2 md:mx-0 md:flex-col md:gap-0.5 md:overflow-visible md:px-0 md:pb-0"
     >
       {items.map((item) => {
         const href = item.href ? `${base}/${item.href}` : base;
@@ -43,19 +43,24 @@ export function DashboardNav({ slug }: { slug: string }) {
             ? pathname === base || pathname === `${base}/`
             : pathname === href || pathname === `${href}/`;
         const Icon = item.icon;
+        const isWrapped = item.href === "wrapped";
         return (
           <Link
             key={item.label}
             href={href}
+            aria-current={active ? "page" : undefined}
             className={cn(
-              "flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold tracking-tight transition-colors",
+              "group relative flex shrink-0 items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-bold tracking-tight transition-colors",
               active
-                ? "bg-primary text-primary-foreground shadow-sm"
-                : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                ? "bg-foreground text-background"
+                : "text-muted-foreground hover:bg-foreground/6 hover:text-foreground",
+              isWrapped &&
+                !active &&
+                "text-[var(--coral-deep)] dark:text-[var(--coral)]"
             )}
           >
-            <Icon className="h-4 w-4" />
-            {item.label}
+            <Icon className="h-4 w-4 shrink-0" />
+            <span className="whitespace-nowrap">{item.label}</span>
           </Link>
         );
       })}

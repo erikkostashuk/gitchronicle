@@ -22,13 +22,13 @@ export default async function StoryPage({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">Story</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <h2 className="gc-eyebrow text-muted-foreground">Story</h2>
+          <p className="mt-2 max-w-[62ch] text-[0.95rem] leading-relaxed">
             Classic chronological slides. Prefer{" "}
-            <Link href={`/repo/${slug}/wrapped`} className="text-primary underline-offset-2 hover:underline">
+            <Link href={`/repo/${slug}/wrapped`} className="font-semibold underline decoration-[var(--coral)] decoration-2 underline-offset-4">
               Wrapped
             </Link>{" "}
             for the full cinematic recap.

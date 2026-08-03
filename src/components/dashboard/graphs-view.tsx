@@ -113,7 +113,7 @@ export function GraphsView({
             max={50}
             value={minWeight}
             onChange={(e) => setMinWeight(Number(e.target.value) || 1)}
-            className="h-8 w-16 rounded-md border border-input bg-background px-2"
+            className="h-9 w-16 rounded-full border border-input bg-card px-3 text-sm"
           />
         </label>
         <Badge variant="secondary">
@@ -210,8 +210,8 @@ function ButtonToggle({
       onClick={onClick}
       className={
         active
-          ? "rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground"
-          : "rounded-md border border-border bg-background px-3 py-1.5 text-sm hover:bg-accent"
+          ? "rounded-full bg-foreground px-4 py-2 text-sm font-bold text-background"
+          : "rounded-full border px-4 py-2 text-sm font-semibold text-muted-foreground hover:bg-foreground/6 hover:text-foreground"
       }
     >
       {children}

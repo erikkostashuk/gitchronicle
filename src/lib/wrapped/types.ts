@@ -65,6 +65,10 @@ export interface WrappedScene {
   chips?: string[];
   list?: { label: string; value?: string | number; hint?: string }[];
   bars?: { label: string; value: number; max: number }[];
+  /** Parts of a whole — drives proportional colour fields (languages, categories) */
+  segments?: { label: string; value: number }[];
+  /** Ordered series — drives column/spark visuals (months, velocity) */
+  series?: { label: string; value: number; highlight?: boolean }[];
   palette: WrappedPalette;
   share?: WrappedShareCard;
   /** Screen-reader summary */

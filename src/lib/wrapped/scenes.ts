@@ -6,6 +6,7 @@ import type {
   RepositoryPersonality,
   StreakInfo,
   WrappedScene,
+  WrappedSceneType,
   WrappedShareCard,
   WrappedStory,
 } from "./types";
@@ -69,38 +70,80 @@ const STOP = new Set([
 ]);
 
 /**
+ * Attention-friendly story length. Opening/closing + ~14 beats (~90s at film pace).
+ * Rich repos may produce more candidates; we keep the best ones in narrative order.
+ */
+export const TARGET_MAX_SCENES = 16;
+
+/** Higher = more likely to survive the budget cut. Spine types are pinned. */
+const SCENE_PRIORITY: Record<WrappedSceneType, number> = {
+  opening: 100,
+  closing: 100,
+  headline: 95,
+  recap: 94,
+  personality: 92,
+  beginning: 80,
+  busiest: 78,
+  people: 76,
+  main_character: 74,
+  streak: 72,
+  favorites: 70,
+  rising_star: 68,
+  rhythm: 66,
+  busiest_file: 64,
+  releases: 62,
+  giant_commit: 58,
+  architecture: 54,
+  dramatic_file: 50,
+  collaboration: 42,
+  cochange: 40,
+  plot_twist: 36,
+  commit_personality: 32,
+};
+
+const PINNED_TYPES = new Set<WrappedSceneType>([
+  "opening",
+  "headline",
+  "personality",
+  "recap",
+  "closing",
+]);
+
+/**
  * Build an adaptive cinematic Wrapped story from a full analysis result.
  * Pure / deterministic. Omits scenes that lack supporting data.
+ * Caps length at {@link TARGET_MAX_SCENES} for attention-friendly pacing.
  */
 export function buildWrappedStory(analysis: AnalysisResult): WrappedStory {
   const streaks = computeStreaks(analysis.activity.byDay);
   const personality = computePersonality(analysis, streaks);
-  const scenes: WrappedScene[] = [];
+  const candidates: WrappedScene[] = [];
   const name = analysis.repository.name;
 
-  push(scenes, sceneOpening(analysis));
-  push(scenes, sceneBeginning(analysis));
-  push(scenes, sceneHeadline(analysis));
-  push(scenes, sceneBusiest(analysis));
-  push(scenes, sceneCommitPersonality(analysis));
-  push(scenes, sceneRhythm(analysis));
-  push(scenes, sceneStreak(analysis, streaks));
-  push(scenes, scenePeople(analysis));
-  push(scenes, sceneMainCharacter(analysis));
-  push(scenes, sceneRisingStar(analysis));
-  push(scenes, sceneBusiestFile(analysis));
-  push(scenes, sceneDramaticFile(analysis));
-  push(scenes, sceneFavorites(analysis));
-  push(scenes, sceneArchitecture(analysis));
-  push(scenes, sceneGiantCommit(analysis));
-  push(scenes, sceneReleases(analysis));
-  push(scenes, scenePlotTwist(analysis, streaks));
-  push(scenes, sceneCollaboration(analysis));
-  push(scenes, sceneCochange(analysis));
-  push(scenes, scenePersonality(analysis, personality));
-  push(scenes, sceneRecap(analysis, personality, streaks));
-  push(scenes, sceneClosing(analysis, personality));
+  push(candidates, sceneOpening(analysis));
+  push(candidates, sceneBeginning(analysis));
+  push(candidates, sceneHeadline(analysis));
+  push(candidates, sceneBusiest(analysis));
+  push(candidates, sceneCommitPersonality(analysis));
+  push(candidates, sceneRhythm(analysis));
+  push(candidates, sceneStreak(analysis, streaks));
+  push(candidates, scenePeople(analysis));
+  push(candidates, sceneMainCharacter(analysis));
+  push(candidates, sceneRisingStar(analysis));
+  push(candidates, sceneBusiestFile(analysis));
+  push(candidates, sceneDramaticFile(analysis));
+  push(candidates, sceneFavorites(analysis));
+  push(candidates, sceneArchitecture(analysis));
+  push(candidates, sceneGiantCommit(analysis));
+  push(candidates, sceneReleases(analysis));
+  push(candidates, scenePlotTwist(analysis, streaks));
+  push(candidates, sceneCollaboration(analysis));
+  push(candidates, sceneCochange(analysis));
+  push(candidates, scenePersonality(analysis, personality));
+  push(candidates, sceneRecap(analysis, personality, streaks));
+  push(candidates, sceneClosing(analysis, personality));
 
+  const scenes = trimScenesToBudget(candidates, TARGET_MAX_SCENES);
   const shareCards = collectShareCards(scenes, analysis, personality, streaks);
 
   return {
@@ -116,6 +159,31 @@ export function buildWrappedStory(analysis: AnalysisResult): WrappedStory {
 
 function push(list: WrappedScene[], scene: WrappedScene | null) {
   if (scene) list.push(scene);
+}
+
+/**
+ * Keep narrative order, pin the spine, fill remaining slots by priority.
+ * Deterministic: equal priority keeps earlier (story-order) scenes.
+ */
+export function trimScenesToBudget(
+  scenes: WrappedScene[],
+  max: number = TARGET_MAX_SCENES
+): WrappedScene[] {
+  if (scenes.length <= max) return scenes;
+
+  const pinned = scenes.filter((s) => PINNED_TYPES.has(s.type));
+  const optional = scenes.filter((s) => !PINNED_TYPES.has(s.type));
+  const slots = Math.max(0, max - pinned.length);
+
+  // Stable sort: higher priority first; original index as tiebreaker
+  const ranked = optional
+    .map((scene, order) => ({ scene, order, p: SCENE_PRIORITY[scene.type] ?? 0 }))
+    .sort((a, b) => b.p - a.p || a.order - b.order)
+    .slice(0, slots)
+    .map((x) => x.scene);
+
+  const keep = new Set<WrappedScene>([...pinned, ...ranked]);
+  return scenes.filter((s) => keep.has(s));
 }
 
 function sceneOpening(a: AnalysisResult): WrappedScene {
@@ -188,6 +256,7 @@ function sceneHeadline(a: AnalysisResult): WrappedScene {
       { label: "Lines yeeted in", value: o.totalAdditions },
       { label: "Lines yeeted out", value: o.totalDeletions },
     ],
+    series: monthSeries(a, 18),
     palette: "ember",
     a11y: `${o.commitCount} commits across ${o.activeDays} active days.`,
   };
@@ -219,6 +288,7 @@ function sceneBusiest(a: AnalysisResult): WrappedScene | null {
         value: month ? `${month.date.slice(0, 7)} · ${month.commits}` : "—",
       },
     ],
+    series: dayWindow(a, day.date, 21),
     palette: "gold",
     share: {
       kind: "busiest",
@@ -259,6 +329,13 @@ function sceneCommitPersonality(a: AnalysisResult): WrappedScene | null {
     title: `Mostly ${labelCategory(top.category)}`,
     subtitle: jokes[top.category] ?? `${pct}% of the plot is ${labelCategory(top.category)}.`,
     bars: bars.slice(0, 5),
+    segments: withRemainder(
+      a.categories.map((c) => ({
+        label: labelCategory(c.category),
+        value: c.count,
+      })),
+      5
+    ),
     chips: word
       ? [`Favorite word: “${word}”`, `${pct}% ${top.category}`]
       : [`${pct}% ${top.category}`],
@@ -507,7 +584,13 @@ function sceneFavorites(a: AnalysisResult): WrappedScene | null {
     subtitle: lang
       ? `${Math.round(lang.percent * 100)}% of the files are speaking ${lang.language}. The rest are freelancers.`
       : "Directories with the most drama (churn).",
+    hero: lang ? `${Math.round(lang.percent * 100)}%` : undefined,
+    heroLabel: lang ? "of the files" : undefined,
     chips: a.languages.slice(0, 4).map((l) => `${l.language}`),
+    segments: withRemainder(
+      a.languages.map((l) => ({ label: l.language, value: l.count })),
+      5
+    ),
     list: a.directories.slice(0, 4).map((d) => ({
       label: d.path,
       value: d.churn,
@@ -668,8 +751,7 @@ function sceneCollaboration(a: AnalysisResult): WrappedScene | null {
     subtitle: "They keep touching the same files. It’s giving pair programming… or shared pain.",
     list: top.slice(0, 4).map((e) => ({
       label: `${nameById.get(e.source) ?? e.source} × ${nameById.get(e.target) ?? e.target}`,
-      value: e.weight,
-      hint: "shared files",
+      value: `${e.weight} shared file${e.weight === 1 ? "" : "s"}`,
     })),
     palette: "aurora",
     a11y: "Contributor collaboration pairs.",
@@ -689,8 +771,7 @@ function sceneCochange(a: AnalysisResult): WrappedScene | null {
     subtitle: "These files show up to the same parties. Codependency, but make it architecture.",
     list: top.slice(0, 4).map((e) => ({
       label: `${basename(e.source)} ↔ ${basename(e.target)}`,
-      value: e.weight,
-      hint: "together",
+      value: `changed together ${e.weight}×`,
     })),
     palette: "ocean",
     a11y: "Top co-changed file pairs.",
@@ -815,6 +896,54 @@ function collectShareCards(
 }
 
 // —— helpers ——
+
+/**
+ * Keep the top `limit` parts and fold the tail into "Other", so a proportional
+ * field always sums to the real whole (percentages match the headline stat).
+ */
+function withRemainder(
+  parts: { label: string; value: number }[],
+  limit: number
+): { label: string; value: number }[] {
+  if (parts.length <= limit) return parts;
+  const head = parts.slice(0, limit);
+  const rest = parts.slice(limit).reduce((s, p) => s + p.value, 0);
+  return rest > 0 ? [...head, { label: "Other", value: rest }] : head;
+}
+
+/** Trailing monthly commit columns, peak flagged. Capped for smooth rendering. */
+function monthSeries(
+  a: AnalysisResult,
+  limit: number
+): { label: string; value: number; highlight?: boolean }[] {
+  const months = a.activity.byMonth.slice(-limit);
+  if (months.length === 0) return [];
+  const peak = Math.max(...months.map((m) => m.commits));
+  return months.map((m) => ({
+    label: m.date.slice(0, 7),
+    value: m.commits,
+    highlight: m.commits === peak,
+  }));
+}
+
+/** Daily commits centred on a date — the "week either side" of a peak. */
+function dayWindow(
+  a: AnalysisResult,
+  center: string,
+  span: number
+): { label: string; value: number; highlight?: boolean }[] {
+  const days = a.activity.byDay;
+  if (days.length === 0) return [];
+  const idx = days.findIndex((d) => d.date === center);
+  const anchor = idx >= 0 ? idx : days.length - 1;
+  const half = Math.floor(span / 2);
+  const start = Math.max(0, Math.min(anchor - half, days.length - span));
+  return days.slice(start, start + span).map((d) => ({
+    label: d.date,
+    value: d.commits,
+    highlight: d.date === center,
+  }));
+}
 
 function maxBy<T>(arr: T[], fn: (t: T) => number): T | null {
   if (arr.length === 0) return null;

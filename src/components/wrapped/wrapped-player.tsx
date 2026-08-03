@@ -5,73 +5,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
-  Download,
   LayoutDashboard,
   Pause,
   Play,
-  Sparkles,
 } from "lucide-react";
-import type { WrappedScene, WrappedStory } from "@/lib/wrapped";
-import { ShareCardDownloader } from "./share-card";
-import { Button } from "@/components/ui/button";
+import type { WrappedStory } from "@/lib/wrapped";
 import { cn } from "@/lib/utils";
+import { sceneTheme, sceneTransition } from "./scene-theme";
+import { SceneStage } from "./scene-stage";
 
-/** Fast film pacing — ~2.8s per scene */
-const SCENE_MS = 2800;
-
-const PALETTES: Record<
-  WrappedScene["palette"],
-  { bg: string; accent: string; glow: string; shine: string }
-> = {
-  aurora: {
-    bg: "from-[#021a1f] via-[#0c2840] to-[#1a0a38]",
-    accent: "text-teal-300",
-    glow: "bg-teal-400/30",
-    shine: "#2dd4bf",
-  },
-  ember: {
-    bg: "from-[#1c0806] via-[#3a1510] to-[#1a0a28]",
-    accent: "text-orange-300",
-    glow: "bg-orange-400/30",
-    shine: "#fb923c",
-  },
-  midnight: {
-    bg: "from-[#04060f] via-[#0c1428] to-[#12082a]",
-    accent: "text-sky-300",
-    glow: "bg-sky-400/25",
-    shine: "#7dd3fc",
-  },
-  forest: {
-    bg: "from-[#03140e] via-[#0a2418] to-[#0a1828]",
-    accent: "text-emerald-300",
-    glow: "bg-emerald-400/30",
-    shine: "#6ee7b7",
-  },
-  violet: {
-    bg: "from-[#0e061c] via-[#1e0f38] to-[#0a1830]",
-    accent: "text-violet-300",
-    glow: "bg-violet-400/30",
-    shine: "#c4b5fd",
-  },
-  slate: {
-    bg: "from-[#0a0c12] via-[#141c28] to-[#181428]",
-    accent: "text-slate-100",
-    glow: "bg-slate-300/20",
-    shine: "#e2e8f0",
-  },
-  ocean: {
-    bg: "from-[#021018] via-[#0a2840] to-[#0c1830]",
-    accent: "text-cyan-300",
-    glow: "bg-cyan-400/30",
-    shine: "#67e8f9",
-  },
-  gold: {
-    bg: "from-[#181008] via-[#302010] to-[#1c1020]",
-    accent: "text-amber-200",
-    glow: "bg-amber-400/30",
-    shine: "#fcd34d",
-  },
-};
+/** Film pacing — ~5.8s per scene (readable without feeling stalled) */
+const SCENE_MS = 5800;
 
 export function WrappedPlayer({
   story,
@@ -88,6 +32,7 @@ export function WrappedPlayer({
   const [progressKey, setProgressKey] = useState(0);
   const scene = scenes[index];
   const touchX = useRef(0);
+  const touchY = useRef(0);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -191,12 +136,17 @@ export function WrappedPlayer({
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchX.current = e.changedTouches[0]?.clientX ?? 0;
+    touchY.current = e.changedTouches[0]?.clientY ?? 0;
   };
   const onTouchEnd = (e: React.TouchEvent) => {
     const x = e.changedTouches[0]?.clientX ?? 0;
+    const y = e.changedTouches[0]?.clientY ?? 0;
     const dx = x - touchX.current;
-    if (dx < -40) userNext();
-    if (dx > 40) userPrev();
+    const dy = y - touchY.current;
+    // Ignore mostly-vertical gestures so scrollable scenes still scroll
+    if (Math.abs(dx) < 44 || Math.abs(dy) > Math.abs(dx)) return;
+    if (dx < 0) userNext();
+    else userPrev();
   };
 
   const onStageClick = (e: React.MouseEvent) => {
@@ -206,8 +156,8 @@ export function WrappedPlayer({
     }
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const rel = (e.clientX - rect.left) / rect.width;
-    if (rel < 0.25) userPrev();
-    else if (rel > 0.75) userNext();
+    if (rel < 0.22) userPrev();
+    else if (rel > 0.78) userNext();
     else setAutoplay((a) => !a);
   };
 
@@ -217,24 +167,15 @@ export function WrappedPlayer({
     );
   }
 
-  const pal = PALETTES[scene.palette];
+  const theme = sceneTheme(scene.palette);
   const isClosing = scene.type === "closing";
   const dwell = isClosing || reduceMotion ? 0 : SCENE_MS;
-  const sceneAnim =
-    !reduceMotion && (dir === "forward" ? "gc-film-in" : "gc-film-back");
-
-  // Cap density for single-screen laptop
-  const listItems = (scene.list ?? []).slice(0, 4);
-  const metrics = (scene.metrics ?? []).slice(0, 6);
-  const bars =
-    scene.type === "rhythm" && scene.bars?.length === 24
-      ? scene.bars
-      : (scene.bars ?? []).slice(0, 5);
-  const chips = (scene.chips ?? []).slice(0, 4);
+  const enter = reduceMotion ? "" : sceneTransition(scene.type, index, dir);
+  const isDark = theme.mode === "dark";
 
   return (
     <div
-      className="fixed inset-0 z-50 flex h-dvh max-h-dvh w-screen flex-col overflow-hidden text-white"
+      className="fixed inset-0 z-50 flex h-dvh max-h-dvh w-screen flex-col overflow-hidden"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       role="region"
@@ -242,62 +183,64 @@ export function WrappedPlayer({
       aria-label="GitChronicle Wrapped story"
       data-testid="wrapped-player"
       data-autoplay={autoplay ? "on" : "off"}
-      tabIndex={0}
-      style={{ ["--shine" as string]: pal.shine }}
+      data-scene-mode={theme.mode}
+      tabIndex={-1}
+      style={{ color: theme.ink }}
     >
-      {/* Full-bleed cinematic bg */}
+      {/* Surface + ambient motion */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 transition-[background] duration-700"
+        style={{ background: theme.surface }}
+      />
+      {/* Soft ambient fields. Painted as radial gradients rather than blurred
+          boxes: a 90px+ blur on a viewport-sized layer is expensive on mobile
+          and mis-composites at small widths. */}
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute inset-0 bg-gradient-to-br transition-all duration-500",
-          pal.bg
+          "pointer-events-none absolute -left-[20%] top-[-24%] h-[80vh] w-[80vh]",
+          !reduceMotion && "gc-drift-a"
         )}
+        style={{
+          background: `radial-gradient(closest-side, ${theme.ambient}, transparent 72%)`,
+        }}
       />
       <div
         aria-hidden
         className={cn(
-          "pointer-events-none absolute -left-[10%] top-[-10%] h-[55vh] w-[55vh] rounded-full blur-3xl",
-          pal.glow,
-          !reduceMotion && "gc-orb-a"
+          "pointer-events-none absolute bottom-[-28%] right-[-18%] h-[86vh] w-[86vh]",
+          !reduceMotion && "gc-drift-b"
         )}
+        style={{
+          background: `radial-gradient(closest-side, ${theme.ambient}, transparent 72%)`,
+        }}
+      />
+      {/* Geometric field marks */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-[6%] hidden w-px lg:block"
+        style={{ background: theme.rule }}
       />
       <div
         aria-hidden
-        className={cn(
-          "pointer-events-none absolute bottom-[-15%] right-[-10%] h-[60vh] w-[60vh] rounded-full blur-3xl",
-          pal.glow,
-          !reduceMotion && "gc-orb-b"
-        )}
+        className="pointer-events-none absolute inset-y-0 left-[6%] hidden w-px lg:block"
+        style={{ background: theme.rule }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:18px_18px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.55]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, ${
+            isDark ? "rgba(255,255,255,0.14)" : "rgba(22,19,15,0.13)"
+          } 0.6px, transparent 0)`,
+          backgroundSize: "5px 5px",
+        }}
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.55)_100%)]"
-      />
-      {/* Fun floating shapes */}
-      {!reduceMotion && (
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <span className="gc-float-emoji absolute left-[8%] top-[22%] text-2xl opacity-40">
-            ✨
-          </span>
-          <span className="gc-float-emoji-2 absolute right-[12%] top-[28%] text-xl opacity-35">
-            🚀
-          </span>
-          <span className="gc-float-emoji absolute bottom-[18%] left-[15%] text-lg opacity-30">
-            💫
-          </span>
-          <span className="gc-float-emoji-2 absolute bottom-[22%] right-[18%] text-2xl opacity-35">
-            🔥
-          </span>
-        </div>
-      )}
 
-      {/* Thin story progress */}
+      {/* Scene progress */}
       <div
-        className="relative z-10 flex shrink-0 gap-0.5 px-3 pt-2.5 sm:px-4 sm:pt-3"
+        className="relative z-10 flex shrink-0 gap-1 px-3 pt-3 sm:px-6"
         data-testid="wrapped-progress"
         role="tablist"
         aria-label="Wrapped scenes"
@@ -313,43 +256,64 @@ export function WrappedPlayer({
             data-scene-type={s.type}
             data-testid={`wrapped-scene-tab-${s.type}`}
             onClick={() => userGoTo(i)}
-            className="relative z-20 h-4 flex-1"
+            className="relative z-20 h-5 flex-1 rounded-sm"
           >
-            <span className="block h-0.5 w-full overflow-hidden rounded-full bg-white/25 sm:h-1">
+            <span
+              className="block h-[3px] w-full overflow-hidden rounded-full"
+              style={{ background: theme.rule }}
+            >
               {i < index ? (
-                <span className="block h-full w-full rounded-full bg-white" />
+                <span
+                  className="block h-full w-full rounded-full"
+                  style={{ background: theme.ink }}
+                />
               ) : i > index ? (
-                <span className="block h-full w-0 rounded-full bg-white" />
+                <span className="block h-full w-0" />
               ) : autoplay && !reduceMotion && dwell > 0 ? (
                 <span
                   key={`fill-${progressKey}`}
-                  className="gc-progress-fill block h-full w-full rounded-full bg-white"
-                  style={{ animationDuration: `${dwell}ms` }}
+                  className="gc-progress-fill block h-full w-full rounded-full"
+                  style={{
+                    animationDuration: `${dwell}ms`,
+                    background: theme.ink,
+                  }}
                 />
               ) : (
-                <span className="block h-full w-full rounded-full bg-white" />
+                <span
+                  className="block h-full w-full rounded-full"
+                  style={{ background: theme.ink }}
+                />
               )}
             </span>
           </button>
         ))}
       </div>
 
-      {/* Micro header */}
-      <div className="relative z-10 flex shrink-0 items-center justify-between gap-2 px-3 py-1.5 sm:px-4">
-        <div className="flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.2em] text-white/70 sm:text-xs">
-          <Sparkles className="h-3 w-3 text-teal-300" />
-          WRAPPED
+      {/* Masthead */}
+      <div className="relative z-10 flex shrink-0 items-center justify-between gap-2 px-3 py-2 sm:px-6">
+        <div className="flex min-w-0 items-baseline gap-2.5">
+          <span className="gc-eyebrow text-[0.6rem] sm:text-[0.66rem]">
+            Wrapped
+          </span>
           <span
-            className="tabular-nums font-normal tracking-normal text-white/45"
+            className="text-[11px] font-bold tabular-nums"
+            style={{ color: theme.inkSoft }}
             data-testid="wrapped-counter"
           >
             {index + 1}/{scenes.length}
           </span>
+          <span
+            className="min-w-0 truncate text-[11px] font-medium"
+            style={{ color: theme.inkSoft }}
+          >
+            · {story.repositoryName}
+          </span>
         </div>
-        <div className="flex items-center gap-0.5">
+        <div className="flex items-center gap-1">
           <button
             type="button"
-            className="inline-flex h-8 items-center gap-1 rounded-md px-2 text-[11px] text-white/80 hover:bg-white/10"
+            className="gc-press inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-[11px] font-bold transition-colors"
+            style={{ background: theme.inset, color: theme.ink }}
             onClick={() => setAutoplay((a) => !a)}
             aria-label={autoplay ? "Pause autoplay" : "Play autoplay"}
             data-testid="wrapped-autoplay"
@@ -359,10 +323,14 @@ export function WrappedPlayer({
             ) : (
               <Play className="h-3.5 w-3.5" />
             )}
+            <span className="hidden sm:inline">
+              {autoplay ? "Pause" : "Play"}
+            </span>
           </button>
           <Link
             href={`/repo/${slug}`}
-            className="inline-flex h-8 items-center gap-1 rounded-md px-2 text-[11px] text-white/80 hover:bg-white/10"
+            className="gc-press inline-flex h-9 items-center gap-1.5 rounded-full px-3 text-[11px] font-bold transition-colors"
+            style={{ background: theme.inset, color: theme.ink }}
           >
             <LayoutDashboard className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">Stats</span>
@@ -370,273 +338,43 @@ export function WrappedPlayer({
         </div>
       </div>
 
-      {/* FILM FRAME — single screen, no scroll except closing */}
+      {/* Stage */}
       <div
         key={`${scene.id}-${progressKey}`}
         className={cn(
-          "relative z-10 mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col justify-center overflow-hidden px-4 pb-2 pt-1 sm:px-8 md:px-12",
-          isClosing && "overflow-y-auto justify-start pt-2",
-          sceneAnim
+          "relative z-10 mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col px-5 pb-3 pt-1 sm:px-10 lg:px-14",
+          // The closing beat is the only scene that may exceed one screen
+          isClosing && "overflow-y-auto",
+          enter
         )}
         aria-live="polite"
         data-testid="wrapped-scene-body"
         data-scene-type={scene.type}
         onClick={onStageClick}
       >
-        {/* Main cinematic block — fills height */}
-        <div
-          className={cn(
-            "grid min-h-0 flex-1 content-center gap-3 sm:gap-4",
-            scene.hero !== undefined && metrics.length > 0
-              ? "md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-8"
-              : ""
-          )}
-        >
-          <div className={cn("min-w-0", !reduceMotion && "gc-stagger")}>
-            {scene.kicker && (
-              <p
-                className={cn(
-                  "mb-1.5 text-[10px] font-bold uppercase tracking-[0.25em] sm:text-xs",
-                  pal.accent
-                )}
-              >
-                {scene.kicker}
-              </p>
-            )}
-            <h2
-              className={cn(
-                "max-w-[18ch] text-[clamp(1.75rem,5.5vw,3.75rem)] font-bold leading-[1.05] tracking-tight",
-                !reduceMotion && "gc-title-shine gc-wiggle-soft"
-              )}
-            >
-              {scene.title}
-            </h2>
-            <p className="mt-2 max-w-xl text-[clamp(0.85rem,1.6vw,1.15rem)] leading-snug text-white/75">
-              {scene.subtitle}
-            </p>
-            {scene.body && (
-              <p className="mt-1 font-mono text-[11px] text-white/45 sm:text-xs">
-                {scene.body}
-              </p>
-            )}
-
-            {scene.hero !== undefined && (
-              <div
-                className={cn(
-                  "mt-3 sm:mt-4",
-                  !reduceMotion && "gc-hero-pop"
-                )}
-              >
-                <div
-                  className={cn(
-                    "text-[clamp(2.75rem,9vw,6.5rem)] font-black tabular-nums leading-none tracking-tighter",
-                    pal.accent
-                  )}
-                >
-                  <CountUp
-                    value={scene.hero}
-                    reduceMotion={reduceMotion}
-                    key={`${scene.id}-hero`}
-                  />
-                </div>
-                {scene.heroLabel && (
-                  <div className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50 sm:text-xs">
-                    {scene.heroLabel}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Side panel for metrics / bars when space allows */}
-          <div className="min-w-0 space-y-3" data-no-tap-nav>
-            {metrics.length > 0 && (
-              <dl className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-2">
-                {metrics.map((m, mi) => (
-                  <div
-                    key={m.label}
-                    className={cn(
-                      "rounded-xl border border-white/10 bg-white/8 px-2.5 py-2 backdrop-blur-md",
-                      !reduceMotion && "gc-chip-in gc-bounce-in"
-                    )}
-                    style={
-                      !reduceMotion
-                        ? { animationDelay: `${0.12 + mi * 0.05}s` }
-                        : undefined
-                    }
-                  >
-                    <dt className="truncate text-[9px] uppercase tracking-wide text-white/45">
-                      {m.label}
-                    </dt>
-                    <dd className="truncate text-sm font-bold tabular-nums sm:text-base">
-                      {m.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            )}
-
-            {scene.type === "rhythm" && bars.length === 24 ? (
-              <div className="flex h-16 items-end gap-px sm:h-20">
-                {bars.map((b, bi) => (
-                  <div
-                    key={b.label}
-                    className={cn(
-                      "min-w-0 flex-1 rounded-t-sm bg-gradient-to-t from-cyan-600 to-teal-300",
-                      !reduceMotion && "gc-hist-rise"
-                    )}
-                    style={{
-                      height: `${Math.max(6, (b.value / Math.max(1, b.max)) * 100)}%`,
-                      animationDelay: !reduceMotion
-                        ? `${0.1 + bi * 0.015}s`
-                        : undefined,
-                    }}
-                  />
-                ))}
-              </div>
-            ) : (
-              bars.length > 0 &&
-              bars.length <= 12 && (
-                <div className="space-y-1.5">
-                  {bars.map((b) => (
-                    <div
-                      key={b.label}
-                      className="flex items-center gap-2 text-[11px] sm:text-xs"
-                    >
-                      <span className="w-16 shrink-0 truncate text-white/55 sm:w-24">
-                        {b.label}
-                      </span>
-                      <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
-                        <div
-                          className={cn(
-                            "h-full rounded-full bg-gradient-to-r from-teal-400 to-fuchsia-400",
-                            !reduceMotion && "gc-bar-grow"
-                          )}
-                          style={{
-                            width: `${Math.max(4, (b.value / Math.max(1, b.max)) * 100)}%`,
-                          }}
-                        />
-                      </div>
-                      <span className="w-8 text-right tabular-nums text-white/70">
-                        {b.value}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )
-            )}
-          </div>
-        </div>
-
-        {/* Bottom strip: list + chips — still in frame */}
-        {(listItems.length > 0 || chips.length > 0) && (
-          <div
-            className="mt-2 shrink-0 space-y-2 border-t border-white/10 pt-2 sm:mt-3 sm:pt-3"
-            data-no-tap-nav
-          >
-            {listItems.length > 0 && (
-              <ul className="grid gap-1 sm:grid-cols-2">
-                {listItems.map((item, i) => (
-                  <li
-                    key={`${item.label}-${i}`}
-                    className={cn(
-                      "flex items-baseline justify-between gap-2 rounded-lg bg-white/5 px-2 py-1 text-[11px] sm:text-xs",
-                      !reduceMotion && "gc-chip-in"
-                    )}
-                    style={
-                      !reduceMotion
-                        ? { animationDelay: `${0.2 + i * 0.04}s` }
-                        : undefined
-                    }
-                  >
-                    <span className="truncate font-medium">{item.label}</span>
-                    <span className="shrink-0 tabular-nums text-white/55">
-                      {item.value}
-                      {item.hint ? (
-                        <span className="ml-1 text-white/35">{item.hint}</span>
-                      ) : null}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {chips.length > 0 && (
-              <div className="flex flex-wrap gap-1.5">
-                {chips.map((c, ci) => (
-                  <span
-                    key={c}
-                    className={cn(
-                      "rounded-full border border-white/15 bg-white/5 px-2.5 py-0.5 text-[10px] text-white/80 sm:text-[11px]",
-                      !reduceMotion && "gc-chip-in"
-                    )}
-                    style={
-                      !reduceMotion
-                        ? { animationDelay: `${0.25 + ci * 0.04}s` }
-                        : undefined
-                    }
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        {isClosing && (
-          <div
-            className="mt-3 max-h-[42vh] space-y-3 overflow-y-auto pb-2"
-            data-testid="wrapped-closing"
-            data-no-tap-nav
-          >
-            <ShareCardDownloader cards={story.shareCards} />
-            <div className="flex flex-wrap gap-2">
-              <Button
-                asChild
-                size="sm"
-                className="bg-[#1ed760] text-black hover:bg-[#1fdf64]"
-              >
-                <Link href={`/repo/${slug}`} data-testid="cta-analytics">
-                  <LayoutDashboard className="h-4 w-4" />
-                  Open analytics
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="sm"
-                variant="outline"
-                className="border-white/20 bg-transparent text-white hover:bg-white/10"
-              >
-                <a
-                  href={`/api/repos/${slug}/export?type=report`}
-                  data-testid="cta-report"
-                >
-                  <Download className="h-4 w-4" />
-                  Report
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="sm"
-                variant="outline"
-                className="border-white/20 bg-transparent text-white hover:bg-white/10"
-              >
-                <Link href="/" data-testid="cta-another">
-                  Another repo
-                </Link>
-              </Button>
-            </div>
-          </div>
-        )}
-
+        <SceneStage
+          scene={scene}
+          theme={theme}
+          reduceMotion={reduceMotion}
+          slug={slug}
+          story={story}
+        />
         <p className="sr-only">{scene.a11y}</p>
       </div>
 
-      {/* Compact film controls */}
-      <div className="relative z-20 flex shrink-0 items-center justify-between gap-2 border-t border-white/10 bg-black/40 px-3 py-2 backdrop-blur-md sm:px-4">
+      {/* Transport */}
+      <div
+        className="relative z-20 flex shrink-0 items-center justify-between gap-3 border-t px-3 py-2.5 sm:px-6"
+        style={{
+          borderColor: theme.rule,
+          background: isDark ? "rgba(0,0,0,0.28)" : "rgba(255,255,255,0.42)",
+          backdropFilter: "blur(10px)",
+        }}
+      >
         <button
           type="button"
-          className="inline-flex h-8 items-center gap-1 rounded-md px-2 text-xs text-white hover:bg-white/10 disabled:opacity-40"
+          className="gc-press inline-flex h-10 items-center gap-1 rounded-full px-4 text-xs font-bold transition-opacity disabled:opacity-35"
+          style={{ color: theme.ink }}
           onClick={userPrev}
           disabled={index === 0}
           aria-label="Previous scene"
@@ -645,14 +383,18 @@ export function WrappedPlayer({
           <ChevronLeft className="h-4 w-4" />
           Back
         </button>
-        <div className="text-center text-[10px] text-white/40 sm:text-[11px]">
+        <p
+          className="hidden text-[11px] font-medium sm:block"
+          style={{ color: theme.inkSoft }}
+        >
           {autoplay && !isClosing && !reduceMotion
-            ? "▶ autoplay · edges skip · center pauses"
-            : "← → · P play/pause"}
-        </div>
+            ? "Autoplaying · tap the edges to skip · centre pauses"
+            : "← → to move · P to play/pause"}
+        </p>
         <button
           type="button"
-          className="inline-flex h-8 items-center gap-1 rounded-md bg-white px-3 text-xs font-semibold text-slate-900 hover:bg-white/90 disabled:opacity-40"
+          className="gc-press inline-flex h-10 items-center gap-1 rounded-full px-5 text-xs font-bold transition-opacity disabled:opacity-35"
+          style={{ background: theme.ink, color: theme.mode === "dark" ? "#16130f" : "#fbf7f1" }}
           onClick={userNext}
           disabled={index >= scenes.length - 1}
           aria-label="Next scene"
@@ -664,41 +406,4 @@ export function WrappedPlayer({
       </div>
     </div>
   );
-}
-
-function CountUp({
-  value,
-  reduceMotion,
-}: {
-  value: string | number;
-  reduceMotion: boolean;
-}) {
-  const numeric = typeof value === "number" ? value : Number(value);
-  const isNum =
-    Number.isFinite(numeric) &&
-    String(value).trim() !== "" &&
-    !String(value).includes(":") &&
-    typeof value === "number";
-
-  const [frame, setFrame] = useState(0);
-
-  useEffect(() => {
-    if (!isNum || reduceMotion) return;
-    let raf = 0;
-    const start = performance.now();
-    const target = numeric;
-    const duration = Math.min(900, 350 + Math.log10(Math.max(1, target)) * 200);
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setFrame(Math.round(target * eased));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [value, isNum, numeric, reduceMotion]);
-
-  if (!isNum) return <>{value}</>;
-  if (reduceMotion) return <>{numeric.toLocaleString()}</>;
-  return <>{frame.toLocaleString()}</>;
 }

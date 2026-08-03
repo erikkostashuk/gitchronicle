@@ -44,13 +44,13 @@ export function CommitHeatmap({ cells }: { cells: HeatmapCell[] }) {
     return 4;
   }
 
-  // Empty cells use a visible light-theme tile (not pure white-on-white)
+  // Sequential coral ramp; empty cells stay a visible tile (not white-on-white)
   const colors = [
-    "bg-muted ring-1 ring-inset ring-border/80",
-    "bg-primary/25",
-    "bg-primary/45",
-    "bg-primary/70",
-    "bg-primary",
+    "bg-muted ring-1 ring-inset ring-border",
+    "bg-[color-mix(in_srgb,var(--chart-1)_30%,transparent)]",
+    "bg-[color-mix(in_srgb,var(--chart-1)_55%,transparent)]",
+    "bg-[color-mix(in_srgb,var(--chart-1)_78%,transparent)]",
+    "bg-[var(--chart-1)]",
   ];
 
   return (
