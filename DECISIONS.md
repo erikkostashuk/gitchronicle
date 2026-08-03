@@ -70,6 +70,11 @@
 - Forces light theme via `localStorage gitchronicle-theme` + `colorScheme: "light"`.
 - Wrapped titles use solid white + green glow (not `background-clip: text`) so they stay visible under CSS transforms and in PNG captures.
 
+## Project identity & recent list
+- Display lists collapse accidental duplicates via pure `projectIdentityKey` (demo slug, GitHub `fullName`, normalized `localPath`, else name).
+- Winner prefers `ready` over `failed`/in-progress, then newest `updatedAt`.
+- Local CLI analyze reuses the row matching `localPath` so repeated `pnpm analyze -- /path` does not create `slug-1`, `slug-2`, …
+
 ## Stale job recovery
 - Running jobs refresh `updatedAt` on every progress tick. Silence longer than **20 minutes** (`STALE_JOB_TTL_MS`) ⇒ treat as dead worker.
 - `recoverStaleJobs()` flips job + project to `failed` with a message that points users at **Retry analysis**.

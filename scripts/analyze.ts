@@ -19,40 +19,82 @@ async function main() {
   }
 
   const repoPath = path.resolve(assertSafeLocalPath(repoPathArg));
-  if (!fs.existsSync(repoPath)) {
-    console.error(`Path does not exist: ${repoPath}`);
+  // Stable identity: no trailing slash (matches projectIdentityKey)
+  const normalizedPath = repoPath.replace(/\/+$/, "") || repoPath;
+
+  if (!fs.existsSync(normalizedPath)) {
+    console.error(`Path does not exist: ${normalizedPath}`);
     process.exit(1);
   }
-  if (!(await isGitRepo(repoPath))) {
-    console.error(`Not a git repository: ${repoPath}`);
+  if (!(await isGitRepo(normalizedPath))) {
+    console.error(`Not a git repository: ${normalizedPath}`);
     process.exit(1);
   }
 
   migrateDb();
   const db = getDb();
-  const name = path.basename(repoPath);
-  const slugBase = slugify(name) || "local-repo";
-  let slug = slugBase;
-  let n = 1;
-  while (db.select().from(projects).where(eq(projects.slug, slug)).get()) {
-    slug = `${slugBase}-${n++}`;
+  const name = path.basename(normalizedPath);
+
+  // Reuse existing row for this path so landing / switcher do not pile up clones
+  const existing =
+    db
+      .select()
+      .from(projects)
+      .where(eq(projects.localPath, normalizedPath))
+      .get() ??
+    // legacy rows may lack localPath or have trailing slash
+    db
+      .select()
+      .from(projects)
+      .all()
+      .find(
+        (p) =>
+          p.sourceType === "local" &&
+          p.localPath &&
+          p.localPath.replace(/\/+$/, "") === normalizedPath
+      );
+
+  let projectId: string;
+  let slug: string;
+  const now = new Date().toISOString();
+
+  if (existing) {
+    projectId = existing.id;
+    slug = existing.slug;
+    db.update(projects)
+      .set({
+        localPath: normalizedPath,
+        name: existing.name || name,
+        status: "analyzing",
+        errorMessage: null,
+        updatedAt: now,
+      })
+      .where(eq(projects.id, projectId))
+      .run();
+    console.log(`Re-analyzing ${normalizedPath} → existing project ${slug}`);
+  } else {
+    projectId = randomId("proj");
+    const slugBase = slugify(name) || "local-repo";
+    slug = slugBase;
+    let n = 1;
+    while (db.select().from(projects).where(eq(projects.slug, slug)).get()) {
+      slug = `${slugBase}-${n++}`;
+    }
+    db.insert(projects)
+      .values({
+        id: projectId,
+        slug,
+        name,
+        sourceType: "local",
+        localPath: normalizedPath,
+        status: "analyzing",
+        isDemo: false,
+      })
+      .run();
+    console.log(`Analyzing ${normalizedPath} → project ${slug}`);
   }
 
-  const projectId = randomId("proj");
   const jobId = randomId("job");
-
-  db.insert(projects)
-    .values({
-      id: projectId,
-      slug,
-      name,
-      sourceType: "local",
-      localPath: repoPath,
-      status: "analyzing",
-      isDemo: false,
-    })
-    .run();
-
   db.insert(jobs)
     .values({
       id: jobId,
@@ -61,19 +103,19 @@ async function main() {
       status: "running",
       progress: 5,
       stage: "analyzing",
-      payloadJson: JSON.stringify({ localPath: repoPath }),
-      startedAt: new Date().toISOString(),
+      payloadJson: JSON.stringify({ localPath: normalizedPath }),
+      startedAt: now,
     })
     .run();
 
-  console.log(`Analyzing ${repoPath} → project ${slug}`);
-
   try {
     const result = await runAnalysis({
-      repoPath,
+      repoPath: normalizedPath,
       name,
       onProgress: (p, stage) => {
-        process.stdout.write(`\r[${p.toString().padStart(3)}%] ${stage}          `);
+        process.stdout.write(
+          `\r[${p.toString().padStart(3)}%] ${stage}          `
+        );
         db.update(jobs)
           .set({
             progress: p,
@@ -89,6 +131,7 @@ async function main() {
     db.update(projects)
       .set({
         status: "ready",
+        localPath: normalizedPath,
         description: result.overview.narrative.slice(0, 280),
         updatedAt: new Date().toISOString(),
       })

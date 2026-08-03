@@ -9,7 +9,7 @@ import {
   getLatestAnalysis,
   getLatestJob,
   getProjectBySlug,
-  listProjects,
+  listProjectsForDisplay,
 } from "@/lib/projects";
 import { JobStatusPanel } from "@/components/dashboard/job-status";
 
@@ -26,7 +26,12 @@ export default async function RepoLayout({
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
-  const projects = listProjects();
+  // Dedupe accidental re-analyzes so the switcher stays scannable
+  const projects = listProjectsForDisplay(40);
+  // Ensure current project is always listed even if filtered out by limit
+  if (!projects.some((p) => p.slug === slug)) {
+    projects.unshift(project);
+  }
   const analysis = getLatestAnalysis(project.id);
   const job = getLatestJob(project.id);
 
@@ -38,7 +43,7 @@ export default async function RepoLayout({
             currentSlug={slug}
             projects={projects.map((p) => ({
               slug: p.slug,
-              name: p.name,
+              name: p.fullName || p.name,
               status: p.status,
               isDemo: p.isDemo,
             }))}
@@ -47,7 +52,10 @@ export default async function RepoLayout({
       />
       <CommandPalette
         slug={slug}
-        projects={projects.map((p) => ({ slug: p.slug, name: p.name }))}
+        projects={projects.map((p) => ({
+          slug: p.slug,
+          name: p.fullName || p.name,
+        }))}
       />
 
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-6 sm:px-6 md:flex-row">

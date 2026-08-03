@@ -87,8 +87,14 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] Wired into worker loop, `processNextJob`, `processJobById`, job poll API, and `enqueueRetry`
 - [x] Unit tests for stale pure logic (60 unit tests total)
 
+## Landing recent-repos dedupe (2026-08-03)
+- [x] Pure `dedupeProjectsForDisplay` / `projectIdentityKey` (`src/lib/projects/dedupe.ts`)
+- [x] Landing + repo switcher use `listProjectsForDisplay` (prefer ready, then newest)
+- [x] `pnpm analyze` reuses project by normalized `localPath` (no more gitchronicle-N spam)
+- [x] Local path shown on recent list; unit tests (69 total)
+
 ## Suggested next (priority)
 1. Performance pass on very large local repos (caps already exist — measure)
-2. Landing “recent repos” dedupe / cleanup of accidental re-imports
-3. Optional: re-run `pnpm screenshots` after chart contrast for docs/overview
-4. Optional: orphan project status repair (analyzing with no active job)
+2. Optional: re-run `pnpm screenshots` after chart contrast for docs/overview
+3. Optional: orphan project status repair (analyzing with no active job)
+4. Optional: admin cleanup to delete superseded duplicate project rows

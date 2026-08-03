@@ -10,14 +10,15 @@ import {
 import { SiteHeader } from "@/components/site-header";
 import { ImportForm } from "@/components/import-form";
 import { Button } from "@/components/ui/button";
-import { listProjects } from "@/lib/projects";
+import { listProjects, listProjectsForDisplay } from "@/lib/projects";
 import { Badge } from "@/components/ui/badge";
 
 export const dynamic = "force-dynamic";
 
 export default function HomePage() {
-  const projects = listProjects();
-  const demo = projects.find((p) => p.isDemo && p.status === "ready");
+  const allProjects = listProjects();
+  const projects = listProjectsForDisplay(8);
+  const demo = allProjects.find((p) => p.isDemo && p.status === "ready");
 
   return (
     <div className="flex min-h-full flex-col">
@@ -74,8 +75,11 @@ export default function HomePage() {
               <h2 className="mb-3 text-sm font-bold tracking-tight text-muted-foreground">
                 Recent repositories
               </h2>
-              <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-                {projects.slice(0, 8).map((p) => (
+              <ul
+                className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+                data-testid="recent-repos"
+              >
+                {projects.map((p) => (
                   <li key={p.id}>
                     <Link
                       href={
@@ -85,11 +89,21 @@ export default function HomePage() {
                       }
                       className="flex items-center justify-between gap-3 px-4 py-3.5 text-sm transition-colors hover:bg-muted/70"
                     >
-                      <span className="font-semibold tracking-tight">
-                        {p.fullName || p.name}
+                      <span className="min-w-0">
+                        <span className="block truncate font-semibold tracking-tight">
+                          {p.fullName || p.name}
+                        </span>
+                        {p.sourceType === "local" && p.localPath && (
+                          <span className="mt-0.5 block truncate font-mono text-[11px] text-muted-foreground">
+                            {p.localPath}
+                          </span>
+                        )}
                       </span>
-                      <span className="flex items-center gap-2">
+                      <span className="flex shrink-0 items-center gap-2">
                         {p.isDemo && <Badge variant="secondary">Demo</Badge>}
+                        {p.sourceType === "local" && !p.isDemo && (
+                          <Badge variant="outline">Local</Badge>
+                        )}
                         <Badge
                           variant={
                             p.status === "ready"
