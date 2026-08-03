@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Analysis endpoints are dynamic and rate limited — no value in crawling them
+Disallow: /api/

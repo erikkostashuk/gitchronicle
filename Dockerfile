@@ -27,6 +27,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV DATA_DIR=/app/data
+# `public/` is optional in Next.js and git does not track empty directories, so
+# a fresh clone may not contain it — guarantee it exists before the runner COPYs.
+RUN mkdir -p /app/public
 # Migrate + seed so the build has a database to render against; the runtime
 # entrypoint repeats both because a mounted volume shadows this directory.
 RUN pnpm db:migrate && pnpm seed && pnpm build
