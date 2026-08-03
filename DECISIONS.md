@@ -60,6 +60,12 @@
 - Share cards use browser canvas PNG export (no extra deps); closing scene hosts downloads.
 - Demo and import completion routes land on `/repo/<slug>/wrapped` first; analytics remain one click away.
 
+## Analysis retry
+- `POST /api/repos/[slug]/retry` enqueues a new job; never reuses a failed row as running without a clean pending insert.
+- Decision tree is pure (`planRetryJob`): failed GitHub → `clone_and_analyze`; ready GitHub with `localPath` → `reanalyze`; local → `analyze_local`; demo → 400 (seed offline JSON).
+- Concurrent pending/running jobs for the same project return **409**.
+- UI: JobStatusPanel offers **Retry analysis** when failed and the source can re-run; inline `processJobById` keeps single-instance dev usable without a separate worker.
+
 ## Rising star selection
 - Pure function `pickRisingStar(AnalysisResult)` — no per-commit author histogram required.
 - Late = firstCommit at or after **40%** of the repo timeline; min 4 commits / 2 active days; overall ≥3 people and ≥20 commits.

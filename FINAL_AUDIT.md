@@ -24,9 +24,9 @@ pnpm dev
 | --- | --- |
 | `pnpm lint` | pass |
 | `pnpm typecheck` | pass |
-| `pnpm test` | 42 pass (parse + metrics + wrapped + rising-star + theme tokens) |
+| `pnpm test` | 49 pass (parse + metrics + wrapped + rising-star + retry planner + theme) |
 | `pnpm build` | pass |
-| `pnpm test:e2e` | **14 pass** (desktop + mobile), including hard keyboard advance + closing scroll + PNG magic |
+| `pnpm test:e2e` | **16 pass** (desktop + mobile), including hard keyboard advance + closing scroll + PNG magic + retry API |
 | Demo Wrapped | 21 adaptive scenes, analysis-backed |
 | Local CLI analyze | ready project + Wrapped 200 |
 | Markdown export | non-empty report with Overview |

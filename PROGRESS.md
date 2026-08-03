@@ -29,7 +29,7 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] Downloadable PNG share cards (1200×630 + 1080×1080)
 - [x] Closing CTAs → analytics / report / another repo
 - [x] Landing rebranded for Wrapped
-- [x] e2e for Wrapped nav + exports (**14/14**, hard keyboard + closing + PNG)
+- [x] e2e for Wrapped nav + exports + retry API (**16/16**, hard keyboard + closing + PNG)
 - [x] FINAL_AUDIT.md
 - [x] lint / typecheck / test / build green
 
@@ -55,14 +55,22 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] Demo seeds late-joiner **Barbara Liskov** (~20 commits after ~65% of history) without overtaking founding lead
 - [x] Unit tests: demo pick, synthetic late dense star, early-cast skip (42 unit tests total)
 
+## Failed-job retry (2026-08-03)
+- [x] Pure `planRetryJob` + `enqueueRetry` (`src/lib/jobs/retry.ts`)
+- [x] `POST /api/repos/[slug]/retry` — github re-clone / local reanalyze; 409 if in-flight
+- [x] JobStatusPanel **Retry analysis** button (polls new job; demo not retryable)
+- [x] Unit tests for planner (7) + e2e API guards (demo/missing slug)
+- [x] 49 unit tests total
+
 ## Notes
 - Classic Story deck kept as secondary chronological slides
 - Rising star requires ≥3 contributors, ≥20 commits, late firstCommit, score floor — skipped when weak
 - Wrapped player remains intentionally dark cinematic; product shell is light-first
 - Optional dark theme still available via toggle (storage key `gitchronicle-theme`)
+- Demo projects reject retry (re-seed with `pnpm seed`); GitHub failed jobs re-clone after cleanup
 
 ## Suggested next (priority)
 1. Refresh `docs/screenshots/` after Spotify rebrand + rising-star (landing + wrapped-open + overview)
-2. Failed-job retry UI (`reanalyze` job type exists; JobStatusPanel still “try another”)
-3. Light-theme dashboard chart contrast pass
+2. Light-theme dashboard chart contrast pass
+3. Stale `running` job recovery (worker crash → mark failed after TTL)
 4. Performance pass on very large local repos (caps already exist — measure)

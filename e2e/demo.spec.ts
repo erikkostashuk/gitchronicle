@@ -182,3 +182,16 @@ test("invalid github url is rejected", async ({ request }) => {
   const json = await res.json();
   expect(json.error).toBeTruthy();
 });
+
+test("retry analysis API rejects demo and missing slugs", async ({
+  request,
+}) => {
+  const missing = await request.post("/api/repos/no-such-repo-xyz/retry");
+  expect(missing.status()).toBe(404);
+
+  const demo = await request.post("/api/repos/acme-toolkit/retry");
+  // Demo is ready offline JSON — planner rejects reanalyze without clone
+  expect([400, 409]).toContain(demo.status());
+  const body = await demo.json();
+  expect(body.error).toBeTruthy();
+});

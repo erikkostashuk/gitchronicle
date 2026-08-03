@@ -82,11 +82,24 @@ export default async function RepoLayout({
         <div className="min-w-0 flex-1">
           {project.status !== "ready" && (
             <JobStatusPanel
+              key={`${job?.id ?? "none"}-${project.status}`}
+              slug={slug}
               jobId={job?.id}
               initialProgress={job?.progress ?? 0}
               initialStage={job?.stage ?? project.status}
-              initialStatus={job?.status ?? project.status}
-              errorMessage={project.errorMessage}
+              initialStatus={
+                // Prefer job status when present; project "failed" maps to failed UI
+                job?.status ??
+                (project.status === "failed" ? "failed" : project.status)
+              }
+              errorMessage={project.errorMessage ?? job?.errorMessage}
+              canRetry={
+                !project.isDemo &&
+                project.sourceType !== "demo" &&
+                (project.sourceType === "github"
+                  ? !!project.sourceUrl
+                  : !!project.localPath)
+              }
             />
           )}
           {children}
