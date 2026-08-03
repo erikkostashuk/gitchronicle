@@ -11,7 +11,11 @@ import {
   resetAnalysisSlots,
   tryAcquireAnalysisSlot,
 } from "./capacity";
-import { isValidGitHubUrl, validateGitHubUrl } from "../git/validate";
+import {
+  InvalidRepositoryUrlError,
+  isValidGitHubUrl,
+  validateGitHubUrl,
+} from "../git/validate";
 
 beforeEach(() => {
   resetRateLimits();
@@ -168,6 +172,52 @@ describe("GitHub URL validation (public attack surface)", () => {
       "https://github.com/onlyowner",
     ]) {
       expect(isValidGitHubUrl(url), url).toBe(false);
+    }
+  });
+
+  it("refuses credentials embedded in an otherwise valid github.com URL", () => {
+    // Rebuilding the clone URL would drop these silently. Rejecting instead
+    // means nobody can believe a pasted token authenticated their clone.
+    for (const url of [
+      "https://user:pass@github.com/a/b",
+      "https://token@github.com/a/b",
+    ]) {
+      expect(isValidGitHubUrl(url), url).toBe(false);
+    }
+    expect(() => validateGitHubUrl("https://user:pass@github.com/a/b")).toThrow(
+      /credentials/i
+    );
+  });
+
+  it("refuses owner or repo that git would read as an option", () => {
+    for (const url of [
+      "https://github.com/-upload-pack/b",
+      "https://github.com/a/--help",
+      "https://github.com/../b",
+      "https://github.com/a/..",
+    ]) {
+      expect(isValidGitHubUrl(url), url).toBe(false);
+    }
+  });
+
+  it("reports rejections as InvalidRepositoryUrlError with a clean message", () => {
+    // The public 400 body is this message verbatim, so it must never carry a
+    // validation-library issue dump or any server internals.
+    try {
+      validateGitHubUrl("https://gitlab.com/a/b");
+      throw new Error("expected a rejection");
+    } catch (err) {
+      expect(err).toBeInstanceOf(InvalidRepositoryUrlError);
+      const message = (err as Error).message;
+      expect(message).not.toContain("{");
+      expect(message).not.toContain("code");
+      expect(message).toMatch(/github\.com/i);
+    }
+  });
+
+  it("rejects empty, blank, and null-byte input", () => {
+    for (const url of ["", "   ", "https://github.com/a/b\0"]) {
+      expect(isValidGitHubUrl(url), JSON.stringify(url)).toBe(false);
     }
   });
 

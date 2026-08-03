@@ -3,7 +3,10 @@ import { z } from "zod";
 import { eq } from "drizzle-orm";
 import { getDb } from "@/lib/db/client";
 import { jobs, projects } from "@/lib/db/schema";
-import { validateGitHubUrl } from "@/lib/git/validate";
+import {
+  InvalidRepositoryUrlError,
+  validateGitHubUrl,
+} from "@/lib/git/validate";
 import { randomId } from "@/lib/id";
 import { processJobById } from "@/lib/jobs/worker";
 import { listProjects } from "@/lib/projects";
@@ -168,15 +171,24 @@ export async function POST(req: Request) {
       { headers: rateLimitHeaders(limit) }
     );
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Import failed";
-    const isValidation =
-      message.includes("Only public HTTPS") || message.includes("Invalid");
-    if (isValidation) {
-      return NextResponse.json({ error: message }, { status: 400 });
+    // Rejected URLs are safe to echo — the message is written for the user and
+    // contains nothing but our own guidance.
+    if (err instanceof InvalidRepositoryUrlError) {
+      return NextResponse.json({ error: err.message }, { status: 400 });
+    }
+    // A malformed request body is the caller's problem, but a raw Zod error
+    // serialises its whole issue array, so answer with a fixed message.
+    if (err instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: "Send a JSON body of the form { \"url\": \"…\" }" },
+        { status: 400 }
+      );
     }
     // Never echo internal errors to a public client — they leak paths and
     // dependency internals. Log the detail, return a generic message.
-    logger.error("Import failed", { error: message });
+    logger.error("Import failed", {
+      error: err instanceof Error ? err.message : String(err),
+    });
     return NextResponse.json(
       { error: "Import failed. Please try again." },
       { status: 500 }
