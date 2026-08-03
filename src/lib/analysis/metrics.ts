@@ -18,7 +18,7 @@ import type {
   TagInfo,
   TimelineSample,
 } from "../types/analysis";
-import { groupBy, startOfDay, uniqueBy } from "../utils";
+import { groupBy, startOfDay } from "../utils";
 import { categorizeCommit, tallyCategories } from "./categories";
 import { isIgnorablePath, languageFromPath } from "./languages";
 
@@ -31,7 +31,21 @@ export interface AnalyzeInput {
     maxGraphEdges?: number;
     maxTimelineSamples?: number;
     maxHotspots?: number;
+    maxCochangePairs?: number;
+    maxCochangeFilesPerCommit?: number;
   };
+}
+
+/** Oldest → newest by authorDate (stable for equal timestamps). */
+export function sortCommitsChronological(
+  commits: CommitWithFiles[]
+): CommitWithFiles[] {
+  return [...commits].sort((a, b) => {
+    const ta = new Date(a.authorDate).getTime();
+    const tb = new Date(b.authorDate).getTime();
+    if (ta !== tb) return ta - tb;
+    return a.hash.localeCompare(b.hash);
+  });
 }
 
 function contributorId(name: string, email: string): string {
@@ -168,7 +182,11 @@ export function computeActivity(
   };
 }
 
-export function computeFileStats(commits: CommitWithFiles[]): FileStats[] {
+export function computeFileStats(
+  commits: CommitWithFiles[],
+  /** When true, `commits` is already oldest→newest (avoids re-sort). */
+  alreadySorted = false
+): FileStats[] {
   type Acc = {
     path: string;
     commits: number;
@@ -180,10 +198,7 @@ export function computeFileStats(commits: CommitWithFiles[]): FileStats[] {
   };
   const files = new Map<string, Acc>();
 
-  // Process chronological (oldest first)
-  const ordered = [...commits].sort(
-    (a, b) => new Date(a.authorDate).getTime() - new Date(b.authorDate).getTime()
-  );
+  const ordered = alreadySorted ? commits : sortCommitsChronological(commits);
 
   for (const c of ordered) {
     const cid = contributorId(c.authorName, c.authorEmail);
@@ -349,12 +364,11 @@ export function computeDirectories(files: FileStats[]): DirectoryStats[] {
 
 export function computeContributors(
   commits: CommitWithFiles[],
-  fileStats: FileStats[]
+  fileStats: FileStats[],
+  alreadySorted = false
 ): ContributorStats[] {
   const aliases = buildContributorAliasMap(commits);
-  const ordered = [...commits].sort(
-    (a, b) => new Date(a.authorDate).getTime() - new Date(b.authorDate).getTime()
-  );
+  const ordered = alreadySorted ? commits : sortCommitsChronological(commits);
 
   type Acc = {
     id: string;
@@ -494,24 +508,40 @@ export function computeLanguages(files: FileStats[]): LanguageSeries[] {
 export function computeCoChange(
   commits: CommitWithFiles[],
   maxNodes: number,
-  maxEdges: number
+  maxEdges: number,
+  options?: {
+    maxPairKeys?: number;
+    maxFilesPerCommit?: number;
+  }
 ): { nodes: string[]; edges: CoChangeEdge[] } {
+  const maxPairKeys = options?.maxPairKeys ?? 40_000;
+  const maxFilesPerCommit = options?.maxFilesPerCommit ?? 24;
   const pairWeights = new Map<string, number>();
   const nodeCounts = new Map<string, number>();
 
   for (const c of commits) {
-    const paths = uniqueBy(
-      c.files.filter((f) => !isIgnorablePath(f.path)).map((f) => f.path),
-      (p) => p
-    ).slice(0, 30);
+    // Dedup paths without allocating uniqueBy intermediate arrays
+    const seen = new Set<string>();
+    const paths: string[] = [];
+    for (const f of c.files) {
+      if (isIgnorablePath(f.path) || seen.has(f.path)) continue;
+      seen.add(f.path);
+      paths.push(f.path);
+      if (paths.length >= maxFilesPerCommit) break;
+    }
+    if (paths.length === 0) continue;
+
     for (const p of paths) {
       nodeCounts.set(p, (nodeCounts.get(p) ?? 0) + 1);
     }
+    // Pairwise co-change; once the map is full only refresh known pairs
+    const mapFull = pairWeights.size >= maxPairKeys;
     for (let i = 0; i < paths.length; i++) {
       for (let j = i + 1; j < paths.length; j++) {
         const a = paths[i]!;
         const b = paths[j]!;
         const key = a < b ? `${a}||${b}` : `${b}||${a}`;
+        if (mapFull && !pairWeights.has(key)) continue;
         pairWeights.set(key, (pairWeights.get(key) ?? 0) + 1);
       }
     }
@@ -567,10 +597,11 @@ export function computeCollaboration(
   return { nodes: top.map((c) => c.id), edges };
 }
 
-export function computeGrowth(commits: CommitWithFiles[]): GrowthPoint[] {
-  const ordered = [...commits].sort(
-    (a, b) => new Date(a.authorDate).getTime() - new Date(b.authorDate).getTime()
-  );
+export function computeGrowth(
+  commits: CommitWithFiles[],
+  alreadySorted = false
+): GrowthPoint[] {
+  const ordered = alreadySorted ? commits : sortCommitsChronological(commits);
   const alive = new Set<string>();
   let lines = 0;
   const byMonth = new Map<string, GrowthPoint>();
@@ -677,15 +708,13 @@ export function computeReleases(
   tags: TagInfo[]
 ): ReleaseInfo[] {
   if (tags.length === 0) return [];
-  const orderedCommits = [...commits].sort(
-    (a, b) => new Date(a.authorDate).getTime() - new Date(b.authorDate).getTime()
-  );
+  const orderedCommits = sortCommitsChronological(commits);
   const hashToIndex = new Map(orderedCommits.map((c, i) => [c.hash, i]));
 
   const sortedTags = [...tags].sort((a, b) => {
     const da = a.date ? new Date(a.date).getTime() : 0;
-    const db = b.date ? new Date(b.date).getTime() : 0;
-    if (da && db) return da - db;
+    const db_ = b.date ? new Date(b.date).getTime() : 0;
+    if (da && db_) return da - db_;
     const ia = hashToIndex.get(a.hash) ?? 0;
     const ib = hashToIndex.get(b.hash) ?? 0;
     return ia - ib;
@@ -1109,28 +1138,28 @@ export function analyzeRepository(input: AnalyzeInput): AnalysisResult {
     maxGraphEdges: input.limits?.maxGraphEdges ?? 200,
     maxTimelineSamples: input.limits?.maxTimelineSamples ?? 200,
     maxHotspots: input.limits?.maxHotspots ?? 50,
+    maxCochangePairs: input.limits?.maxCochangePairs ?? 40_000,
+    maxCochangeFilesPerCommit: input.limits?.maxCochangeFilesPerCommit ?? 24,
   };
 
-  const commits = input.commits;
+  // One chronological sort for all downstream pure calculators
+  const commits = sortCommitsChronological(input.commits);
   const tags = input.tags;
   const activity = computeActivity(commits);
-  const files = computeFileStats(commits);
+  const files = computeFileStats(commits, true);
   const directories = computeDirectories(files);
-  const contributors = computeContributors(commits, files);
+  const contributors = computeContributors(commits, files, true);
   const languages = computeLanguages(files);
-  const growth = computeGrowth(commits);
+  const growth = computeGrowth(commits, true);
   const { bursts, quietPeriods } = detectBurstsAndQuiet(activity.byDay);
   const largeCommits = detectLargeCommits(commits);
   const releases = computeReleases(commits, tags);
   const eras = inferEras(commits, tags, bursts, contributors);
   const categories = tallyCategories(commits);
 
-  const ordered = [...commits].sort(
-    (a, b) => new Date(a.authorDate).getTime() - new Date(b.authorDate).getTime()
-  );
-  const firstCommit = ordered[0]?.authorDate ?? new Date().toISOString();
+  const firstCommit = commits[0]?.authorDate ?? new Date().toISOString();
   const lastCommit =
-    ordered[ordered.length - 1]?.authorDate ?? new Date().toISOString();
+    commits[commits.length - 1]?.authorDate ?? new Date().toISOString();
   const ageDays = Math.max(
     0,
     Math.floor(
@@ -1169,7 +1198,11 @@ export function analyzeRepository(input: AnalyzeInput): AnalysisResult {
   const coChange = computeCoChange(
     commits,
     limits.maxGraphNodes,
-    limits.maxGraphEdges
+    limits.maxGraphEdges,
+    {
+      maxPairKeys: limits.maxCochangePairs,
+      maxFilesPerCommit: limits.maxCochangeFilesPerCommit,
+    }
   );
   const collaboration = computeCollaboration(
     contributors,

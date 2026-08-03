@@ -7,6 +7,7 @@ import {
   computeCoChange,
   computeFileStats,
   detectLargeCommits,
+  sortCommitsChronological,
 } from "./metrics";
 import type { CommitWithFiles } from "../types/analysis";
 import { generateDemoCommits, generateDemoAnalysis } from "../demo/generate";
@@ -274,6 +275,91 @@ describe("markdown exports", () => {
     const notes = generateReleaseNotes(result.releases[0]!, result.repository.name);
     expect(notes).toContain(result.releases[0]!.tag);
     expect(notes).toContain("## Summary");
+  });
+});
+
+describe("large-repo performance helpers", () => {
+  it("sortCommitsChronological is stable by date then hash", () => {
+    const commits = [
+      commit({
+        hash: "b".repeat(40),
+        subject: "second",
+        authorDate: "2024-02-01T00:00:00.000Z",
+      }),
+      commit({
+        hash: "a".repeat(40),
+        subject: "first",
+        authorDate: "2024-01-01T00:00:00.000Z",
+      }),
+    ];
+    const ordered = sortCommitsChronological(commits);
+    expect(ordered[0]!.subject).toBe("first");
+    expect(ordered[1]!.subject).toBe("second");
+  });
+
+  it("computeCoChange respects pair key and files-per-commit caps", () => {
+    // Wide commits: many files co-changed every time
+    const files = Array.from({ length: 40 }, (_, i) => ({
+      path: `src/mod${i}.ts`,
+      status: "modified" as const,
+      additions: 1,
+      deletions: 0,
+    }));
+    const commits = Array.from({ length: 50 }, (_, i) =>
+      commit({
+        hash: i.toString(16).padStart(40, "c"),
+        subject: `batch ${i}`,
+        authorDate: `2024-01-${String((i % 28) + 1).padStart(2, "0")}T12:00:00.000Z`,
+        files,
+        additions: 40,
+        deletions: 0,
+      })
+    );
+    const graph = computeCoChange(commits, 80, 200, {
+      maxPairKeys: 100,
+      maxFilesPerCommit: 10,
+    });
+    // Pair map capped during scan; final edges still ≤ maxEdges
+    expect(graph.edges.length).toBeLessThanOrEqual(200);
+    expect(graph.nodes.length).toBeLessThanOrEqual(80);
+  });
+
+  it("analyzeRepository finishes a wide synthetic history quickly", () => {
+    const files = Array.from({ length: 15 }, (_, i) => ({
+      path: `pkg/f${i}.ts`,
+      status: "modified" as const,
+      additions: 3,
+      deletions: 1,
+    }));
+    const commits = Array.from({ length: 800 }, (_, i) =>
+      commit({
+        hash: i.toString(16).padStart(40, "d"),
+        subject: i % 5 === 0 ? `feat: item ${i}` : `fix: item ${i}`,
+        authorDate: new Date(Date.UTC(2020, 0, 1 + (i % 1000), i % 24)).toISOString(),
+        authorName: i % 2 === 0 ? "Ada" : "Grace",
+        authorEmail: i % 2 === 0 ? "ada@ex.com" : "grace@ex.com",
+        files,
+        additions: 45,
+        deletions: 15,
+      })
+    );
+    const t0 = performance.now();
+    const result = analyzeRepository({
+      commits,
+      tags: [],
+      repository: { name: "wide" },
+      limits: {
+        maxGraphNodes: 40,
+        maxGraphEdges: 80,
+        maxCochangePairs: 5_000,
+        maxCochangeFilesPerCommit: 12,
+      },
+    });
+    const ms = performance.now() - t0;
+    expect(result.overview.commitCount).toBe(800);
+    expect(result.coChange.edges.length).toBeLessThanOrEqual(80);
+    // Generous CI bound — guards against accidental O(n²) regressions
+    expect(ms).toBeLessThan(8_000);
   });
 });
 

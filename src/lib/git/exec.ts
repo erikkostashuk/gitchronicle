@@ -37,8 +37,9 @@ export async function gitExec(
       stdio: ["ignore", "pipe", "pipe"],
     });
 
-    let stdout = "";
-    let stderr = "";
+    // Chunk arrays avoid quadratic string concatenation on multi‑MB git log output
+    const stdoutChunks: Buffer[] = [];
+    const stderrChunks: Buffer[] = [];
     let stdoutBytes = 0;
     let stderrBytes = 0;
     let killed = false;
@@ -52,14 +53,14 @@ export async function gitExec(
     child.stdout.on("data", (chunk: Buffer) => {
       stdoutBytes += chunk.length;
       if (stdoutBytes <= maxBuffer) {
-        stdout += chunk.toString("utf8");
+        stdoutChunks.push(chunk);
       }
     });
 
     child.stderr.on("data", (chunk: Buffer) => {
       stderrBytes += chunk.length;
       if (stderrBytes <= maxBuffer) {
-        stderr += chunk.toString("utf8");
+        stderrChunks.push(chunk);
       }
     });
 
@@ -80,7 +81,11 @@ export async function gitExec(
         );
         return;
       }
-      resolve({ stdout, stderr, code: code ?? 1 });
+      resolve({
+        stdout: Buffer.concat(stdoutChunks).toString("utf8"),
+        stderr: Buffer.concat(stderrChunks).toString("utf8"),
+        code: code ?? 1,
+      });
     });
   });
 }

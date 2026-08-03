@@ -15,6 +15,10 @@ const envSchema = z.object({
   MAX_GRAPH_NODES: z.coerce.number().default(80),
   MAX_GRAPH_EDGES: z.coerce.number().default(200),
   MAX_TIMELINE_SAMPLES: z.coerce.number().default(200),
+  /** Cap distinct co-change pair keys while scanning (memory bound on huge monorepos) */
+  MAX_COCHANGE_PAIRS: z.coerce.number().default(40_000),
+  /** Max files considered per commit when building co-change pairs */
+  MAX_COCHANGE_FILES_PER_COMMIT: z.coerce.number().default(24),
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
 });
 

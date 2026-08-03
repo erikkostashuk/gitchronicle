@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   GIT_LOG_FORMAT,
+  GIT_LOG_FORMAT_WITH_BODY,
   parseLogOutput,
   parseLogRecord,
   parseLogWithNumstat,
@@ -9,6 +10,14 @@ import {
   parseRenamePath,
   parseTags,
 } from "./parse";
+
+describe("GIT_LOG_FORMAT", () => {
+  it("omits body placeholder for compact live collection", () => {
+    expect(GIT_LOG_FORMAT).not.toContain("%b");
+    expect(GIT_LOG_FORMAT_WITH_BODY.endsWith("%b")).toBe(true);
+    expect(GIT_LOG_FORMAT.split("\x1f")).toHaveLength(9);
+  });
+});
 
 describe("parseLogRecord", () => {
   it("parses a well-formed commit record", () => {

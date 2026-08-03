@@ -93,8 +93,15 @@ Primary experience is a cinematic, adaptive multi-scene Wrapped story from real 
 - [x] `pnpm analyze` reuses project by normalized `localPath` (no more gitchronicle-N spam)
 - [x] Local path shown on recent list; unit tests (69 total)
 
+## Large-repo analysis performance (2026-08-03)
+- [x] `git log` format omits commit body (`%b`) — subject-only categorization, far smaller stdout
+- [x] `gitExec` buffers stdout/stderr as chunk arrays (no quadratic string concat)
+- [x] Single chronological sort in `analyzeRepository`; file/contributor/growth skip re-sort
+- [x] Co-change caps: `MAX_COCHANGE_PAIRS` (40k) + `MAX_COCHANGE_FILES_PER_COMMIT` (24)
+- [x] Unit tests for caps + wide synthetic history (73 tests total)
+
 ## Suggested next (priority)
-1. Performance pass on very large local repos (caps already exist — measure)
-2. Optional: re-run `pnpm screenshots` after chart contrast for docs/overview
-3. Optional: orphan project status repair (analyzing with no active job)
-4. Optional: admin cleanup to delete superseded duplicate project rows
+1. Optional: re-run `pnpm screenshots` after chart contrast for docs/overview
+2. Optional: orphan project status repair (analyzing with no active job)
+3. Optional: admin cleanup to delete superseded duplicate project rows
+4. Optional: stream/parse git log incrementally for multi‑GB histories

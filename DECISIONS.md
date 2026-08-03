@@ -70,6 +70,12 @@
 - Forces light theme via `localStorage gitchronicle-theme` + `colorScheme: "light"`.
 - Wrapped titles use solid white + green glow (not `background-clip: text`) so they stay visible under CSS transforms and in PNG captures.
 
+## Large-repo analysis cost
+- Live `git log` uses subject-only pretty format (no `%b`) — commit messages drive categories; PR bodies dominate log size.
+- Git stdout is collected as Buffer chunks then concatenated once.
+- Metrics sort commits chronologically once per analysis.
+- Co-change pairwise map is hard-capped (`MAX_COCHANGE_PAIRS`, default 40k); only the first `MAX_COCHANGE_FILES_PER_COMMIT` (24) files per commit participate in pairs. Final graph still respects node/edge caps.
+
 ## Project identity & recent list
 - Display lists collapse accidental duplicates via pure `projectIdentityKey` (demo slug, GitHub `fullName`, normalized `localPath`, else name).
 - Winner prefers `ready` over `failed`/in-progress, then newest `updatedAt`.

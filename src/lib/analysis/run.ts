@@ -96,6 +96,7 @@ export async function runAnalysis(
   if (commits.length === 0) {
     throw new Error("Repository has no commits to analyze");
   }
+  onProgress?.(40, `Parsed ${commits.length.toLocaleString()} commits`);
 
   onProgress?.(45, "Reading tags");
   const tags = await collectTags(repoPath);
@@ -103,7 +104,7 @@ export async function runAnalysis(
   onProgress?.(55, "Detecting default branch");
   const defaultBranch = await detectDefaultBranch(repoPath);
 
-  onProgress?.(65, "Computing metrics");
+  onProgress?.(60, "Computing metrics");
   const result = analyzeRepository({
     commits,
     tags,
@@ -117,9 +118,12 @@ export async function runAnalysis(
       maxGraphNodes: env.MAX_GRAPH_NODES,
       maxGraphEdges: env.MAX_GRAPH_EDGES,
       maxTimelineSamples: env.MAX_TIMELINE_SAMPLES,
+      maxCochangePairs: env.MAX_COCHANGE_PAIRS,
+      maxCochangeFilesPerCommit: env.MAX_COCHANGE_FILES_PER_COMMIT,
     },
   });
 
+  onProgress?.(95, "Serializing analysis");
   onProgress?.(100, "Complete");
   return result;
 }

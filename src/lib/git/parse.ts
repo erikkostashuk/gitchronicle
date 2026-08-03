@@ -5,7 +5,11 @@ const FIELD_SEP = "\x1f";
 
 /**
  * Custom pretty format for git log. Fields separated by \x1f, records by \x1e.
- * Order: hash, parents, an, ae, aI, cn, ce, cI, subject, body
+ * Order: hash, parents, an, ae, aI, cn, ce, cI, subject[, body]
+ *
+ * Body is intentionally omitted from live `git log` collection (see collectCommits)
+ * — merge/PR bodies dominate output size on large repos and categorization only
+ * needs the subject line. Parsers still accept an optional body field.
  */
 export const GIT_LOG_FORMAT = [
   "%H",
@@ -17,8 +21,10 @@ export const GIT_LOG_FORMAT = [
   "%ce",
   "%cI",
   "%s",
-  "%b",
 ].join(FIELD_SEP);
+
+/** Full format including body — tests / offline fixtures only. */
+export const GIT_LOG_FORMAT_WITH_BODY = `${GIT_LOG_FORMAT}${FIELD_SEP}%b`;
 
 export function parseLogRecord(block: string): RawCommit | null {
   const trimmed = block.trim();
