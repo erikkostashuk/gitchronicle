@@ -68,7 +68,7 @@ source public with the documentation, CI, and policies to match.
 - GitHub Actions CI: lint, typecheck, unit tests, build, Playwright e2e, and a
   Docker image build with a health smoke test
 - Issue and pull request templates
-- 111 unit tests (Vitest) and 16 end-to-end tests (Playwright, desktop + mobile)
+- 141 unit tests (Vitest) and 16 end-to-end tests (Playwright, desktop + mobile)
 
 ### Security
 
@@ -85,6 +85,29 @@ source public with the documentation, CI, and policies to match.
   a generic message, so server paths and dependency internals cannot leak
 - `/api/health` returns a generic body on failure so a database error cannot
   leak the absolute data-directory path
+- Job failures no longer persist the raw error. `jobs.errorMessage` and
+  `projects.errorMessage` are served verbatim by `GET /api/jobs/[id]`, so a
+  `git` or filesystem error published absolute server paths; failures now route
+  through a mapper that logs the detail and stores an actionable sentence
+- `MAX_CLONE_SIZE_MB` is now enforced *before and during* the clone rather than
+  after it. Measuring a finished clone could never stop a repository larger than
+  the disk — it exhausted the volume first. A GitHub API preflight refuses
+  oversized repositories without touching the disk, and a watchdog aborts a
+  clone that crosses the limit mid-flight
+- Disk-headroom accounting counts `data/tmp` as well as `data/repos`, so an
+  in-flight clone no longer reports free space it is actively consuming
+
+### Changed
+
+- Imports are ephemeral: only the newest `MAX_STORED_PROJECTS` (default 5) are
+  kept, with older projects evicted along with their analyses, jobs and clones.
+  The bundled demo and any in-flight import are never evicted
+- Failed imports no longer appear under "Recent repositories"; the failure is
+  still reported on the import screen
+- Failures that retrying cannot fix — too large, not found, private, empty — no
+  longer offer "Retry analysis". Timeouts and network errors still do
+- The footer links back to the source repository
+- Wrapped autoplay pacing tightened to 4.3s per scene
 
 ### Known limitations
 

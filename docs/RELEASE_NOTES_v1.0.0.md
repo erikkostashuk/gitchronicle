@@ -97,6 +97,9 @@ short version:
   resolves them.
 - **Analysis copies public commit metadata**, including author names and email
   addresses, into your database and renders it in the UI and exports.
+- **Imports are ephemeral.** Only the newest `MAX_STORED_PROJECTS` (default 5)
+  are kept; older ones are evicted with their analyses and clones. The bundled
+  demo is never evicted. Raise the limit on your own instance.
 
 ## Verified for this release
 
@@ -104,7 +107,7 @@ short version:
 | --- | --- |
 | `pnpm lint` | pass |
 | `pnpm typecheck` | pass |
-| `pnpm test` | 111 pass |
+| `pnpm test` | 141 pass |
 | `pnpm build` | pass |
 | `pnpm test:e2e` | 16 pass (desktop + mobile) |
 | Docker image build + `/api/health` | pass |
