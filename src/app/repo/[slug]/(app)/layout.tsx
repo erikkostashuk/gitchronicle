@@ -12,6 +12,7 @@ import {
   listProjectsForDisplay,
 } from "@/lib/projects";
 import { JobStatusPanel } from "@/components/dashboard/job-status";
+import { isPermanentFailure } from "@/lib/errors";
 
 export const dynamic = "force-dynamic";
 
@@ -129,6 +130,12 @@ export default async function RepoLayout({
               canRetry={
                 !project.isDemo &&
                 project.sourceType !== "demo" &&
+                // A repository that is too large, missing, private or empty
+                // will fail again identically — offering Retry only burns the
+                // caller's import quota.
+                !isPermanentFailure(
+                  project.errorMessage ?? job?.errorMessage
+                ) &&
                 (project.sourceType === "github"
                   ? !!project.sourceUrl
                   : !!project.localPath)

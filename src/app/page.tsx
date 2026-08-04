@@ -118,7 +118,9 @@ export default function HomePage() {
             }}
           />
 
-          <div className="relative mx-auto max-w-[86rem] px-4 pb-14 pt-14 sm:px-8 sm:pb-20 sm:pt-20">
+          {/* Tighter above than below: the marquee already reads as a rule, so
+              matching the bottom padding left the headline floating. */}
+          <div className="relative mx-auto max-w-[86rem] px-4 pb-14 pt-8 sm:px-8 sm:pb-20 sm:pt-11">
             <div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end lg:gap-16">
               <div className="min-w-0 gc-stagger">
                 <p className="gc-eyebrow flex items-center gap-2 text-[var(--coral-deep)] dark:text-[var(--coral)]">

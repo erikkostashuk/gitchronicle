@@ -20,24 +20,33 @@ export class UserFacingError extends Error {
   }
 }
 
-/** Patterns that identify a known failure mode from its raw text. */
-const KNOWN: Array<{ test: RegExp; message: string }> = [
+/**
+ * Patterns that identify a known failure mode from its raw text.
+ *
+ * `permanent` means retrying changes nothing — the repository will not shrink,
+ * appear, or become public on its own. The UI hides "Retry analysis" for these
+ * so nobody spends their rate limit re-running a guaranteed failure.
+ */
+const KNOWN: Array<{ test: RegExp; message: string; permanent?: boolean }> = [
   {
     // The whole point of the size guards, but a race or an unbounded operation
     // can still hit the real disk limit first.
     test: /no space left on device|ENOSPC|write error|index-pack failed|fetch-pack: invalid index-pack output/i,
     message:
       "This repository is too large for this instance to process. Try a smaller repository, or run GitChronicle locally where the limit is yours to set.",
+    permanent: true,
   },
   {
     test: /could not read from remote repository|repository not found|not found|does not exist/i,
     message:
       "That repository could not be found. Check the URL, and note that only public repositories can be imported.",
+    permanent: true,
   },
   {
     test: /authentication failed|could not read username|terminal prompts disabled|permission denied/i,
     message:
       "That repository is private or requires authentication. Only public repositories can be imported.",
+    permanent: true,
   },
   {
     test: /timed out|ETIMEDOUT|timeout/i,
@@ -52,6 +61,7 @@ const KNOWN: Array<{ test: RegExp; message: string }> = [
   {
     test: /empty repository|does not have any commits|unborn/i,
     message: "That repository has no commits yet, so there is nothing to analyse.",
+    permanent: true,
   },
 ];
 
@@ -69,4 +79,38 @@ export function toUserMessage(err: unknown, context?: Record<string, unknown>): 
     if (test.test(raw)) return message;
   }
   return "Analysis failed. Please try again, or open an issue if it keeps happening.";
+}
+
+/**
+ * The clone size ceiling, thrown from the clone path.
+ *
+ * Lives here rather than in `git/clone.ts` so the message and its permanent
+ * classification cannot drift apart — an earlier version had two differently
+ * worded "too large" strings, and `isPermanentFailure` silently matched
+ * neither, leaving a useless Retry button on the failure screen.
+ */
+export function tooLargeError(limitMb: number): UserFacingError {
+  return new UserFacingError(
+    `That repository is larger than this instance allows (${limitMb} MB). Try a smaller repository, or run GitChronicle locally where you set the limit.`
+  );
+}
+
+/**
+ * Distinctive phrases identifying a permanently-failed import.
+ *
+ * Deliberately a phrase per class rather than whole-message equality: messages
+ * interpolate values (the MB limit) and get reworded, and an exact match that
+ * quietly stops matching is worse than no check at all.
+ */
+const PERMANENT_PATTERNS: RegExp[] = [
+  /larger than this instance allows|too large for this instance/i,
+  /could not be found/i,
+  /private or requires authentication/i,
+  /no commits yet/i,
+];
+
+/** True when the stored failure message describes something retrying cannot fix. */
+export function isPermanentFailure(message: string | null | undefined): boolean {
+  if (!message) return false;
+  return PERMANENT_PATTERNS.some((p) => p.test(message));
 }

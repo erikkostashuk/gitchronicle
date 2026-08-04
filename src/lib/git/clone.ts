@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { getEnv, getReposDir, getTmpDir } from "../env";
 import { logger } from "../logger";
-import { UserFacingError } from "../errors";
+import { UserFacingError, tooLargeError } from "../errors";
 import { gitExec } from "./exec";
 import { validateGitHubUrl, type ValidatedGitHubUrl } from "./validate";
 
@@ -13,12 +13,6 @@ export interface CloneResult {
 
 /** How often the watchdog measures the growing clone. */
 const SIZE_POLL_MS = 2_000;
-
-function tooLargeError(limitMb: number): UserFacingError {
-  return new UserFacingError(
-    `That repository is larger than this instance allows (${limitMb} MB). Try a smaller repository, or run GitChronicle locally where you set the limit.`
-  );
-}
 
 /**
  * Ask GitHub how big the repository is before cloning anything.

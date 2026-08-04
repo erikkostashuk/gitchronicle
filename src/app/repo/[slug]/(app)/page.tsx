@@ -24,10 +24,13 @@ export default async function OverviewPage({
   if (!project) notFound();
   const analysis = getLatestAnalysis(project.id);
   if (!analysis) {
+    // The status panel above already states the failure and offers the next
+    // step, so repeating it here just adds a second card saying less.
+    if (project.status === "failed") return null;
     return (
       <EmptyState
-        title="Analysis not ready"
-        description="This repository is still being analyzed or failed. Check the status above."
+        title="Analysis in progress"
+        description="This repository is still being analyzed. The overview appears here as soon as it finishes."
         actionHref="/"
         actionLabel="Back home"
       />

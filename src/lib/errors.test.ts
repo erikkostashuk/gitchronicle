@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { UserFacingError, toUserMessage } from "./errors";
+import {
+  UserFacingError,
+  isPermanentFailure,
+  tooLargeError,
+  toUserMessage,
+} from "./errors";
 
 /**
  * Job failures are persisted and served verbatim by GET /api/jobs/[id], so a
@@ -61,5 +66,73 @@ describe("toUserMessage", () => {
     for (const raw of inputs) {
       expect(toUserMessage(new Error(raw)), raw).not.toMatch(/\/(app|Users|var)\//);
     }
+  });
+});
+
+describe("isPermanentFailure", () => {
+  it("flags failures that retrying cannot fix", () => {
+    for (const raw of [
+      "ENOSPC: no space left on device",
+      "fatal: repository not found",
+      "fatal: Authentication failed",
+      "warning: You appear to have cloned an empty repository",
+    ]) {
+      expect(isPermanentFailure(toUserMessage(new Error(raw))), raw).toBe(true);
+    }
+  });
+
+  it("leaves transient failures retryable", () => {
+    for (const raw of [
+      "git clone timed out after 300000ms",
+      "getaddrinfo ENOTFOUND github.com",
+      "something entirely unexpected",
+    ]) {
+      expect(isPermanentFailure(toUserMessage(new Error(raw))), raw).toBe(false);
+    }
+  });
+
+  it("treats missing or unknown messages as retryable", () => {
+    expect(isPermanentFailure(null)).toBe(false);
+    expect(isPermanentFailure(undefined)).toBe(false);
+    expect(isPermanentFailure("")).toBe(false);
+    expect(isPermanentFailure("some message we never produce")).toBe(false);
+  });
+
+  it("stays in sync with toUserMessage output", () => {
+    const sizeMsg = toUserMessage(new Error("No space left on device"));
+    expect(isPermanentFailure(sizeMsg)).toBe(true);
+  });
+
+  it("tolerates surrounding text rather than demanding an exact string", () => {
+    // Matching whole messages meant any rewording or interpolated value
+    // silently reclassified a permanent failure as retryable. Phrase matching
+    // is deliberately forgiving.
+    const sizeMsg = toUserMessage(new Error("No space left on device"));
+    expect(isPermanentFailure(sizeMsg + " ")).toBe(true);
+    expect(isPermanentFailure(` ${sizeMsg}\n`)).toBe(true);
+  });
+});
+
+describe("permanent classification covers what the clone path actually throws", () => {
+  /**
+   * Regression: the clone path threw its own "too large" wording while the
+   * classifier matched a differently-worded one, so isPermanentFailure returned
+   * false and the failure screen kept offering a Retry that could never work.
+   * Testing only the ENOSPC-mapped string missed it entirely.
+   */
+  it("flags the exact error the clone path throws, at any limit", () => {
+    for (const limit of [1, 500, 2000]) {
+      const msg = tooLargeError(limit).message;
+      expect(msg).toContain(`${limit} MB`);
+      expect(isPermanentFailure(msg), msg).toBe(true);
+      // and it must survive the round-trip that persists it
+      expect(isPermanentFailure(toUserMessage(tooLargeError(limit)))).toBe(true);
+    }
+  });
+
+  it("flags the 404 message the preflight throws", () => {
+    const msg =
+      "That repository could not be found. Check the URL, and note that only public repositories can be imported.";
+    expect(isPermanentFailure(toUserMessage(new UserFacingError(msg)))).toBe(true);
   });
 });
