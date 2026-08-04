@@ -178,3 +178,40 @@ describe("dedupeProjectsForDisplay", () => {
     expect(dedupeProjectsForDisplay(rows, 3)).toHaveLength(3);
   });
 });
+
+describe("failed imports are hidden from the recent list", () => {
+  const base = {
+    fullName: null,
+    sourceType: "github",
+    sourceUrl: null,
+    localPath: null,
+    isDemo: false,
+  };
+
+  it("omits a repository whose only row failed", () => {
+    const rows = [
+      { ...base, id: "1", slug: "good", name: "good", status: "ready", updatedAt: "2026-01-02" },
+      { ...base, id: "2", slug: "bad", name: "bad", status: "failed", updatedAt: "2026-01-03" },
+    ];
+    expect(dedupeProjectsForDisplay(rows).map((p) => p.slug)).toEqual(["good"]);
+  });
+
+  it("still shows a repository that has a ready row alongside a failed one", () => {
+    const rows = [
+      { ...base, id: "1", slug: "r", name: "r", fullName: "o/r", status: "failed", updatedAt: "2026-01-05" },
+      { ...base, id: "2", slug: "r", name: "r", fullName: "o/r", status: "ready", updatedAt: "2026-01-01" },
+    ];
+    const out = dedupeProjectsForDisplay(rows);
+    expect(out).toHaveLength(1);
+    expect(out[0]!.status).toBe("ready");
+  });
+
+  it("keeps in-progress imports visible so progress is observable", () => {
+    const rows = [
+      { ...base, id: "1", slug: "a", name: "a", status: "cloning", updatedAt: "2026-01-01" },
+      { ...base, id: "2", slug: "b", name: "b", status: "analyzing", updatedAt: "2026-01-02" },
+      { ...base, id: "3", slug: "c", name: "c", status: "pending", updatedAt: "2026-01-03" },
+    ];
+    expect(dedupeProjectsForDisplay(rows)).toHaveLength(3);
+  });
+});

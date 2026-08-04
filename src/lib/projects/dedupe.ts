@@ -78,7 +78,11 @@ export function dedupeProjectsForDisplay<T extends ProjectListItem>(
 ): T[] {
   const bestByKey = new Map<string, T>();
 
-  for (const p of projects) {
+  // A failed import is noise in a "Recent repositories" list — there is nothing
+  // to open. The failure is still reported on the import screen it came from.
+  // Dropped before grouping so a repository whose only row failed disappears,
+  // while one that also has a ready row still shows the ready one.
+  for (const p of projects.filter((p) => p.status !== "failed")) {
     const key = projectIdentityKey(p);
     const prev = bestByKey.get(key);
     if (!prev || isBetterProject(p, prev)) {

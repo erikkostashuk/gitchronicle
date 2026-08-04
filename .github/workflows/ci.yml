@@ -68,6 +68,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # `--with-deps` runs apt-get update, which fails the whole job when the
+      # runner image's Microsoft apt sources return 403 (they are unsigned and
+      # unrelated to Playwright). Drop those lists first so apt only reads the
+      # Ubuntu mirrors it actually needs.
+      - name: Remove unrelated apt sources that break apt-get update
+        run: |
+          sudo rm -f /etc/apt/sources.list.d/microsoft-prod.list \
+                     /etc/apt/sources.list.d/azure-cli.list \
+                     /etc/apt/sources.list.d/microsoft.list || true
+
       # Both engines are required: the `chromium` project uses Desktop Chrome,
       # and the `mobile` project uses the iPhone 13 descriptor, whose
       # defaultBrowserType is webkit. Installing only chromium fails half the suite.

@@ -4,6 +4,10 @@ import { analyses, jobs, projects, type Project } from "./db/schema";
 import { recoverStaleJobs } from "./jobs/stale";
 import type { AnalysisResult } from "./types/analysis";
 import { dedupeProjectsForDisplay } from "./projects/dedupe";
+import { planProjectEviction } from "./projects/retention";
+import { removeRepoData } from "./git/clone";
+import { getEnv } from "./env";
+import { logger } from "./logger";
 
 export function listProjects(): Project[] {
   return getDb()
@@ -30,6 +34,36 @@ export function getProjectByLocalPath(localPath: string): Project | undefined {
 }
 
 export { dedupeProjectsForDisplay, projectIdentityKey } from "./projects/dedupe";
+export { planProjectEviction } from "./projects/retention";
+
+/**
+ * Enforce MAX_STORED_PROJECTS, deleting each evicted project's analyses, jobs
+ * and clone. Called after an import succeeds, so the store stays at its cap
+ * without a scheduled sweeper.
+ */
+export async function enforceProjectRetention(): Promise<string[]> {
+  const max = getEnv().MAX_STORED_PROJECTS;
+  if (max <= 0) return [];
+
+  const db = getDb();
+  const evictIds = planProjectEviction(listProjects(), max);
+
+  for (const id of evictIds) {
+    const project = getProjectById(id);
+    // Free the disk first: losing the row while the clone survives would leak
+    // a directory nothing references.
+    await removeRepoData(id).catch(() => {});
+    db.delete(analyses).where(eq(analyses.projectId, id)).run();
+    db.delete(jobs).where(eq(jobs.projectId, id)).run();
+    db.delete(projects).where(eq(projects.id, id)).run();
+    logger.info("Evicted project past retention limit", {
+      projectId: id,
+      slug: project?.slug,
+      max,
+    });
+  }
+  return evictIds;
+}
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return getDb().select().from(projects).where(eq(projects.slug, slug)).get();

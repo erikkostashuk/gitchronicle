@@ -48,6 +48,9 @@ Worth knowing before you invest time:
 - **Analysis is a snapshot**, not a live feed. Re-import to refresh.
 - **Everything on an instance is public to everyone on it.** There are no
   accounts and no per-repository access control.
+- **Imports are ephemeral.** Only the newest `MAX_STORED_PROJECTS` (default 5)
+  are kept; older ones are evicted along with their analyses and clones. Raise
+  it on your own instance if you want a longer history.
 
 ## The Wrapped story
 
@@ -149,6 +152,7 @@ change only what you need.
 | `IMPORT_RATE_LIMIT` | `5` | Imports per client IP per window |
 | `IMPORT_RATE_WINDOW_MS` | `600000` | Rate-limit window (10 minutes) |
 | `MAX_TOTAL_CLONE_MB` | `2000` | Total retained clone budget; `0` disables the check |
+| `MAX_STORED_PROJECTS` | `5` | Projects kept. Imports are ephemeral — the newest survive, older ones are evicted with their analyses, jobs and clones. The demo counts toward this but is never evicted; `0` disables |
 | `KEEP_CLONES` | `false` | Keep clones after analysis. Leave `false` — clones are the only unbounded disk growth |
 
 **Container only**

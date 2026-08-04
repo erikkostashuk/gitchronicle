@@ -12,6 +12,7 @@ import {
 } from "../security/capacity";
 import { logger } from "../logger";
 import { toUserMessage } from "../errors";
+import { enforceProjectRetention } from "../projects";
 import type { AnalysisResult } from "../types/analysis";
 import { randomId } from "../id";
 import { recoverStaleJobs } from "./stale";
@@ -220,6 +221,20 @@ async function runJobInner(jobId: string) {
     .run();
 
   logger.info("Job completed", { jobId, projectId: project.id });
+
+  // A new repository just landed, so the store may now exceed its cap. Pruning
+  // here rather than on a schedule keeps the volume bounded without a sweeper.
+  // Never fatal: the analysis is already saved and the user is waiting on it.
+  try {
+    const evicted = await enforceProjectRetention();
+    if (evicted.length) {
+      logger.info("Retention evicted older projects", {
+        count: evicted.length,
+      });
+    }
+  } catch (err) {
+    logger.warn("Retention pass failed", { error: String(err) });
+  }
 }
 
 export async function persistAnalysis(

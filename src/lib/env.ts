@@ -29,6 +29,12 @@ const envSchema = z.object({
   /** Ceiling on total retained clone bytes; 0 disables the check */
   MAX_TOTAL_CLONE_MB: z.coerce.number().default(2_000),
   /**
+   * How many projects to keep. Imports are ephemeral on a public instance:
+   * the newest survive and older ones are evicted with their analyses, jobs and
+   * clones. The bundled demo counts toward this but is never evicted. 0 disables.
+   */
+  MAX_STORED_PROJECTS: z.coerce.number().default(5),
+  /**
    * Keep clones after a successful analysis. Off by default: analysis output is
    * fully self-contained, so retaining clones only buys faster re-analysis at
    * the cost of unbounded disk growth.
