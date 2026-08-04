@@ -11,6 +11,7 @@ import {
   tryAcquireAnalysisSlot,
 } from "../security/capacity";
 import { logger } from "../logger";
+import { toUserMessage } from "../errors";
 import type { AnalysisResult } from "../types/analysis";
 import { randomId } from "../id";
 import { recoverStaleJobs } from "./stale";
@@ -46,8 +47,7 @@ export async function processNextJob(): Promise<boolean> {
     await runJob(job.id);
     return true;
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    logger.error("Job failed", { jobId: job.id, error: message });
+    const message = toUserMessage(err, { jobId: job.id });
     db.update(jobs)
       .set({
         status: "failed",
@@ -280,7 +280,7 @@ export async function processJobById(jobId: string): Promise<void> {
   try {
     await runJob(jobId);
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
+    const message = toUserMessage(err, { jobId });
     db.update(jobs)
       .set({
         status: "failed",

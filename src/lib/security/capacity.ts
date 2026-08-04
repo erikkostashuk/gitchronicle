@@ -8,7 +8,7 @@
  */
 import fs from "node:fs/promises";
 import path from "node:path";
-import { getEnv, getReposDir } from "../env";
+import { getEnv, getReposDir, getTmpDir } from "../env";
 import { logger } from "../logger";
 
 let active = 0;
@@ -43,12 +43,20 @@ export function resetAnalysisSlots() {
 }
 
 /**
- * Total bytes under DATA_DIR/repos. Retained clones are the only unbounded
- * growth on the volume, so admission is refused before it fills — a full disk
- * takes SQLite down with it, which loses every stored analysis.
+ * Total bytes under DATA_DIR/repos *and* DATA_DIR/tmp. Admission is refused
+ * before the volume fills — a full disk takes SQLite down with it, which loses
+ * every stored analysis.
+ *
+ * tmp counts because that is where a clone lands first: measuring only the
+ * finished clones in repos/ reports plenty of headroom while an in-flight
+ * multi-gigabyte clone is actively consuming the disk.
  */
 export async function reposDirBytes(): Promise<number> {
-  return dirSize(getReposDir());
+  const [repos, tmp] = await Promise.all([
+    dirSize(getReposDir()),
+    dirSize(getTmpDir()),
+  ]);
+  return repos + tmp;
 }
 
 async function dirSize(dir: string): Promise<number> {

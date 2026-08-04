@@ -6,6 +6,12 @@ export interface GitExecOptions {
   timeoutMs?: number;
   maxBuffer?: number;
   env?: NodeJS.ProcessEnv;
+  /**
+   * Kills the process when aborted. A timeout alone cannot bound a clone by
+   * *size*: a repository far larger than the disk fills the volume long before
+   * the clock runs out, so callers watch the working directory grow and abort.
+   */
+  signal?: AbortSignal;
 }
 
 export interface GitExecResult {
@@ -50,6 +56,29 @@ export async function gitExec(
       reject(new Error(`git ${args[0] ?? ""} timed out after ${timeoutMs}ms`));
     }, timeoutMs);
 
+    const onAbort = () => {
+      killed = true;
+      clearTimeout(timer);
+      child.kill("SIGKILL");
+      const reason = options.signal?.reason;
+      reject(
+        reason instanceof Error
+          ? reason
+          : new Error(`git ${args[0] ?? ""} aborted`)
+      );
+    };
+    if (options.signal) {
+      if (options.signal.aborted) {
+        // Never spawned work we are about to kill anyway
+        child.kill("SIGKILL");
+      }
+      options.signal.addEventListener("abort", onAbort, { once: true });
+    }
+    const cleanup = () => {
+      clearTimeout(timer);
+      options.signal?.removeEventListener("abort", onAbort);
+    };
+
     child.stdout.on("data", (chunk: Buffer) => {
       stdoutBytes += chunk.length;
       if (stdoutBytes <= maxBuffer) {
@@ -65,13 +94,13 @@ export async function gitExec(
     });
 
     child.on("error", (err) => {
-      clearTimeout(timer);
+      cleanup();
       logger.error("git spawn error", { args, error: String(err) });
       reject(err);
     });
 
     child.on("close", (code) => {
-      clearTimeout(timer);
+      cleanup();
       if (killed) return;
       if (stdoutBytes > maxBuffer || stderrBytes > maxBuffer) {
         reject(
