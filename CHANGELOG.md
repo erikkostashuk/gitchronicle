@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Nothing yet. See the [roadmap](./README.md#roadmap) for what's planned.
+### Changed
+
+- The hosted demo moved from Railway to Render:
+  <https://gitchronicle-tptb.onrender.com>. It sleeps when idle and clears
+  imported repositories whenever it sleeps or restarts.
+- README: Render deployment instructions, including limits for the free
+  instance
 
 ## [1.0.0] — 2026-08-03
 

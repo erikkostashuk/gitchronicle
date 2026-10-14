@@ -72,7 +72,7 @@ docker compose up --build
 ## 6. Documentation
 
 - [ ] README reflects what actually ships — no aspirational features
-- [ ] Demo link resolves: <https://gitchronicle.up.railway.app>
+- [ ] Demo link resolves: <https://gitchronicle-tptb.onrender.com>
 - [ ] Screenshots regenerated if the UI changed (`pnpm screenshots`)
 - [ ] `.env.example` covers every variable read by `src/lib/env.ts`
 - [ ] Environment variable table in the README matches `.env.example`

@@ -40,7 +40,7 @@ body:
         - Repository import / analysis
         - Exports (PNG / Markdown)
         - Setup, migrations, or seeding
-        - Deployment (Docker / Railway)
+        - Deployment (Docker / container host)
         - Other
     validations:
       required: true
@@ -53,7 +53,7 @@ body:
         - Local dev (pnpm dev)
         - Local production (pnpm build && pnpm start)
         - Docker / docker compose
-        - Railway or another container host
+        - Render, Railway, or another container host
         - The hosted demo
     validations:
       required: true

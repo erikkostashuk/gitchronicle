@@ -6,10 +6,12 @@ GitChronicle turns a Git repository into a cinematic, shareable recap — then a
 
 [![CI](https://github.com/erikkostashuk/gitchronicle/actions/workflows/ci.yml/badge.svg)](https://github.com/erikkostashuk/gitchronicle/actions/workflows/ci.yml) ![GitChronicle](https://img.shields.io/badge/stack-Next.js%20%7C%20SQLite%20%7C%20Vitest-FF4D2E) ![license](https://img.shields.io/badge/license-MIT-blue)
 
-### ▶ [Try the live demo](https://gitchronicle.up.railway.app)
+### ▶ [Try the live demo](https://gitchronicle-tptb.onrender.com)
 
 No sign-up, no API key. Open the bundled demo story, or paste a public GitHub
-URL and watch a real repository get analysed.
+URL and watch a real repository get analysed. The hosted instance sleeps when
+idle, so the first visit after a quiet spell takes about a minute to load, and
+imported repositories are cleared whenever it sleeps or restarts.
 
 ![Landing](./docs/screenshots/landing.png)
 
@@ -184,7 +186,8 @@ worker exists to pick up recovery work. Remove it if you want a single container
 
 GitChronicle needs a **writable disk** (SQLite + repository clones) and the
 **`git` binary** at runtime, so it wants a container host with a persistent
-volume — not a serverless platform.
+volume — not a serverless platform. Without a volume it still runs, but imports
+only last until the next restart (see [Render](#render)).
 
 ### Railway
 
@@ -217,7 +220,32 @@ support horizontal scaling; `railway.json` pins `numReplicas: 1`.
 A separate `pnpm worker` service isn't needed — `POST /api/projects` processes
 jobs in-process. The worker exists for local multi-process setups and recovery.
 
-Fly.io and Render work the same way: one machine/instance, a volume mounted at
+### Render
+
+1. **New → Web Service**, connect the GitHub repository. Render detects the
+   Dockerfile.
+2. **Pick an instance type.**
+   - **Free** has no persistent disk. The demo always works, because the
+     entrypoint seeds it on every boot, but imported repositories are lost
+     whenever the service restarts, redeploys, or sleeps (after 15 minutes
+     without traffic). Waking takes about a minute. The
+     [live demo](https://gitchronicle-tptb.onrender.com) runs this way.
+   - **Paid** instances can attach a disk. Mount it at **`/app/data`** to keep
+     imports across restarts, as with Railway.
+3. **Set the health check** — *Advanced* → **Health Check Path** `/api/health`.
+4. **Set variables.** Render sets `PORT` itself. On the free instance (0.1 CPU,
+   512 MB RAM), lower the analysis limits:
+
+   | Variable | Value | Why |
+   | --- | --- | --- |
+   | `MAX_CLONE_SIZE_MB` | `100` | Per-repository ceiling |
+   | `MAX_TOTAL_CLONE_MB` | `300` | Refuse imports before the disk fills |
+   | `MAX_COMMITS` | `10000` | Smaller analysis ceiling for 512 MB of RAM |
+
+   `APP_URL` is optional here: without it, canonical and Open Graph URLs use the
+   `RENDER_EXTERNAL_HOSTNAME` that Render provides.
+
+Fly.io works the same way as Railway: one machine, a volume mounted at
 `/app/data`, and `DATA_DIR` pointed at it.
 
 ## Ingestion

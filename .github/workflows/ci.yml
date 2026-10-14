@@ -110,7 +110,7 @@ jobs:
 
       - uses: docker/setup-buildx-action@v3
 
-      # Same image Railway builds from — a broken Dockerfile is a broken deploy.
+      # Same image Render builds from — a broken Dockerfile is a broken deploy.
       - name: Build image
         uses: docker/build-push-action@v6
         with:

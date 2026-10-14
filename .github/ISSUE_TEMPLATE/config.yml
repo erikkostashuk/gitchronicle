@@ -7,5 +7,5 @@ contact_links:
     url: https://github.com/erikkostashuk/gitchronicle/discussions
     about: Ask a question or float an idea before opening an issue.
   - name: Live demo
-    url: https://gitchronicle.up.railway.app
+    url: https://gitchronicle-tptb.onrender.com
     about: Try the hosted instance before filing a setup bug.
